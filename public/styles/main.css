@@ -1,4 +1,66 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
 .first
 {
-    background-color: aqua;
+    
+    margin: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 4px black solid;
+    background: white
+}
+.buttonpart
+{
+
+    margin: 0;
+    width: 100%;
+    height: 550px;
+    background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+
+    
+    transition: all 1.1s linear 0s;
+
+    
+    border-bottom: 4px black solid;
+
+    
+}
+.button1
+{
+    width: 300px;
+    height: 20%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    font: normal;
+}
+.buttonpart :hover
+{
+    scale: 1.2;
+}
+
+
+
+
+/* FOOTER PART */
+.footer
+{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    color: white;
 }
