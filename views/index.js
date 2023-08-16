@@ -17,12 +17,20 @@ app.get("/", function (req, res) {
     res.render("index.ejs");
 });
 app.get("/student", function (req, res) {
-   // console.log("hii");
     res.render(__dirname + "/student.ejs");
 });
+
+
 app.get("/teacher", function (req, res) {
-    res.render(__dirname + "/teacher.ejs");
+    res.render(__dirname + "/teacher-signin.ejs");
 });
+
+
+app.get("/teacher/signup", function (req, res) {
+    res.render(__dirname + "/teacher-signup.ejs");
+});
+
+
 app.get("/assessment", function (req, res) {
     res.render(__dirname + "/assessment.ejs");
 });
@@ -38,11 +46,10 @@ app.post('/teacher/create',function(req,res){
             if(!user){
                 const data = new Teacher(req.body);
                 data.save();
-                console.log('okk');
-                return res.redirect('back'); // change to signup page later
+                return res.redirect('/teacher'); // change to signup page later
             }
             else{
-                return res.redirect('back');
+                return res.redirect('/teacher/signup');
             }
         }
         catch(err){
@@ -51,10 +58,8 @@ app.post('/teacher/create',function(req,res){
     }
     find();
 });
-// app.post("/indexteacher", function (req, res) {
-//     const a=5;
-//     res.send("Your BMI is : " + a);
-// });
+
+
 app.listen("3000", () => {
     console.log(`server is running on port 3000`);
 });
