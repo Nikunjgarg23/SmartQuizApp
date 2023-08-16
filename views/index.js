@@ -17,13 +17,10 @@ app.get("/", function (req, res) {
     res.render("index.ejs");
 });
 app.get("/student", function (req, res) {
-    console.log("hii");
+   // console.log("hii");
     res.render(__dirname + "/student.ejs");
 });
 app.get("/teacher", function (req, res) {
-    // console.log("klkl");
-    // console.log("klkl");
-    // console.log("hii2");
     res.render(__dirname + "/teacher.ejs");
 });
 app.get("/assessment", function (req, res) {
