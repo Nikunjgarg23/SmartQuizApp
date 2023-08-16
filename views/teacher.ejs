@@ -6,6 +6,13 @@
     <title>Teacher</title>
 </head>
 <body>
-    <h1>Teacher</h1>
+    <h1>Teacher Sign up</h1>
+        <form action="/teacher/create" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email"name="email" placeholder="Your E-mail" required>
+            <input type="text" name="password" placeholder="Enter Password" required>
+            <input type="text" name="confirm_pass" placeholder="Confirm Password" required>
+            <input type="submit" value="Sign-up">
+        </form>
 </body>
 </html>
