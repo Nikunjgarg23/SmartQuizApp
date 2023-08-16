@@ -42,7 +42,7 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
     
     border-bottom: 4px black solid;
-
+    transition: all 0.4s linear 0s;
     text-decoration: solid;
 }
 .button1
@@ -58,7 +58,8 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 .buttonpart :hover
 {
-    scale: 1.2;
+    /* scale: 1.2; */
+    border-radius: 50px;
 }
 
 
