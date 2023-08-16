@@ -58,10 +58,8 @@ app.post('/teacher/create',function(req,res){
     }
     find();
 });
-// app.post("/indexteacher", function (req, res) {
-//     const a=5;
-//     res.send("Your BMI is : " + a);
-// });
+
+
 app.listen("3000", () => {
     console.log(`server is running on port 3000`);
 });
