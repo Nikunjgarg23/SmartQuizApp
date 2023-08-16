@@ -7,28 +7,30 @@
 a
 {
     text-decoration: none;
-    color: white;
+    color: purple;
 }
 
 .first
 {
     
     margin: 0;
-    height: 100px;
+    color: purple;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 4px black solid;
-    background: #848583;
+    border-color: purple;
+    background-color: #F0F0F0;
 }
 .buttonpart
 {
 
     margin: 0;
     width: 100%;
-    height: 550px;
-    background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    height: 570px;
+    background-color: #F9D949;
+    
 
     
     display: flex;
@@ -42,6 +44,7 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
     
     border-bottom: 4px black solid;
+    border-color: purple;
 
     text-decoration: solid;
 }
@@ -50,11 +53,14 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     width: 300px;
     height: 20%;
     text-align: center;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
     font: normal;
     transition: all 0.4s linear 0s;
-
+    border-color: rgb(67, 1, 67);
+    border-right-color: rgb(67, 1, 67) !important;
+    border-bottom-color: rgb(67, 1, 67) !important ;
+    border-radius: 8px;
 }
 .buttonpart :hover
 {
@@ -69,6 +75,6 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 {
     width: 100%;
     height: 100px;
-    background-color: black;
-    color: white;
+    background-color: #F45050;
+    color: purple;
 }
