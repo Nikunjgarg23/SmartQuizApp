@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://127.0.0.1:27017/minor-proj-db');
 
@@ -10,4 +10,4 @@ db.once('open',function(){
     console.log('Successfully started database');
 });
 //console.log('mongoose');
-export default db;
+// export default db;
