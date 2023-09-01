@@ -23,51 +23,52 @@ app.use(express.static('public'));
 
 
 // app.use(express.static("public"));
-app.get("/", function (req, res) {
-    return res.render("index");
-});
+app.use('/',require('./routes'));
+// app.get("/", function (req, res) {
+//     return res.render("index");
+// });
 app.get("/student", function (req, res) {
-    return res.render("student.ejs");
+    return res.render("student");
 });
 
 
-app.get("/teacher", function (req, res) {
-    return res.render("teacher-signin");
-});
+// app.get("/teacher", function (req, res) {
+//     return res.render("teacher-signin");
+// });
 
 
-app.get("/teacher/signup", function (req, res) {
-    return res.render("teacher-signup");
-});
+// app.get("/teacher/signup", function (req, res) {
+//     return res.render("teacher-signup");
+// });
 
 
 app.get("/assessment", function (req, res) {
     return res.render("assessment");
 });
 
-app.post('/teacher/create',function(req,res){
-    if(req.body.password != req.body.confirm_pass){
-        return res.redirect('back');
-    }
-    const find = async()=>{
-        try{
-            const user = await Teacher.findOne({email : req.body.email});
+// app.post('/teacher/create',function(req,res){
+//     if(req.body.password != req.body.confirm_pass){
+//         return res.redirect('back');
+//     }
+//     const find = async()=>{
+//         try{
+//             const user = await Teacher.findOne({email : req.body.email});
 
-            if(!user){
-                const data = new Teacher(req.body);
-                data.save();
-                return res.redirect('/teacher'); // change to signup page later
-            }
-            else{
-                return res.redirect('/teacher/signup');
-            }
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
-    find();
-});
+//             if(!user){
+//                 const data = new Teacher(req.body);
+//                 data.save();
+//                 return res.redirect('/teacher'); // change to signup page later
+//             }
+//             else{
+//                 return res.redirect('/teacher/signup');
+//             }
+//         }
+//         catch(err){
+//             console.log(err);
+//         }
+//     }
+//     find();
+// });
 
 
 app.listen("3000", () => {
