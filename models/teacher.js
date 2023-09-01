@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
  
 const teacherSchema = new mongoose.Schema({
     email : {
@@ -18,4 +18,4 @@ const teacherSchema = new mongoose.Schema({
     timestamps : true
 });
 const Teacher = new mongoose.model('Teacher',teacherSchema);
-export default Teacher;
+module.exports = Teacher;

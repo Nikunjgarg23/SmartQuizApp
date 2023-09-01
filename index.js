@@ -1,38 +1,48 @@
-import { log } from "console";
-import express from "express";
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import { log } from "console";
+// import express from "express";
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// const app = express();
+//import db from "../config/mongoose.js";
+
+const express = require('express');
 const app = express();
+const db = require('./config/mongoose');
+
+app.set('view engine','ejs');
+app.set('views','./views');
+
+app.use(express.urlencoded());
+app.use(express.static('public'));
 
 //const db = require('../config/mongoose');
-import db from "../config/mongoose.js";
-import Teacher from "../models/teacher.js";
-app.use(express.urlencoded());
+// import Teacher from "../models/teacher.js";
+// app.use(express.urlencoded());
 
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.get("/", function (req, res) {
-    res.render("index.ejs");
+    return res.render("index");
 });
 app.get("/student", function (req, res) {
-    res.render(__dirname + "/student.ejs");
+    return res.render("student.ejs");
 });
 
 
 app.get("/teacher", function (req, res) {
-    res.render(__dirname + "/teacher-signin.ejs");
+    return res.render("teacher-signin");
 });
 
 
 app.get("/teacher/signup", function (req, res) {
-    res.render(__dirname + "/teacher-signup.ejs");
+    return res.render("teacher-signup");
 });
 
 
 app.get("/assessment", function (req, res) {
-    res.render(__dirname + "/assessment.ejs");
+    return res.render("assessment");
 });
 
 app.post('/teacher/create',function(req,res){
