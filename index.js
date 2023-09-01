@@ -7,23 +7,27 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 //const db = require('../config/mongoose');
-import db from "../config/mongoose.js";
-import Teacher from "../models/teacher.js";
+import db from "./config/mongoose.js";
+import Teacher from "./models/teacher.js";
 app.use(express.urlencoded());
 
-
 app.use(express.static("public"));
+var teacheRoutes=require('./routes/teacher')
+var homeRoutes=require('./routes/teacher')
+var studentRoutes=require('./routes/teacher')
 app.get("/", function (req, res) {
     res.render("index.ejs");
 });
-app.get("/student", function (req, res) {
-    res.render(__dirname + "/student.ejs");
-});
+app.use('/teacher',teacheRoutes);
+app.use('/student',studentRoutes);
+// app.get("/student", function (req, res) {
+//     res.render(__dirname + "/student.ejs");
+// });
 
 
-app.get("/teacher", function (req, res) {
-    res.render(__dirname + "/teacher-signin.ejs");
-});
+// app.get("/teacher", function (req, res) {
+//     res.render(__dirname + "/teacher-signin.ejs");
+// });
 
 
 app.get("/teacher/signup", function (req, res) {
