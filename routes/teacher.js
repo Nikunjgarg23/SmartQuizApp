@@ -7,5 +7,6 @@ router.get("/signup", teacher_controller.signup);
 
 
 router.post('/create',teacher_controller.create);
+router.post('/teacherinrt',teacher_controller.nextpage);
 
 module.exports = router;
