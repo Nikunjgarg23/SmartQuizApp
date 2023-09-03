@@ -13,6 +13,7 @@
         .middles {
             height: 100%;
             /* color: blue; */
+            margin-bottom: 17px;
             font-size: xx-large;
             padding-left: 30%;
             padding-right: 25%;
@@ -33,13 +34,11 @@
             overflow-x: hidden;
             transition: 0.5s;
         }
-
-        .middle {
-            background-color: blue;
-            border-right: 0px;
-            padding-right: 0px;
-            margin-right: 0%;
+        .tcq{
+            text-align: center;
+            margin-top: 17%;
         }
+
 
         .overlay-content {
             position: relative;
@@ -111,10 +110,17 @@
         open
     </span> -->
     <!-- <div onclick="openNav()">open</div> -->
-    <span onclick="openNav()" class="middle">open</span>
-    <span class="middles">
+    <div class="middles">
         Welcome teachername to our quizzy
-    </span>
+    </div>
+    <div onclick="openNav()" >
+        <button>|||</button>
+    </div>
+    <div class ="tcq">
+        <h3>
+            Teachers are the compass that helps students navigate the vast seas of knowledge. They instill not just facts and figures but also the values of curiosity, resilience, and the pursuit of excellence. Beyond textbooks, they impart life lessons, fostering personal growth and character development. Teachers are everyday heroes, devoting themselves to shaping future generations with care and dedication, leaving a lasting legacy of wisdom and inspiration
+        </h3>
+    </div>
 
     <!-- Use any element to open/show the overlay navigation menu -->
     <script>
