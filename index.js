@@ -19,7 +19,7 @@ app.get("/student", function (req, res) {
 
 
 app.get("/assessment", function (req, res) {
-    return res.render("assessment");
+    return res.render("teacherinterface");
 });
 
 

@@ -8,6 +8,9 @@ module.exports.home = function(req,res){
 module.exports.signup = function(req,res){
     return res.render("teacher-signup");
 }
+module.exports.nextpage=function(req,res){
+    return res.render("teacherinterface");
+}
 
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
