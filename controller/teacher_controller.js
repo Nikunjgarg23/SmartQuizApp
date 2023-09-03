@@ -1,9 +1,15 @@
+const Teacher = require('../models/teacher');
 
 
+module.exports.home = function(req,res){
+    return res.render("teacher-signin");
+}
 
+module.exports.signup = function(req,res){
+    return res.render("teacher-signup");
+}
 
-
-app.post('/teacher/create',function(req,res){
+module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
         return res.redirect('back');
     }
@@ -25,4 +31,4 @@ app.post('/teacher/create',function(req,res){
         }
     }
     find();
-});
+};
