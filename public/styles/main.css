@@ -47,9 +47,11 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 .button1
 {
-    width: 300px;
+    width: 200px;
     height: 20%;
     text-align: center;
+    font-size: small;
+    margin-left: 100px;
     color: white;
     background-color: black;
     font: normal;
