@@ -20,8 +20,8 @@ a
     justify-content: center;
     align-items: center;
     border-bottom: 4px black solid;
-    border-color: purple;
-    background-color: #F0F0F0;
+    border-color: black;
+    background-color: #2A2F4F;
 }
 .buttonpart
 {
@@ -29,7 +29,7 @@ a
     margin: 0;
     width: 100%;
     height: 570px;
-    background-color: #F9D949;
+    background-color: #917FB3;
     
 
     
@@ -40,11 +40,11 @@ a
     gap: 10px;
 
     
-    transition: all 10s linear 0s;
+    transition: all 3s linear 0s;
 
     
     border-bottom: 4px black solid;
-    border-color: purple;
+    border-color: black;
 
     text-decoration: solid;
 }
@@ -56,25 +56,48 @@ a
     color: black;
     background-color: white;
     font: normal;
-    transition: all 0.4s linear 0s;
+    transition: all 0.1s linear 0s;
     border-color: rgb(67, 1, 67);
     border-right-color: rgb(67, 1, 67) !important;
     border-bottom-color: rgb(67, 1, 67) !important ;
     border-radius: 8px;
+    transition: all 0.3s linear 0s;
 }
 .buttonpart :hover
 {
-    scale: 1.2;
+    background-color: gray;
+    border-radius: 50px;
 }
 
-
-
+.teacherdiv
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-right: 3px black solid;
+}
+.studentdiv
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-right: 3px black solid;
+}
+.assessmentdiv
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 /* FOOTER PART */
 .footer
 {
     width: 100%;
     height: 100px;
-    background-color: #F45050;
+    background-color: white;
     color: purple;
 }
