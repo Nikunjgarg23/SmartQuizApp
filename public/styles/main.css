@@ -44,7 +44,6 @@ a
 
     
     border-bottom: 4px black solid;
-    border-color: black;
 
     text-decoration: solid;
 }
@@ -65,25 +64,7 @@ a
 }
 .buttonpart :hover
 {
-    background-color: gray;
-    border-radius: 50px;
-}
-
-.teacherdiv
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-right: 3px black solid;
-}
-.studentdiv
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-right: 3px black solid;
+    scale: 1.2;
 }
 .assessmentdiv
 {
