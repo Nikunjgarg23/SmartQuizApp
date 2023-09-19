@@ -12,17 +12,6 @@ app.use(express.static('public'));
 
 app.use('/',require('./routes'));
 
-
-app.get("/student", function (req, res) {
-    return res.render("student");
-});
-
-
-app.get("/assessment", function (req, res) {
-    return res.render("teacherinterface");
-});
-
-
 app.listen("3000", () => {
     console.log(`server is running on port 3000`);
 });
