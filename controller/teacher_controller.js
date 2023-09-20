@@ -6,7 +6,7 @@ module.exports.home = function(req,res){
         return res.redirect('/teacher/teacherinrt');
     }
 
-    return res.render("teacher-signin");
+    return res.render("teacher-signup");
 }
 
 module.exports.signup = function(req,res){
