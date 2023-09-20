@@ -31,6 +31,7 @@ module.exports.create = function(req,res){
             if(!user){
                 const data = new Teacher(req.body);
                 data.save();
+
                 return res.redirect('/teacher'); // change to signup page later
             }
             else{

@@ -7,28 +7,30 @@
 a
 {
     text-decoration: none;
-    color: white;
+    color: purple;
 }
 
 .first
 {
     
     margin: 0;
-    height: 100px;
+    color: purple;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 4px black solid;
-    background: #4287f5;
+    border-color: black;
+    background-color: #2A2F4F;
 }
 .buttonpart
 {
 
     margin: 0;
     width: 100%;
-    height: 550px;
-    background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    height: 570px;
+    background-color: #917FB3;
+    
 
     
     display: flex;
@@ -38,11 +40,11 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     gap: 10px;
 
     
-    transition: all 10s linear 0s;
+    transition: all 3s linear 0s;
 
     
     border-bottom: 4px black solid;
-    transition: all 0.4s linear 0s;
+
     text-decoration: solid;
 }
 .button1
@@ -50,28 +52,40 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     width: 200px;
     height: 20%;
     text-align: center;
+<<<<<<< HEAD
+    color: black;
+    background-color: white;
+=======
     font-size: small;
     margin-left: 100px;
     color: white;
     background-color: black;
+>>>>>>> 4788d5a85a0e35efc0a03f1d4dc211657535136c
     font: normal;
-    transition: all 0.4s linear 0s;
-
+    transition: all 0.1s linear 0s;
+    border-color: rgb(67, 1, 67);
+    border-right-color: rgb(67, 1, 67) !important;
+    border-bottom-color: rgb(67, 1, 67) !important ;
+    border-radius: 8px;
+    transition: all 0.3s linear 0s;
 }
 .buttonpart :hover
 {
-    /* scale: 1.2; */
-    border-radius: 50px;
+    scale: 1.2;
 }
-
-
-
+.assessmentdiv
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 /* FOOTER PART */
 .footer
 {
     width: 100%;
     height: 100px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: purple;
 }
