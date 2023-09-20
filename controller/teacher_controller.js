@@ -45,7 +45,7 @@ module.exports.nextpage=function(req,res){
 }
 module.exports.quizmaker=function(req,res){
     // console.log("kkk");
-    return res.render("/");
+    return res.render("quizcreatepage");
 }
 
 module.exports.create = function(req,res){

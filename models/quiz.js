@@ -17,5 +17,6 @@ var quizSchema = mongoose.Schema({
     owneremail: {
         type: String,
     }
-})
-module.exports = mongoose.model('quiz',quizSchema)
+});
+const Quiz = mongoose.model('Quiz',quizSchema);
+module.exports = Quiz;
