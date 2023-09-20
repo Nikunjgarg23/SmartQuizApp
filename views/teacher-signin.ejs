@@ -139,17 +139,18 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/teacher/teacherinrt" method="post" > // check first before sign in
+    <form action="/teacher/create-session" method="post" > // check first before sign in
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email " id="username">
+        <input type="email" placeholder="Email " name="email" required>
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" name="password" required>
 
         <a href="/teacher/signup">Sign-up</a>
-            <button >Log In</button>
+
+        <input type="submit" value="Sign-In">
         
     </form>
    
