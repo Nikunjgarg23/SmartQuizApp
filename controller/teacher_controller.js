@@ -2,10 +2,18 @@ const Teacher = require('../models/teacher');
 
 
 module.exports.home = function(req,res){
-    return res.render("teacher-signin");
+    if(req.isAuthenticated()){
+        return res.redirect('/teacher/teacherinrt');
+    }
+
+    return res.render("teacher-signup");
 }
 
 module.exports.signup = function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/teacher/teacherinrt');
+    }
+
     return res.render("teacher-signup");
 }
 module.exports.nextpage=function(req,res){
@@ -23,6 +31,7 @@ module.exports.create = function(req,res){
             if(!user){
                 const data = new Teacher(req.body);
                 data.save();
+
                 return res.redirect('/teacher'); // change to signup page later
             }
             else{
@@ -35,3 +44,7 @@ module.exports.create = function(req,res){
     }
     find();
 };
+
+module.exports.createSession = function(req,res){
+    return res.redirect('/teacher/teacherinrt');
+}

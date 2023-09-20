@@ -10,4 +10,4 @@ db.once('open',function(){
     console.log('Successfully started database');
 });
 //console.log('mongoose');
-// export default db;
+module.exports = db;
