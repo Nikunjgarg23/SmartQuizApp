@@ -13,6 +13,13 @@ const teacherSchema = new mongoose.Schema({
     name : {
         type : String,
         required : true
+    },
+    score:{
+        type:Number,
+        default:0,
+    },
+    role:{
+        type:String,
     }
 },{
     timestamps : true

@@ -1,6 +1,30 @@
 const Teacher = require('../models/teacher');
+const Quiz=require('../models/quiz');
 
 
+module.exports.createQuiz = (req, res) => {
+    // return res.redirect('/teacher/signup');
+    // console.log("here");
+    whoid = req.userId;
+    whoemail = req.email
+    var quiz = new Quiz({
+        quizname: req.body.quizname,
+        quizdescription: req.body.description,
+        owner: whoid,
+        owneremail: whoemail
+    });
+    quiz.save();
+    // quiz.save((error, qz) => {
+    //     if (error) {
+    //         console.log(error);
+    //         res.json({ msg: "some error!" });
+    //     }
+    //     else {
+
+    //         res.status(200).json({ message: "yes quiz added!!" })
+    //     }
+    // })
+}
 module.exports.home = function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/teacher/teacherinrt');
@@ -18,6 +42,10 @@ module.exports.signup = function(req,res){
 }
 module.exports.nextpage=function(req,res){
     return res.render("teacherinterface");
+}
+module.exports.quizmaker=function(req,res){
+    // console.log("kkk");
+    return res.render("/");
 }
 
 module.exports.create = function(req,res){
