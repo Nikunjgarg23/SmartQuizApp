@@ -52,15 +52,8 @@ a
     width: 200px;
     height: 20%;
     text-align: center;
-<<<<<<< HEAD
     color: black;
     background-color: white;
-=======
-    font-size: small;
-    margin-left: 100px;
-    color: white;
-    background-color: black;
->>>>>>> 4788d5a85a0e35efc0a03f1d4dc211657535136c
     font: normal;
     transition: all 0.1s linear 0s;
     border-color: rgb(67, 1, 67);
