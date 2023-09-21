@@ -5,15 +5,15 @@ const Quiz=require('../models/quiz');
 module.exports.createQuiz = (req, res) => {
     // return res.redirect('/teacher/signup');
     // console.log("here");
-    whoid = req.userId;
-    whoemail = req.email
-    var quiz = new Quiz({
-        quizname: req.body.quizname,
-        quizdescription: req.body.description,
-        owner: whoid,
-        owneremail: whoemail
-    });
-    quiz.save();
+    // whoid = req.userId;
+    // whoemail = req.email
+    // var quiz = new Quiz({
+    //     quizname: req.body.quizname,
+    //     quizdescription: req.body.description,
+    //     owner: whoid,
+    //     owneremail: whoemail
+    // });
+    // // quiz.save();
     // quiz.save((error, qz) => {
     //     if (error) {
     //         console.log(error);
@@ -24,6 +24,25 @@ module.exports.createQuiz = (req, res) => {
     //         res.status(200).json({ message: "yes quiz added!!" })
     //     }
     // })
+    const find = async()=>{
+        try{
+            const user = await Quiz.findOne({owneremail : req.body.owneremail});
+
+            if(!user){
+                const data = new Quiz(req.body);
+                data.save();
+
+                return res.redirect('/teacher'); // change to signup page later
+            }
+            else{
+                return res.redirect('/teacher/signup');
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+    find();
 }
 module.exports.home = function(req,res){
     if(req.isAuthenticated()){
