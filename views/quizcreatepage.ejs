@@ -1,20 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #dee9ff;
+        }
+
+        .registration-form {
+            padding: 50px 0;
+        }
+
+        .registration-form form {
+            background-color: #7D7C7C;
+            max-width: 600px;
+            margin: auto;
+            padding: 50px 70px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        }
+
+        .registration-form .form-icon {
+            text-align: center;
+            background-color: #7D7C7C;
+            border-radius: 50%;
+            font-size: 40px;
+            color: #000;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            margin-bottom: 50px;
+            line-height: 100px;
+        }
+
+        .registration-form .item {
+            border-radius: 20px;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+        }
+
+        .registration-form .create-account {
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #000;
+            border: none;
+            color: white;
+            margin-top: 20px;
+        }
+        @media (max-width: 576px) {
+            .registration-form form {
+                padding: 50px 20px;
+            }
+
+            .registration-form .form-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+                line-height: 70px;
+            }
+        }
+        .br{
+            border: black solid;
+        }
+    </style>
 </head>
+
 <body>
-        <form action="/teacher/createquiz" method="post">
-            <!-- <label for="chk" aria-hidden="true">Sign up</label> -->
-            <!-- <label for=""></label> -->
-            <input type="text" name="quizname" placeholder="quizname" required>
-            <input type="text" name="quizdescription" placeholder="quizdescription" required>
-            <input type="text" name="owner" placeholder="owner" required>
-            <input type="text" name="owneremail" placeholder="owneremail" required>
-            <button>Submit</button>
+    <!-- <form action="/teacher/createquiz" method="post">
+         <label for="chk" aria-hidden="true">Sign up</label> 
+         <label for=""></label> 
+        <input type="text" name="quizname" placeholder="quizname" required>
+        <input type="text" name="quizdescription" placeholder="quizdescription" required>
+        <input type="text" name="owner" placeholder="owner" required>
+        <input type="text" name="owneremail" placeholder="owneremail" required>
+        <button>Submit</button>
+    </form> -->
+    <div class="registration-form">
+        <form class="br">
+            <div class="form-icon">
+                <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt=""> -->
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div>
+                <h3>Enter The Quiz Details</h3>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="username" name="owner" placeholder="Teacher Name"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="username" name="quizname" placeholder="QuizName"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="username" name="quizdescription"
+                    placeholder="QuizDescription" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="email" name="owneremail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-block create-account">Create</button>
+            </div>
         </form>
-    
+
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>
