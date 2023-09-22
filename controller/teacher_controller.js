@@ -11,7 +11,7 @@ module.exports.createQuiz = (req, res) => {
                 const data = new Quiz(req.body);
                 data.save();
 
-                return res.redirect('/teacher'); // change to signup page later
+                return res.render('Question'); 
             }
             else{
                 return res.redirect('/teacher/signup');
@@ -41,36 +41,11 @@ module.exports.signup = function(req,res){
 module.exports.nextpage=function(req,res){
     return res.render("teacherinterface");
 }
-module.exports.quizmaker=function(req,res){
-    // console.log("kkk");
+module.exports.quizmaker=function(req,res){``
     return res.render("quizcreatepage");
 }
 module.exports.addQuestion = (req, res) => {
-
-    Question.find({ quizid: req.body.quizid }, (err, q) => {
-        if (err) {
-            console.log(error);
-            res.json({ msg: "some error!" });
-        }
-        else {
-            var question = new Question({
-                quizid: req.body.quizid,
-                questionId: q.length + 1,
-                questionText: req.body.questionText,
-                // answer: req.body.answer,
-                // options: req.body.options
-            });
-            question.save((error, qsn) => {
-                if (error) {
-                    console.log(error);
-                    res.json({ msg: "some error!" });
-                }
-                else {
-                    res.status(200).json({ message: "yes question added!!" })
-                }
-            })
-        }
-    })
+    res.redirect('Question');
 }
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
