@@ -38,6 +38,12 @@ module.exports.signup = function(req,res){
 
     return res.render("teacher-signup");
 }
+module.exports.logout = function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+}
 module.exports.nextpage=function(req,res){
     return res.render("teacherinterface");
 }
