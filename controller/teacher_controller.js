@@ -1,29 +1,8 @@
 const Teacher = require('../models/teacher');
 const Quiz=require('../models/quiz');
-
+const Question = require('../models/questions')
 
 module.exports.createQuiz = (req, res) => {
-    // return res.redirect('/teacher/signup');
-    // console.log("here");
-    // whoid = req.userId;
-    // whoemail = req.email
-    // var quiz = new Quiz({
-    //     quizname: req.body.quizname,
-    //     quizdescription: req.body.description,
-    //     owner: whoid,
-    //     owneremail: whoemail
-    // });
-    // // quiz.save();
-    // quiz.save((error, qz) => {
-    //     if (error) {
-    //         console.log(error);
-    //         res.json({ msg: "some error!" });
-    //     }
-    //     else {
-
-    //         res.status(200).json({ message: "yes quiz added!!" })
-    //     }
-    // })
     const find = async()=>{
         try{
             const user = await Quiz.findOne({owneremail : req.body.owneremail});
@@ -66,7 +45,33 @@ module.exports.quizmaker=function(req,res){
     // console.log("kkk");
     return res.render("quizcreatepage");
 }
+module.exports.addQuestion = (req, res) => {
 
+    Question.find({ quizid: req.body.quizid }, (err, q) => {
+        if (err) {
+            console.log(error);
+            res.json({ msg: "some error!" });
+        }
+        else {
+            var question = new Question({
+                quizid: req.body.quizid,
+                questionId: q.length + 1,
+                questionText: req.body.questionText,
+                // answer: req.body.answer,
+                // options: req.body.options
+            });
+            question.save((error, qsn) => {
+                if (error) {
+                    console.log(error);
+                    res.json({ msg: "some error!" });
+                }
+                else {
+                    res.status(200).json({ message: "yes question added!!" })
+                }
+            })
+        }
+    })
+}
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
         return res.redirect('back');

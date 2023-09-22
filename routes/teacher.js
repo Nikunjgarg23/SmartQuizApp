@@ -7,6 +7,7 @@ router.get("/", teacher_controller.home);
 router.get("/signup", teacher_controller.signup);
 router.get("/quizmaker", teacher_controller.quizmaker);
 router.post('/createquiz',teacher_controller.createQuiz);
+router.post('/addquestion',teacher_controller.addQuestion);
 
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);
