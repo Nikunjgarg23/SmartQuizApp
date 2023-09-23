@@ -7,6 +7,8 @@ router.get("/", teacher_controller.home);
 router.get("/signup", teacher_controller.signup);
 router.get("/quizmaker", teacher_controller.quizmaker);
 router.get('/logout',teacher_controller.logout);
+router.get('/changepassword',teacher_controller.changepassword);
+router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',teacher_controller.createQuiz);
 router.post('/addquestion',teacher_controller.addQuestion);
 
