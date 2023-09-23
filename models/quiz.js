@@ -12,10 +12,10 @@ var quizSchema = mongoose.Schema({
         type: Boolean, default: false
     },
     owner: {
-        type: String,
+        type: String
     },
     owneremail: {
-        type: String,
+        type: String
     }
 });
 const Quiz = mongoose.model('Quiz',quizSchema);

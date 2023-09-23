@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <script src="https://kit.fontawesome.com/f44dd27b35.js" crossorigin="anonymous"></script>
+    <style>
+        #heading{
+    text-align: center;
+}
+span{
+    display: inline-block;
+    margin-bottom: 2px;
+    padding: 0;
+}
+p{
+    display: inline-block;
+}
+ul{
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+li{
+    width:600px;
+}
+#ul1{
+    text-align: center;
+}
+#list-item{
+    background-color: rgb(100, 100, 248);
+    border: 2px solid black;
+}
+#list-item:hover{
+    background-color: lightskyblue;
+}
+#heading{
+    color: grey;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#form1{
+    text-align: center;
+}
+#list-item div{
+    display: flex;
+    justify-content: space-between;
+}
+#delete-btn{
+    background-color: white;
+}
+#view-btn{
+    background-color: white;
+}
+ #div1{
+    width: 100px;
+    margin-right: 10px;
+    display: inline-block;
+}
+#div2{
+    width: 300px;
+    margin-right: 10px;
+    display: inline-block;
+}
+    </style>
+</head>
+
+<body>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Past Quiz!</h1>
+    <div id="ul1">
+        <ul id="list">
+            <% for(let i of past_quiz){ %>
+                <li id="list-item">
+                    <div>
+                        <div id="div1"> <%= i.quizname %> </div>
+                        <div id="div2"> <%= i.owneremail %> </div>
+                        <a href="/teacher/viewquiz/?id=<%=i._id%>" id="view-btn"><i class="fa-regular fa-eye"></i> </a>
+                        <a href="/teacher/addquestion/?id=<%=i._id%>" id="view-btn"><i class="fa-solid fa-plus"></i></i> </a>
+                        <a href="/teacher/deletequiz/?id=<%=i._id%>" id="delete-btn"><i class="fa-regular fa-trash-can"></i></a>
+                    </div>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+    <!-- <div id="form1">
+        <form action='/add-cont' method="POST">
+            <input type="text" name="name" placeholder="Enter name" required>
+            <input type="number" name="number" placeholder="Enter number" required>
+            <button type="submit">Add Contact</button>
+        </form>
+    </div> -->
+</body>
+</html>

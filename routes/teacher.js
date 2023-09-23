@@ -8,9 +8,13 @@ router.get("/signup", teacher_controller.signup);
 router.get("/quizmaker", teacher_controller.quizmaker);
 router.get('/logout',teacher_controller.logout);
 router.get('/changepassword',teacher_controller.changepassword);
+router.get('/pastquiz',teacher_controller.pastquiz);
+router.get('/viewquiz',teacher_controller.viewquiz);
+router.get('/deletequiz',teacher_controller.deletequiz);
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',teacher_controller.createQuiz);
-router.post('/addquestion',teacher_controller.addQuestion);
+router.get('/addquestion',teacher_controller.addQuestion);
+router.post('/addnewquestion',teacher_controller.addnewQuestion);
 
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);
