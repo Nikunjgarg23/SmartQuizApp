@@ -1,7 +1,7 @@
 const Teacher = require('../models/teacher');
 const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
-
+const db = require('../config/mongoose');
 module.exports.createQuiz = (req, res) => {
     const find = async()=>{
         try{
@@ -38,6 +38,29 @@ module.exports.signup = function(req,res){
 
     return res.render("teacher-signup");
 }
+module.exports.changepassword = function(req,res){
+    if(!req.isAuthenticated()){
+        return res.redirect('/teacher');
+    }
+
+    return res.render("changepass");
+}
+
+module.exports.changepass = async function(req,res){
+    if((req.body.oldpass != req.user.password) || (req.body.newpass!=req.body.newpassc)){
+        return res.redirect('/teacher');
+    }
+    await Teacher.updateOne(
+        { email: req.user.email },
+        {
+          $set: { password: req.body.newpass},
+        }
+    );
+    return res.redirect('/teacher/logout');
+};
+
+
+
 module.exports.logout = function(req, res, next){
     req.logout(function(err) {
       if (err) { return next(err); }
