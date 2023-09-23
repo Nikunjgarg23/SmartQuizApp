@@ -63,6 +63,7 @@
             color: white;
             margin-top: 20px;
         }
+
         @media (max-width: 576px) {
             .registration-form form {
                 padding: 50px 20px;
@@ -75,56 +76,46 @@
                 line-height: 70px;
             }
         }
-        .br{
+
+        .br {
             border: black solid;
             border-radius: 20px;
         }
-        .create-account:hover
-        {
+
+        .create-account:hover {
             color: #CCC8AA;
         }
-
     </style>
 </head>
 
 <body>
-      <!-- Navbar -->
-      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-black fixed-top">
-        <!-- Container wrapper -->
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-black fixed-top">
+        <!-- Container wrapper  -->
         <div class="container-fluid">
-            <!-- Toggle button -->
+            <!-- Toggle button  -->
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
                 aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Brand -->
+            <!-- Brand  -->
             <a class="navbar-brand" href="#">
-                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25"
-                    alt="MDB Logo" loading="lazy" />
+                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25" alt="MDB Logo"
+                    loading="lazy" />
             </a>
         </div>
         <!-- Container wrapper -->
     </nav>
-    <!-- Navbar -->
-    <!-- <form action="/teacher/createquiz" method="post">
-         <label for="chk" aria-hidden="true">Sign up</label> 
-         <label for=""></label> 
-        <input type="text" name="quizname" placeholder="quizname" required>
-        <input type="text" name="quizdescription" placeholder="quizdescription" required>
-        <input type="text" name="owner" placeholder="owner" required>
-        <input type="text" name="owneremail" placeholder="owneremail" required>
-        <button>Submit</button>
-    </form> -->
-    <!-- <div style="display: flex;justify-content: center;">
-        <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="70" width="100">
-    </div> -->
-    
+    <!--  Navbar -->
     <div class="registration-form">
+
+
         <form action="/teacher/createquiz" method="post" class="br">
+
             <div class="form-icon">
                 <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="90" width="100">
-                <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt=""> -->
+                <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt="">  -->
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div>
@@ -145,16 +136,11 @@
             <div class="form-group">
                 <input type="text" class="form-control item" id="email" name="owneremail" placeholder="Email" required>
             </div>
-            <!-- <div class="form-group"> -->
-                <button type="button" class="btn btn-block create-account">Create</button>
-            <!-- </div> -->
+            <div class="form-group">
+                <button class="btn btn-block create-account">Create</button>
+            </div>
         </form>
-
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
