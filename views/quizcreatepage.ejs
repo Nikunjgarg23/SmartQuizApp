@@ -24,14 +24,14 @@
 
         .registration-form form {
             background-color: #7D7C7C;
-            max-width: 600px;
+            max-width: 500px;
             margin: auto;
             padding: 50px 70px;
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
-            border-radius: 30px;
+            border-radius: 40px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-            margin-top: 39px;
+            margin-top: 35px;
         }
 
         .registration-form .form-icon {
@@ -63,6 +63,7 @@
             color: white;
             margin-top: 20px;
         }
+
         @media (max-width: 576px) {
             .registration-form form {
                 padding: 50px 20px;
@@ -75,33 +76,33 @@
                 line-height: 70px;
             }
         }
-        .br{
+
+        .br {
             border: black solid;
             border-radius: 20px;
         }
-        .create-account:hover
-        {
-            color: green;
-        }
 
+        .create-account:hover {
+            color: #CCC8AA;
+        }
     </style>
 </head>
 
 <body>
-      <!-- Navbar -->
-      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-black fixed-top">
-        <!-- Container wrapper -->
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-black fixed-top">
+        <!-- Container wrapper  -->
         <div class="container-fluid">
-            <!-- Toggle button -->
+            <!-- Toggle button  -->
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
                 aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Brand -->
+            <!-- Brand  -->
             <a class="navbar-brand" href="#">
-                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25"
-                    alt="MDB Logo" loading="lazy" />
+                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25" alt="MDB Logo"
+                    loading="lazy" />
             </a>
         </div>
         <!-- Container wrapper -->
@@ -123,11 +124,15 @@
         <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="100" width="100">
     </div>
     
+    <!--  Navbar -->
     <div class="registration-form">
-        <form class="br">
+
+
+        <form action="/teacher/createquiz" method="post" class="br">
+
             <div class="form-icon">
                 <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="90" width="100">
-                <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt=""> -->
+                <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt="">  -->
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div>
@@ -149,15 +154,10 @@
                 <input type="text" class="form-control item" id="email" name="owneremail" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-block create-account">Create</button>
+                <button class="btn btn-block create-account">Create</button>
             </div>
         </form>
-
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
