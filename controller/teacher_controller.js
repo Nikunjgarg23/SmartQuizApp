@@ -2,6 +2,8 @@ const Teacher = require('../models/teacher');
 const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
+
+
 module.exports.createQuiz = (req, res) => {
     const find = async()=>{
         try{
@@ -70,7 +72,10 @@ module.exports.home = function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/teacher/teacherinrt');
     }
-
+    else if(!req.isAuthenticated){
+        return res.render('Alert');
+    }
+    else
     return res.render("teacher-signup");
 }
 
@@ -78,12 +83,11 @@ module.exports.signup = function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/teacher/teacherinrt');
     }
-
-    return res.render("teacher-signup");
+    return res.render("Alert");
 }
 module.exports.changepassword = function(req,res){
     if(!req.isAuthenticated()){
-        return res.redirect('/teacher');
+        return res.redirect('Alert');
     }
 
     return res.render("changepass");
@@ -140,7 +144,7 @@ module.exports.addnewQuestion = (req, res) => {
 }
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
-        return res.redirect('back');
+        return res.render('Alert');
     }
     const find = async()=>{
         try{
@@ -153,7 +157,7 @@ module.exports.create = function(req,res){
                 return res.redirect('/teacher'); // change to signup page later
             }
             else{
-                return res.redirect('/teacher/signup');
+                return res.redirect('Alert');
             }
         }
         catch(err){
@@ -165,4 +169,7 @@ module.exports.create = function(req,res){
 
 module.exports.createSession = function(req,res){
     return res.redirect('/teacher/teacherinrt');
+}
+module.exports.alert = function(req,res){
+    return res.render('Alert');
 }
