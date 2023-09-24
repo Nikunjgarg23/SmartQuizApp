@@ -13,6 +13,7 @@ router.get('/changepassword',teacher_controller.changepassword);
 router.get('/pastquiz',teacher_controller.pastquiz);
 router.get('/viewquiz',teacher_controller.viewquiz);
 router.get('/deletequiz',teacher_controller.deletequiz);
+router.get('/deleteques',teacher_controller.deleteques);
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',teacher_controller.createQuiz);
 router.get('/addquestion',teacher_controller.addQuestion);

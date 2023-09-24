@@ -69,18 +69,18 @@ li{
 <body>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Questions!</h1>
     <div id="ul1">
-        <ul id="list">
+        <ol id="list">
             <% for(let i of past_quiz){ %>
                 <li id="list-item">
                     <div>
                         <div id="div1"> <%= i.questionId %> </div>
                         <div id="div2"> <%= i.questionText %> </div>
                         <!-- <a href="/teacher/viewquiz/?id=<%=i._id%>" id="view-btn"><i class="fa-regular fa-eye"></i> </a> -->
-                        <!-- <a href="/teacher/deletequiz/?id=<%=i._id%>" id="delete-btn"><i class="fa-regular fa-trash-can"></i></a> -->
+                        <a href="/teacher/deleteques/?id=<%=i._id%>" id="delete-btn"><i class="fa-regular fa-trash-can"></i></a>
                     </div>
                 </li>
                 <% } %>
-        </ul>
+        </ol>
     </div>
     <!-- <div id="form1">
         <form action='/add-cont' method="POST">

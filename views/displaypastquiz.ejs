@@ -31,6 +31,7 @@ li{
 #list-item{
     background-color: rgb(100, 100, 248);
     border: 2px solid black;
+    height : 30px;
 }
 #list-item:hover{
     background-color: lightskyblue;
@@ -50,8 +51,20 @@ li{
 #delete-btn{
     background-color: white;
 }
+#delete-btn1{
+    background-color: white;
+    width: 100px;
+    margin-right: 10px;
+    display: inline-block;
+}
 #view-btn{
     background-color: white;
+}
+#view-btn1{
+    background-color: white;
+    width: 100px;
+    margin-right: 10px;
+    display: inline-block;
 }
  #div1{
     width: 100px;
@@ -63,6 +76,14 @@ li{
     margin-right: 10px;
     display: inline-block;
 }
+#div22{
+    max-width: 100px;
+    margin-right: 10px;
+    display: inline-block;
+}
+#div3{
+    margin-top: 5px;
+}
     </style>
 </head>
 
@@ -70,9 +91,18 @@ li{
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Past Quiz!</h1>
     <div id="ul1">
         <ul id="list">
+            <li>
+                <div id="div3">
+                    <div id="div1">Quiz Name</div>
+                    <div id="div22">Created By</div>
+                    <div id="view-btn1">View Quiz</div>
+                    <div id="view-btn1">Add Question</i></i> </div>
+                    <div id="delete-btn1">Delete Quiz</i></div>
+                </div>
+            </li>
             <% for(let i of past_quiz){ %>
                 <li id="list-item">
-                    <div>
+                    <div id="div3">
                         <div id="div1"> <%= i.quizname %> </div>
                         <div id="div2"> <%= i.owneremail %> </div>
                         <a href="/teacher/viewquiz/?id=<%=i._id%>" id="view-btn"><i class="fa-regular fa-eye"></i> </a>
