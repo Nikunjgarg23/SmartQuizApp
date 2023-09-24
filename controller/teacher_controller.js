@@ -148,7 +148,7 @@ module.exports.quizmaker=function(req,res){
 module.exports.addQuestion = (req, res) => {
     let id = req.query.id;
     return res.render('Question',{
-        idd : id
+        idd:id
     });
 }
 module.exports.addnewQuestion = (req, res) => {
@@ -159,7 +159,7 @@ module.exports.addnewQuestion = (req, res) => {
                 const data = new Question(req.body);
                 data.save();
 
-                return res.render('teacherinterface'); // change to signup page later
+                return res.redirect('/teacher/pastquiz'); // change to signup page later
         }
         catch(err){
             console.log(err);
