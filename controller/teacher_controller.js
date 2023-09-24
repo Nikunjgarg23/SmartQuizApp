@@ -10,6 +10,8 @@ module.exports.createQuiz = (req, res) => {
             const user = await Quiz.findOne({quizname : req.body.quizname});
 
             if(!user){
+                req.body.owneremail = req.user.email;
+                console.log(req.user.email);
                 const data = new Quiz(req.body);
                 data.save();
                 const user2 = await Quiz.findOne({quizname : req.body.quizname});
@@ -19,7 +21,7 @@ module.exports.createQuiz = (req, res) => {
                 }); 
             }
             else{
-                return res.redirect('/teacher/signup');
+                return res.redirect('/teacher/');
             }
         }
         catch(err){
@@ -113,8 +115,9 @@ module.exports.changepassword = function(req,res){
 }
 
 module.exports.changepass = async function(req,res){
+    console.log(req.user);
     if((req.body.oldpass != req.user.password) || (req.body.newpass!=req.body.newpassc)){
-        return res.redirect('/teacher');
+        return res.render('Alert');
     }
     await Teacher.updateOne(
         { email: req.user.email },
@@ -137,7 +140,10 @@ module.exports.nextpage=function(req,res){
     return res.render("teacherinterface");
 }
 module.exports.quizmaker=function(req,res){
-    return res.render("quizcreatepage");
+    // console.log(req.user);
+    return res.render("quizcreatepage",{
+        email : req.user.email
+    });
 }
 module.exports.addQuestion = (req, res) => {
     let id = req.query.id;
