@@ -36,7 +36,8 @@
         }
 
         li {
-            width: 600px;
+            width: 1100px;
+            margin-bottom: 2px;
         }
 
         #ul1 {
@@ -44,8 +45,9 @@
         }
 
         #list-item {
-            background-color: rgb(100, 100, 248);
+            background-color: rgb(118, 143, 149);
             border: 2px solid black;
+            height: 50px;
         }
 
         #list-item:hover {
@@ -68,23 +70,73 @@
         }
 
         #delete-btn {
-            background-color: white;
+            color: white;
+            margin-top: 7px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
         }
 
-        #view-btn {
+        #delete-btn1 {
             background-color: white;
-        }
-
-        #div1 {
             width: 100px;
             margin-right: 10px;
             display: inline-block;
         }
 
-        #div2 {
-            width: 300px;
+        #view-btn {
+            /* background-color: white;
+            border-radius: 30%; */
+            color: white;
+            margin-top: 7px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #view-btn1 {
+            background-color: white;
+            width: 100px;
             margin-right: 10px;
             display: inline-block;
+        }
+
+        #div1 {
+            width: 100px;
+            margin-top: 7px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #div2 {
+            width: 300px;
+            margin-top: 7px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #div22 {
+            max-width: 100px;
+            margin-left: 50px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        #span2{
+            margin-right: 345px;
+        }
+        #span1{
+            margin-right: 193px;
+        }
+        #span3{
+            margin-right: 90px;
+        }
+        #span4{
+            margin-right: 51px;
+        }
+        #div3 {
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -121,7 +173,7 @@
         <h1 id="heading"><i class="fa-solid fa-pencil"></i> Questions!</h1>
     </div>
     <div id="ul1">
-        <ol id="list">
+        <ul id="list">
             <% for(let i of past_quiz){ %>
                 <li id="list-item">
                     <div>
@@ -136,7 +188,7 @@
                     </div>
                 </li>
                 <% } %>
-        </ol>
+        </ul>
     </div>
     <!-- <div id="form1">
         <form action='/add-cont' method="POST">
