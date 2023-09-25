@@ -6,6 +6,7 @@ const teacher_controller = require('../controller/teacher_controller');
 
 router.get("/", teacher_controller.home);
 router.get("/alert", teacher_controller.alert);
+router.get("/alert2", teacher_controller.alert2);
 router.get("/signup", teacher_controller.signup);
 router.get("/quizmaker", teacher_controller.quizmaker);
 router.get('/logout',teacher_controller.logout);
