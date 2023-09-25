@@ -198,3 +198,6 @@ module.exports.createSession = function(req,res){
 module.exports.alert = function(req,res){
     return res.render('Alert');
 }
+module.exports.alert2 = function(req,res){
+    return res.redirect('back');
+}
