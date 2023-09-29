@@ -1,7 +1,7 @@
-const Student = require('../models/student');
+// const Student = require('../models/student');
 
 module.exports.home = function(req,res){
-    return res.render("teacher-signin");
+    return res.render("teacher-signup");
 }
 
 module.exports.signup = function(req,res){
