@@ -27,9 +27,60 @@
         {
             color: black;
         }
-        #footer{
-            max-height: 200px;
-        }
+        .title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+
+.title-word-2 {
+  --color-1: #DBAD4A;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+.title-word-3 {
+  --color-1: #ACCFCB;
+  --color-2: #E4A9A8;
+  --color-3: #ACCFCB;
+}
+
+.title-word-4 {
+  --color-1: #3D8DAE;
+  --color-2: #DF8453;
+  --color-3: #E4A9A8;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+
+/* Here are just some visual styles. 🖌 */
+
+.container {
+  display: grid;
+  place-items: center;  
+  text-align: center;
+  height: 100vh
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.5vw;
+  text-transform: uppercase;
+}
+
 
 
     </style>
@@ -64,7 +115,7 @@
         
 
         <div style="display: flex;justify-content: center;width: 100%;">
-            <div class="container" style="height: 40%; text-align: center;width: 100%;">
+            <div class="container" style="width: 60%;height: 40%;">
                 <h2 class="title">
                   <span class="title-word title-word-1">Jaypee</span>
                   <span class="title-word title-word-2">Institute</span>
@@ -89,16 +140,22 @@
             
             <div class="w3-row w3-padding-32" style="display: flex;justify-content: center;">
                 <img alt="header" srcset="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=640 1x, https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200 2x" src="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200" width="560" height="333" decoding="async" data-nimg="1" class="css-fz77qc-StyledNextImage e1n3w55p0" loading="eager" style="color:transparent">
-          
+                <!-- <div class="w3-third">
+                    <p>Name</p>
+                    <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name"
+                        style="width:60%">
+                </div>
+                <div class="w3-third">
+                    <p>Name</p>
+                    <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
+                </div> -->
             </div>
-
         </div>
-        <h2 class="w3-wide">Welcome To Quiz Portal!</h2>
-    </div>
 
        
  
-    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xsmall">
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+
         <div style="display: flex;justify-content: center;">
             <a href="mailto:rawatsuyash78@gmail.com" style="text-decoration: none; margin-right: 30px; color: grey;" target="_blank"><p class="cn">Contact Us</p></a>
             <a href="https://jiit.ac.in" style="text-decoration: none;color: grey;" target="_blank" ><p class="cn">JIIT</p></a>
