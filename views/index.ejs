@@ -17,20 +17,72 @@
             display: none
         }
 
-        .cn {
-            transition-property: color, background-color;
+        .cn
+        {
+            transition-property: color,background-color;
             transition-duration: 0s;
             transition-delay: 0s;
         }
-
-        .cn:hover {
+        .cn:hover
+        {
             color: black;
         }
-        #footer{
-            max-height: 200px;
-        }
+        .title-word {
+  animation: color-animation 4s linear infinite;
+}
 
-      
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+
+.title-word-2 {
+  --color-1: #DBAD4A;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+.title-word-3 {
+  --color-1: #ACCFCB;
+  --color-2: #E4A9A8;
+  --color-3: #ACCFCB;
+}
+
+.title-word-4 {
+  --color-1: #3D8DAE;
+  --color-2: #DF8453;
+  --color-3: #E4A9A8;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+
+/* Here are just some visual styles. 🖌 */
+
+.container {
+  display: grid;
+  place-items: center;  
+  text-align: center;
+  height: 100vh
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.5vw;
+  text-transform: uppercase;
+}
+
+
+
     </style>
 </head>
 
@@ -39,7 +91,9 @@
 
 
 
-
+    <div class="footer">
+        copyright © pns
+=======
     <!-- Navbar -->
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
@@ -53,32 +107,59 @@
         </div>
     </div>
     <!-- Page content -->
-    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-        <div class="w3-row w3-padding-32" style="display: flex;justify-content: center;">
-            <div class="w3-third">
-                <!-- <p>JIIT</p> -->
-                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="hey"
-                    style="width: 150px;height: 150px;">
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+     
+
+        
+        
+
+        <div style="display: flex;justify-content: center;width: 100%;">
+            <div class="container" style="width: 60%;height: 40%;">
+                <h2 class="title">
+                  <span class="title-word title-word-1">Jaypee</span>
+                  <span class="title-word title-word-2">Institute</span>
+                  <span class="title-word title-word-3">of Information</span>
+                  <span class="title-word title-word-4">Technology</span>
+                </h2>
+              </div>
+            <!-- <img src="https://tse1.mm.bing.net/th?id=OIP.2xYsanuB-s8wH8Od6l5kUAHaHa&pid=Api&P=0&h=180" alt="" style="display: inline-block;width: 20%;" height="100px" width="50px"> -->
+        </div>
+        
+        <div class="w3-third" style="display: flex;justify-content: center;width: 100%;">
+            
+            <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="hey" style="width: 150px;height: 150px;">
+        </div>
+
+        <!-- The Band Section -->
+        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:600px;text-align: center;" id="band">
+            
+            <!-- <p class="w3-opacity"><i>We love music</i></p> -->
+            <div class="first"></div>
+            <div style="display: flex;justify-content: center;"><p class="w3-justify" style="font-size: 40px;">Welcome  to  the  quiz  portal!</p></div>
+            
+            <div class="w3-row w3-padding-32" style="display: flex;justify-content: center;">
+                <img alt="header" srcset="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=640 1x, https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200 2x" src="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200" width="560" height="333" decoding="async" data-nimg="1" class="css-fz77qc-StyledNextImage e1n3w55p0" loading="eager" style="color:transparent">
+                <!-- <div class="w3-third">
+                    <p>Name</p>
+                    <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name"
+                        style="width:60%">
+                </div>
+                <div class="w3-third">
+                    <p>Name</p>
+                    <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
+                </div> -->
             </div>
-
         </div>
-        <br>
-        <h2 class="w3-wide">Welcome To Quiz Portal!</h2>
-    </div>
 
-    <br><br><br>
-    <footer id="footer" class="w3-container w3-padding-16 w3-center w3-opacity w3-light-grey w3-xlarge">
+       
+ 
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+
         <div style="display: flex;justify-content: center;">
-            <a href="mailto:rawatsuyash78@gmail.com" style="text-decoration: none; margin-right: 30px; color: grey;"
-                target="_blank">
-                <p class="cn">Contact Us</p>
-            </a>
-            <a href="https://jiit.ac.in" style="text-decoration: none;color: grey;" target="_blank">
-                <p class="cn">JIIT</p>
-            </a>
-            <!-- <p class="w3-medium">Copyright © PNS </p> -->
+            <a href="mailto:rawatsuyash78@gmail.com" style="text-decoration: none; margin-right: 30px; color: grey;" target="_blank"><p class="cn">Contact Us</p></a>
+            <a href="https://jiit.ac.in" style="text-decoration: none;color: grey;" target="_blank" ><p class="cn">JIIT</p></a>
         </div>
-
     </footer>
 </body>
 

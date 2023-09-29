@@ -71,10 +71,7 @@ module.exports.deletequiz = function(req,res){
 
 module.exports.deleteques = function(req,res){
     let id = req.query.id;
-    // let contind = contactList.findIndex(contact => contact.number==phone);
-    // if(contind!=-1){
-    //     contactList.splice(contind,1);
-    // }
+
     const dele = async()=>{
         try{
             const ress = await Question.deleteOne({_id: id});

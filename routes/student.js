@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const student_controller = require('../controller/student_controller.js');
+const student_controller = require('../controller/student_controller');
 
 router.get("/", student_controller.home);
 router.get("/signup", student_controller.signup);
