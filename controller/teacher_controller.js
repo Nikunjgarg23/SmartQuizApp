@@ -16,9 +16,7 @@ module.exports.createQuiz = (req, res) => {
                 data.save();
                 const user2 = await Quiz.findOne({quizname : req.body.quizname});
                 console.log(user2);
-                return res.render('Question',{
-                    idd : user2.id
-                }); 
+                return res.redirect('/teacher/pastquiz');
             }
             else{
                 return res.redirect('/teacher/');
