@@ -146,6 +146,33 @@ module.exports.addQuestion = (req, res) => {
         idd:id
     });
 }
+module.exports.upload = (req, res) => {
+    let id = req.query.id;
+    const getquiz = async ()=>{
+        try{
+        const ress = await Quiz.findOne({_id : id});
+        var fla;
+        if(ress.upload){
+            fla = false;
+        }
+        else{
+            fla = true;
+        }
+        await Quiz.updateOne(
+            { _id: id },
+            {
+              $set: { upload : fla},
+            }
+        );
+        return res.redirect('/teacher/pastquiz');
+        }catch(err){
+            console.log(err);
+            return ;
+        }
+    }
+    getquiz();
+
+}
 module.exports.addnewQuestion = (req, res) => {
     let id = req.query.id;
     const find = async()=>{

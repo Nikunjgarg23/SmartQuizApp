@@ -18,6 +18,7 @@ router.get('/deleteques',teacher_controller.deleteques);
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',teacher_controller.createQuiz);
 router.get('/addquestion',teacher_controller.addQuestion);
+router.get('/upload',teacher_controller.upload);
 router.post('/addnewquestion',teacher_controller.addnewQuestion);
 
 router.get('/sign-up',teacher_controller.signup);
