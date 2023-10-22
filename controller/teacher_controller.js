@@ -196,10 +196,10 @@ module.exports.create = function(req,res){
     const find = async()=>{
         try{
             const user = await Teacher.findOne({email : req.body.email});
-
-            if(!user){
-                const data = new Teacher(req.body);
+            console.log(user);
+            if(!user || user.role!="teacher"){
                 req.body.role="teacher";
+                const data = new Teacher(req.body);
                 data.save();
                 console.log(data);
                 console.log("Areeee");

@@ -6,15 +6,22 @@ const Question = require('../models/questions')
 const db = require('../config/mongoose');
 
 module.exports.home = function(req,res){
-    return res.render("studentlogin");
+    if(req.isAuthenticated()){
+        return res.redirect('/student/studentinrt');
+    }
+    else if(!req.isAuthenticated){
+        return res.render('Alert');
+    }
+    else
+     return res.render("studentlogin");
 }
 
 module.exports.signup = function(req,res){
     return res.render("studentlogin");
 }
-// module.exports.nextpage=function(req,res){
-//     return res.render("teacherinterface");
-// }
+module.exports.nextpage=function(req,res){
+    return res.render("studentinterface");
+}
 
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
@@ -24,12 +31,13 @@ module.exports.create = function(req,res){
         try{
             const user = await Student.findOne({email : req.body.email});
 
-            if(!user){
+            if(!user || user.role!="student"){
+                req.body.role = "student";
                 const data = new Student(req.body);
                 data.save();
                 console.log("data");
                 console.log("I am Here");
-                return res.render('studentinterface'); // change to signup page later
+                return res.redirect('/student'); // change to signup page later
             }
             else{
                 return res.redirect('/teacher/signup');
@@ -41,3 +49,7 @@ module.exports.create = function(req,res){
     }
     find();
 };
+
+module.exports.createSession = function(req,res){
+    return res.redirect('/student/studentinrt');
+}

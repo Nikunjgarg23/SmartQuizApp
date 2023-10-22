@@ -2,14 +2,16 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/teacher');
 passport.use(new LocalStrategy({
-        usernameField : 'email'
+        usernameField : 'email',
+        passReqToCallback: true
     },
-    function(email,password,done){
+    function(req,email,password,done){
+        //console.log(req.body);
         const find = async()=>{
             try{
                 const user = await User.findOne({email : email});
                 
-                if(!user || user.password!=password){
+                if(!user || user.password!=password || user.role!=req.body.role){
                     console.log("Wrong username password");
                     return done(null,false);
                 }
@@ -44,7 +46,7 @@ passport.checkAuthentication = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
-    return res.redirect('/teacher');
+    return res.redirect('/');
 }
 
 passport.setAuthenticatedUser = function(req,res,next){
