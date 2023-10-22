@@ -4,7 +4,7 @@ const student_controller = require('../controller/student_controller');
 
 router.get("/", student_controller.home);
 router.get("/signup", student_controller.signup);
-// router.post('/create',student_controller.create);
+router.post('/create',student_controller.create);
 // router.post('/teacherinrt',student_controller.nextpage);
 
 module.exports = router;

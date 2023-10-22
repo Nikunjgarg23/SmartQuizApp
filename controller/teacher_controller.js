@@ -199,7 +199,10 @@ module.exports.create = function(req,res){
 
             if(!user){
                 const data = new Teacher(req.body);
+                req.body.role="teacher";
                 data.save();
+                console.log(data);
+                console.log("Areeee");
 
                 return res.redirect('/teacher'); // change to signup page later
             }

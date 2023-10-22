@@ -20,6 +20,8 @@ const teacherSchema = new mongoose.Schema({
     },
     role:{
         type:String,
+        default:"Teacher",
+
     }
 },{
     timestamps : true
