@@ -11,15 +11,15 @@ passport.use(new LocalStrategy({
         const find = async()=>{
             try{
                 const user = await User.findOne({email : email});
-                const salt=await bcrypt.genSalt(10);
-                // const pass=await bcrypt.hash(user.password,salt);
-                const pass =await bcrypt.hash(password,salt);
-                console.log(password);
-                console.log(pass);
-                console.log(user.password);
-                if(!user || pass!=user.password){
-                    console.log(pass);
-                    console.log(user.password);
+                // const salt=await bcrypt.genSalt(10);
+                // // const pass=await bcrypt.hash(user.password,salt);
+                // const pass =await bcrypt.hash(password,salt);
+                // console.log(password);
+                // console.log(pass);
+                // console.log(user.password);
+                if(!user || password!=user.password){
+                    // console.log(pass);
+                    // console.log(user.password);
                     console.log("Wrong username password");
                     return done(null,false);
                 }
