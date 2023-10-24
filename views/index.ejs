@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
@@ -17,72 +19,89 @@
             display: none
         }
 
-        .cn
-        {
-            transition-property: color,background-color;
+        .cn {
+            transition-property: color, background-color;
             transition-duration: 0s;
             transition-delay: 0s;
         }
-        .cn:hover
-        {
+
+        .cn:hover {
             color: black;
         }
+
         .title-word {
-  animation: color-animation 4s linear infinite;
-}
+            animation: color-animation 4s linear infinite;
+        }
 
-.title-word-1 {
-  --color-1: #DF8453;
-  --color-2: #3D8DAE;
-  --color-3: #E4A9A8;
-}
+        .title-word-1 {
+            --color-1: #DF8453;
+            --color-2: #3D8DAE;
+            --color-3: #E4A9A8;
+        }
 
-.title-word-2 {
-  --color-1: #DBAD4A;
-  --color-2: #ACCFCB;
-  --color-3: #17494D;
-}
+        .title-word-2 {
+            --color-1: #DBAD4A;
+            --color-2: #ACCFCB;
+            --color-3: #17494D;
+        }
 
-.title-word-3 {
-  --color-1: #ACCFCB;
-  --color-2: #E4A9A8;
-  --color-3: #ACCFCB;
-}
+        .title-word-3 {
+            --color-1: #ACCFCB;
+            --color-2: #E4A9A8;
+            --color-3: #ACCFCB;
+        }
 
-.title-word-4 {
-  --color-1: #3D8DAE;
-  --color-2: #DF8453;
-  --color-3: #E4A9A8;
-}
+        .title-word-4 {
+            --color-1: #3D8DAE;
+            --color-2: #DF8453;
+            --color-3: #E4A9A8;
+        }
 
-@keyframes color-animation {
-  0%    {color: var(--color-1)}
-  32%   {color: var(--color-1)}
-  33%   {color: var(--color-2)}
-  65%   {color: var(--color-2)}
-  66%   {color: var(--color-3)}
-  99%   {color: var(--color-3)}
-  100%  {color: var(--color-1)}
-}
+        @keyframes color-animation {
+            0% {
+                color: var(--color-1)
+            }
 
-/* Here are just some visual styles. 🖌 */
+            32% {
+                color: var(--color-1)
+            }
 
-.container {
-  display: grid;
-  place-items: center;  
-  text-align: center;
-  height: 100vh
-}
+            33% {
+                color: var(--color-2)
+            }
 
-.title {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  font-size: 1.5vw;
-  text-transform: uppercase;
-}
+            65% {
+                color: var(--color-2)
+            }
 
+            66% {
+                color: var(--color-3)
+            }
 
+            99% {
+                color: var(--color-3)
+            }
 
+            100% {
+                color: var(--color-1)
+            }
+        }
+
+        /* Here are just some visual styles. 🖌 */
+
+        .container {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            height: 100vh
+        }
+
+        .title {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            font-size: 1.5vw;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -93,54 +112,78 @@
 
     <div class="footer">
         copyright © pns
-=======
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
-                href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
-                    class="fa fa-bars"></i></a>
-            <a href="/" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-            <a href="/teacher" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Teacher</a>
-            <a href="/student" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Student</a>
-            <a href="/assessment" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Assessment</a>
+        =======
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar w3-black w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                    href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                        class="fa fa-bars"></i></a>
+                <a href="/" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+                <a href="/teacher" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Teacher</a>
+                <a href="/student" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Student</a>
+                <a href="/assessment" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Assessment</a>
+            </div>
         </div>
-    </div>
-    <!-- Page content -->
-    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+        <!-- Page content -->
+        <div class="w3-content" style="max-width:2000px;margin-top:46px">
 
-     
 
-        
-        
 
-        <div style="display: flex;justify-content: center;width: 100%;">
-            <div class="container" style="width: 60%;height: 40%;">
-                <h2 class="title">
-                  <span class="title-word title-word-1">Jaypee</span>
-                  <span class="title-word title-word-2">Institute</span>
-                  <span class="title-word title-word-3">of Information</span>
-                  <span class="title-word title-word-4">Technology</span>
-                </h2>
-              </div>
-            <!-- <img src="https://tse1.mm.bing.net/th?id=OIP.2xYsanuB-s8wH8Od6l5kUAHaHa&pid=Api&P=0&h=180" alt="" style="display: inline-block;width: 20%;" height="100px" width="50px"> -->
-        </div>
-        
-        <div class="w3-third" style="display: flex;justify-content: center;width: 100%;">
-            
-            <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="hey" style="width: 150px;height: 150px;">
-        </div>
 
-        <!-- The Band Section -->
-        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:600px;text-align: center;" id="band">
-            
-            <!-- <p class="w3-opacity"><i>We love music</i></p> -->
-            <div class="first"></div>
-            <div style="display: flex;justify-content: center;"><p class="w3-justify" style="font-size: 40px;">Welcome  to  the  quiz  portal!</p></div>
-            
-            <div class="w3-row w3-padding-32" style="display: flex;justify-content: center;">
-                <img alt="header" srcset="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=640 1x, https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200 2x" src="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200" width="560" height="333" decoding="async" data-nimg="1" class="css-fz77qc-StyledNextImage e1n3w55p0" loading="eager" style="color:transparent">
-                <!-- <div class="w3-third">
+
+
+            <div style="display: flex;justify-content: center;width: 100%;">
+                <div class="container" style="width: 60%;height: 40%;">
+                    <h2 class="title">
+                        <span class="title-word title-word-1">Jaypee</span>
+                        <span class="title-word title-word-2">Institute</span>
+                        <span class="title-word title-word-3">of Information</span>
+                        <span class="title-word title-word-4">Technology</span>
+                    </h2>
+                </div>
+                <!-- <img src="https://tse1.mm.bing.net/th?id=OIP.2xYsanuB-s8wH8Od6l5kUAHaHa&pid=Api&P=0&h=180" alt="" style="display: inline-block;width: 20%;" height="100px" width="50px"> -->
+            </div>
+            <div class="w3-third" style="display: flex;justify-content: center;width: 100%;">
+
+                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="hey"
+                    style="width: 150px;height: 150px;">
+            </div>
+
+            <!-- The Band Section -->
+            <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:600px;text-align: center;"
+                id="band">
+
+                <!-- <p class="w3-opacity"><i>We love music</i></p> -->
+                <div class="first"></div>
+                <div style="display: flex;justify-content: center;">
+                    <p class="w3-justify" style="font-size: 40px;">Welcome to the quiz portal!</p>
+                </div>
+            </div>
+            <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="height: auto;">
+                        <img src="https://www.jiit.ac.in/sites/default/files/home-banner-1.jpg" class="d-block w-100"
+                            alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://storage.googleapis.com/ezap-prod/colleges/254/jaypee-institute-of-information-technology-university-campus.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://t3.ftcdn.net/jpg/03/45/97/36/360_F_345973621_sMifpCogXNoIDjmXlbLwx1QZA5ZmQVl8.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="w3-row w3-padding-32" style="display: flex;justify-content: center;">
+                    <img alt="header"
+                        srcset="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=640 1x, https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200 2x"
+                        src="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&amp;auto=format%2Ccompress&amp;w=1200"
+                        width="560" height="333" decoding="async" data-nimg="1"
+                        class="css-fz77qc-StyledNextImage e1n3w55p0" loading="eager" style="color:transparent"> -->
+            <!-- <div class="w3-third">
                     <p>Name</p>
                     <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name"
                         style="width:60%">
@@ -149,18 +192,26 @@
                     <p>Name</p>
                     <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
                 </div> -->
+            <!-- </div>  -->
+        </div>
+
+
+
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+
+            <div style="display: flex;justify-content: center;">
+                <a href="mailto:rawatsuyash78@gmail.com" style="text-decoration: none; margin-right: 30px; color: grey;"
+                    target="_blank">
+                    <p class="cn">Contact Us</p>
+                </a>
+                <a href="https://jiit.ac.in" style="text-decoration: none;color: grey;" target="_blank">
+                    <p class="cn">JIIT</p>
+                </a>
             </div>
-        </div>
-
-       
- 
-    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-
-        <div style="display: flex;justify-content: center;">
-            <a href="mailto:rawatsuyash78@gmail.com" style="text-decoration: none; margin-right: 30px; color: grey;" target="_blank"><p class="cn">Contact Us</p></a>
-            <a href="https://jiit.ac.in" style="text-decoration: none;color: grey;" target="_blank" ><p class="cn">JIIT</p></a>
-        </div>
-    </footer>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

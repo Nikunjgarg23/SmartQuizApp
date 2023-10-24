@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Nikunjgarg23/minor_sem5#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",

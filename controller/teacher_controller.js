@@ -2,7 +2,7 @@ const Teacher = require('../models/teacher');
 const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
-
+const bcrypt=require('bcryptjs');
 
 module.exports.createQuiz = (req, res) => {
     const find = async()=>{
@@ -198,12 +198,21 @@ module.exports.create = function(req,res){
             const user = await Teacher.findOne({email : req.body.email});
             console.log(user);
             if(!user || user.role!="teacher"){
-                req.body.role="teacher";
-                const data = new Teacher(req.body);
-                data.save();
-                console.log(data);
-                console.log("Areeee");
-
+                // req.body.role="teacher";
+                // const data = new Teacher(req.body);
+                // data.save();
+                // console.log(data);
+                // console.log("Areeee");
+                const salt=await bcrypt.genSalt(10);
+                // const pass=await bcrypt.hash(req.body.password,salt);
+                let pass=await bcrypt.hash(req.body.password,salt);
+                let rol="teacher";
+                Teacher.create({
+                    email:req.body.email,
+                    password:pass,
+                    name:req.body.name,
+                    role:rol
+                })
                 return res.redirect('/teacher'); // change to signup page later
             }
             else{
