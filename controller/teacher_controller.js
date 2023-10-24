@@ -203,14 +203,14 @@ module.exports.create = function(req,res){
                 // data.save();
                 // console.log(data);
                 // console.log("Areeee");
-                // const salt=await bcrypt.genSalt(10);
+                const salt=await bcrypt.genSalt(10);
                 // const salt="Azbe";
                 // const pass=await bcrypt.hash(req.body.password,salt);
-                // let pass=await bcrypt.hash(req.body.password,salt);
+                let pass=await bcrypt.hash(req.body.password,salt);
                 let rol="teacher";
                 Teacher.create({
                     email:req.body.email,
-                    password:req.body.password,
+                    password:pass,
                     name:req.body.name,
                     role:rol
                 })
