@@ -85,6 +85,10 @@ module.exports.deleteques = function(req,res){
 };
 
 module.exports.home = function(req,res){
+    if(req.isAuthenticated() && req.user.role=='student'){
+        console.log('ok');
+        return res.redirect('/teacher/logout');
+    }
     if(req.isAuthenticated()){
         return res.redirect('/teacher/teacherinrt');
     }
