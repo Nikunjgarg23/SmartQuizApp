@@ -126,26 +126,33 @@
             margin-right: 10px;
             display: inline-block;
         }
-        span{
+
+        span {
             padding-left: 5px;
         }
-        #span2{
+
+        #span2 {
             min-width: 350px;
         }
-        #span1{
+
+        #span1 {
             /* margin-right: 193px; */
             min-width: 210px;
         }
-        #span3{
+
+        #span3 {
             min-width: 150px;
         }
-        #span4{
+
+        #span4 {
             min-width: 150px;
         }
-        #span5{
+
+        #span5 {
             min-width: 80px;
             margin-right: 20px;
         }
+
         #div3 {
             margin-top: 5px;
             margin-right: 0px;
@@ -181,35 +188,33 @@
     <br><br><br>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
     <div id="ul1">
-        <ul id="list">
-            <li>
-                <div id="div3">
-                    <!-- <div id="div1" style="margin: 0%;">Quiz Name</div>
-                    <span style="width: 2px;"></span>
-                    <div id="div22">Teacher E-mail</div>
-                    <div id="view-btn1">View Quiz</div>
-                    <div id="view-btn1">Add Question</i></i> </div>
-                    <div id="delete-btn1">Delete Quiz</i></div> -->
-                    <span id="span1">Quiz Name</span>
-                    <span id="span2">Teacher E-mail</span>
-                    <span id="span3">Play Quiz</span>
-                </div>
-            </li>
-            <% for(let i of past_quiz){ %>
-                <li id="list-item">
-                    <div id="div3">
-                        <span id="span1">
-                            <%= i.quizname %>
-                        </span>
-                        <span id="span2">
-                            <%= i.owneremail %>
-                        </span>
-                        <span id="span3" style="padding-left: 15px;"><a href="#" id="view-btn"><i class="fa-solid fa-play"></i></a></span>
+        <% for(let i of past_quiz){ %>
+            <div class="container">
+                <div class="row">
+                    <div class="my-3">
+                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                            <h5 class="card-body">
+                                <%= i.quizname %>
+                            </h5>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= i.owneremail %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= i.quizdescription %>
+                                </p>
+                                <div class="container"></div>
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Questions</a>
+                                <a href="" class="btn btn-primary">View Marks</a>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <% } %>
-        </ul>
+                </div>
+            </div>
+            <% } %>
     </div>
+
+
     <!-- <div id="form1">
         <form action='/add-cont' method="POST">
             <input type="text" name="name" placeholder="Enter name" required>
