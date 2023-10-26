@@ -6,6 +6,10 @@ const Question = require('../models/questions')
 const db = require('../config/mongoose');
 
 module.exports.home = function(req,res){
+    if(req.isAuthenticated() && req.user.role=='teacher'){
+        console.log('ok');
+        return res.redirect('/teacher/logout');
+    }
     if(req.isAuthenticated()){
         return res.redirect('/student/studentinrt');
     }

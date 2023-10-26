@@ -11,6 +11,5 @@ router.post('/create-session',passport.authenticate(
     'local',
     {failureRedirect : '/teacher/alert'},
 ),student_controller.createSession);
-// router.post('/teacherinrt',student_controller.nextpage);
 
 module.exports = router;
