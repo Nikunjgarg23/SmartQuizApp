@@ -4,6 +4,7 @@ const Student = require('../models/teacher');
 const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
+const { model } = require('mongoose');
 
 module.exports.home = function(req,res){
     if(req.isAuthenticated() && req.user.role=='teacher'){
@@ -27,6 +28,25 @@ module.exports.nextpage=function(req,res){
     return res.render("studentinterface");
 }
 
+module.exports.logout = function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+}
+
+
+module.exports.viewquiz = function(req,res){
+    const getquiz = async ()=>{
+        const ress = await Quiz.find({upload:true});
+        //console.log(ress);
+        return res.render('viewquizstudent',{
+            title : "Past Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
         return res.redirect('back');
