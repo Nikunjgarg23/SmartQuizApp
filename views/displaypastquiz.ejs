@@ -126,26 +126,33 @@
             margin-right: 10px;
             display: inline-block;
         }
-        span{
+
+        span {
             padding-left: 5px;
         }
-        #span2{
+
+        #span2 {
             min-width: 300px;
         }
-        #span1{
+
+        #span1 {
             /* margin-right: 193px; */
             min-width: 193;
         }
-        #span3{
+
+        #span3 {
             min-width: 150px;
         }
-        #span4{
+
+        #span4 {
             min-width: 150px;
         }
-        #span5{
+
+        #span5 {
             min-width: 80px;
             margin-right: 20px;
         }
+
         #div3 {
             margin-top: 5px;
             margin-right: 0px;
@@ -168,6 +175,7 @@
         </div>
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
+
         <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
             style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Past Quizes</span></a>
         <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
@@ -181,53 +189,42 @@
     <br><br><br>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Past Quiz!</h1>
     <div id="ul1">
-        <ul id="list">
-            <li>
-                <div id="div3">
-                    <!-- <div id="div1" style="margin: 0%;">Quiz Name</div>
-                    <span style="width: 2px;"></span>
-                    <div id="div22">Teacher E-mail</div>
-                    <div id="view-btn1">View Quiz</div>
-                    <div id="view-btn1">Add Question</i></i> </div>
-                    <div id="delete-btn1">Delete Quiz</i></div> -->
-                    <span id="span1">Quiz Name</span>
-                    <span id="span2">Teacher E-mail</span>
-                    <span id="span3">View Quiz</span>
-                    <span id="span4">Add Question</span>
-                    <span id="span4">Upload</span>
-                    <span id="span5">Delete Quiz</span>
-                </div>
-            </li>
-            <% for(let i of past_quiz){ %>
-                <li id="list-item">
-                    <div id="div3">
-                        <span id="span1">
-                            <%= i.quizname %>
-                        </span>
-                        <span id="span2">
-                            <%= i.owneremail %>
-                        </span>
-                        <span id="span3" style="padding-left: 15px;"><a href="/teacher/viewquiz/?id=<%=i._id%>" id="view-btn"><i class="fa-regular fa-eye"></i> </a></span>
-                        <span id="span4" style="padding-left: 20px;"><a href="/teacher/addquestion/?id=<%=i._id%>" id="view-btn"><i class="fa-solid fa-plus"></i></a></span>
-                        <% if(i.upload){ %>
-                            <span id="span4" style="padding-left: 15px;">
-                                <a href="/teacher/upload/?id=<%= i._id %>" id="view-btn">
-                                    <i class="fa-solid fa-arrow-down"></i>
-                                </a>
-                            </span>
-                        <% } else { %>
-                            <span id="span4" style="padding-left: 15px;">
-                                <a href="/teacher/upload/?id=<%= i._id %>" id="view-btn">
-                                    <i class="fa-solid fa-upload"></i>
-                                </a>
-                            </span>
-                        <% } %>
-                        
-                        <span id="span5" style="padding-left: 25px;"><a href="/teacher/deletequiz/?id=<%=i._id%>" id="delete-btn"><i class="fa-regular fa-trash-can"></i></a></span>
+
+
+        <% for(let i of past_quiz){ %>
+            <div class="container">
+                <div class="row">
+
+                    <div class="my-3">
+                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                            <h5 class="card-body">
+                                <%= i.quizname %>
+                            </h5>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= i.owneremail %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= i.quizdescription %>
+                                </p>
+                                <div class="container"></div>
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Quiz</a>
+                                <a href="/teacher/addquestion/?id=<%=i._id%>" class="btn btn-primary">Add
+                                    Question</a>
+                                <% if(i.upload){ %>
+                                    <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Un Upload</a>
+                                    <% } else { %>
+                                        <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Upload</a>
+                                        <% } %>
+                                            <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete
+                                                Quiz</a>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <% } %>
-        </ul>
+                </div>
+            </div>
+            <% } %>
+
     </div>
     <!-- <div id="form1">
         <form action='/add-cont' method="POST">
