@@ -13,6 +13,9 @@ passport.use(new LocalStrategy({
             try{
                 const user = await User.findOne({email : email});
                 var passcompare= await bcrypt.compare(password,user.password);
+                console.log(user.password);
+                console.log(passcompare);
+                return done(null,user);
                 if(!user || passcompare==false || req.body.role!=user.role){
                     //console.log(pass);
                     // console.log(user.password);

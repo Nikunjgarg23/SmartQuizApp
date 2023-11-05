@@ -157,6 +157,31 @@
             margin-top: 5px;
             margin-right: 0px;
         }
+        .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .checkbox-label {
+      display: block;
+    }
+    #batchform{
+        color:black;
+    }
     </style>
 </head>
 
@@ -216,6 +241,23 @@
                                     <% } else { %>
                                         <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Upload</a>
                                         <% } %>
+
+
+                                        <div class="dropdown">
+                                            <button class="dropbtn btn btn-primary">Add Batches</button>
+                                            <div class="dropdown-content">
+                                              <!-- The form for selecting batches goes here -->
+                                              <form id="batchForm" action="/teacher/addbatch/?id=<%=i._id%>" method="post">
+                                                <label class="checkbox-label"><input type="checkbox" name="batch1" value="F1"> F1</label>
+                                                <label class="checkbox-label"><input type="checkbox" name="batch2" value="F2"> F2</label>
+                                                <label class="checkbox-label"><input type="checkbox" name="batch3" value="F3"> F3</label>
+                                                <!-- Add more batch options as needed -->
+                                                <input type="submit" value="submit">
+                                              </form>
+                                            </div>
+                                        </div>
+
+
                                             <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete
                                                 Quiz</a>
                             </div>
