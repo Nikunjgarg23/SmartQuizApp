@@ -7,6 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
+const customware = require('./config/middleware');
 //backend setup
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -84,6 +86,8 @@ app.post("/testphase", async (req, res) => {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customware.setFlash);
 
 app.use('/', require('./routes'));
 

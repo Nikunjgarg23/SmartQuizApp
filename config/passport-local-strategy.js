@@ -8,12 +8,14 @@ passport.use(new LocalStrategy({
     },
     function(req,email,password,done){
         //console.log(req.body);
+        console.log(password);
         const find = async()=>{
             try{
                 const user = await User.findOne({email : email});
-                const passcompare=bcrypt.compare(password,user.password)
-                console.log(req.body);
-                console.log(user.role);
+                var passcompare= await bcrypt.compare(password,user.password);
+                console.log(user.password);
+                console.log(passcompare);
+                return done(null,user);
                 if(!user || passcompare==false || req.body.role!=user.role){
                     //console.log(pass);
                     // console.log(user.password);

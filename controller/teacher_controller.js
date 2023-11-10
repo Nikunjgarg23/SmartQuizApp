@@ -231,6 +231,28 @@ module.exports.create = function(req,res){
     find();
 };
 
+module.exports.addbatch = async function(req,res){
+    let id = req.query.id;
+    const arr = [];
+    if(req.body.batch1!=undefined){
+        arr.push("F1");
+    }
+    if(req.body.batch2!=undefined){
+        arr.push("F2");
+    }
+    if(req.body.batch3!=undefined){
+        arr.push("F3");
+    }
+    console.log(arr);
+    await Quiz.updateOne(
+        { _id : id },
+        {
+            $set: { batches: arr }
+        }
+    );
+    return res.redirect('back');
+}
+
 module.exports.createSession = function(req,res){
     return res.redirect('/teacher/teacherinrt');
 }

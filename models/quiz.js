@@ -16,7 +16,12 @@ var quizSchema = mongoose.Schema({
     },
     owneremail: {
         type: String
+    },
+    batches: {
+        type: [String], // Define an array of strings
+        default: null, // Set the default value to null
     }
+
 });
 const Quiz = mongoose.model('Quiz',quizSchema);
 module.exports = Quiz;

@@ -23,6 +23,7 @@ router.post('/addnewquestion',teacher_controller.addnewQuestion);
 
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);
+router.post('/addbatch',teacher_controller.addbatch);
 router.get('/teacherinrt',passport.checkAuthentication,teacher_controller.nextpage);
 
 router.post('/create-session',passport.authenticate(
