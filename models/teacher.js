@@ -21,6 +21,10 @@ const teacherSchema = new mongoose.Schema({
     role:{
         type:String,
         default:"student",
+    },
+    batch:{
+        type:String,
+        default:"F1",
     }
 },{
     timestamps : true
