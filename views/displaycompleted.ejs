@@ -1,8 +1,6 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f44dd27b35.js" crossorigin="anonymous"></script>
@@ -14,6 +12,7 @@
     <title>
         <%= title %>
     </title>
+    <script src="https://kit.fontawesome.com/f44dd27b35.js" crossorigin="anonymous"></script>
     <style>
         #heading {
             text-align: center;
@@ -36,7 +35,7 @@
         }
 
         li {
-            width: 1100px;
+            width: 1080px;
             margin-bottom: 2px;
         }
 
@@ -48,6 +47,7 @@
             background-color: rgb(118, 143, 149);
             border: 2px solid black;
             height: 50px;
+            margin-right: 0px;
         }
 
         #list-item:hover {
@@ -64,14 +64,16 @@
             text-align: center;
         }
 
-        #list-item div {
-            display: flex;
-            justify-content: space-between;
+        /* #list-item div {
+            
         }
+        #list-item span {
+            
+        } */
 
         #delete-btn {
             color: white;
-            margin-top: 12px;
+            margin-top: 7px;
             margin-right: 10px;
             margin-bottom: 10px;
             display: inline-block;
@@ -103,6 +105,7 @@
 
         #div1 {
             width: 100px;
+            padding-left: 3px;
             margin-top: 7px;
             margin-right: 10px;
             margin-bottom: 10px;
@@ -123,21 +126,62 @@
             margin-right: 10px;
             display: inline-block;
         }
-        #span2{
-            margin-right: 345px;
+
+        span {
+            padding-left: 5px;
         }
-        #span1{
-            margin-right: 193px;
+
+        #span2 {
+            min-width: 300px;
         }
-        #span3{
-            margin-right: 90px;
+
+        #span1 {
+            /* margin-right: 193px; */
+            min-width: 193;
         }
-        #span4{
-            margin-right: 51px;
+
+        #span3 {
+            min-width: 150px;
         }
+
+        #span4 {
+            min-width: 150px;
+        }
+
+        #span5 {
+            min-width: 80px;
+            margin-right: 20px;
+        }
+
         #div3 {
             margin-top: 5px;
+            margin-right: 0px;
         }
+        .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .checkbox-label {
+      display: block;
+    }
+    #batchform{
+        color:black;
+    }
     </style>
 </head>
 
@@ -157,41 +201,51 @@
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
                 <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
-    
-            <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
-            <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
-            <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
-            <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
+
+        <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
+        <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
+        <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
+        <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
         <!-- Container wrapper -->
     </nav>
-    <br>
-    <br>
-    <br>
-    <div>
-        <h1 id="heading"><i class="fa-solid fa-pencil"></i> Questions!</h1>
-    </div>
+    <br><br><br>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Completed Quiz!</h1>
     <div id="ul1">
-        <ul id="list">
-            <% for(let i of past_quiz){ %>
-                <li id="list-item">
-                    <div>
-                        <div id="div1">
-                            <%= i.questionId %>
+
+
+        <% for(let i of past_quiz){ %>
+            <div class="container">
+                <div class="row">
+
+                    <div class="my-3">
+                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                            <h5 class="card-body">
+                                <%= i.quizname %>
+                            </h5>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= i.owneremail %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= i.quizdescription %>
+                                </p>
+                                <div class="container"></div>
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Responses</a>
+
+
+                                <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete Quiz</a>
+                            </div>
                         </div>
-                        <div id="div2">
-                            <%= i.questionText %>
-                        </div>
-                        <!-- <a href="/teacher/viewquiz/?id=<%=i._id%>" id="view-btn"><i class="fa-regular fa-eye"></i> </a> -->
-                        <a href="/teacher/deleteques/?id=<%=i._id%>" id="delete-btn"><i class="fa-regular fa-trash-can"></i></a>
                     </div>
-                </li>
-                <% } %>
-        </ul>
+                </div>
+            </div>
+            <% } %>
+
     </div>
     <!-- <div id="form1">
         <form action='/add-cont' method="POST">

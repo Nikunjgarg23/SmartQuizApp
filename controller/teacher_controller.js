@@ -30,15 +30,28 @@ module.exports.createQuiz = (req, res) => {
 }
 module.exports.pastquiz = function(req,res){
     const getquiz = async ()=>{
-        const ress = await Quiz.find({});
+        const ress = await Quiz.find({ end: 0 });
         //console.log(ress);
         return res.render('displaypastquiz',{
-            title : "Past Quiz!",
+            title : "Available Quiz!",
             past_quiz: ress
         });
     }
     getquiz();
 }
+
+module.exports.completed = function(req,res){
+    const getquiz = async ()=>{
+        const ress = await Quiz.find({ end: 1 });
+        return res.render('displaycompleted',{
+            title : "Completed Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
+
+
 module.exports.viewquiz = function(req,res){
     let id = req.query.id;
     const getquiz = async ()=>{
@@ -68,6 +81,21 @@ module.exports.deletequiz = function(req,res){
     }
     dele();
 };
+
+module.exports.endquiz = async function(req,res){
+    let id = req.query.id;
+    await Quiz.updateOne(
+        { _id : id },
+        {
+            $set: { end: true,
+                upload : 0
+            }
+        }
+    );
+    return res.redirect('back');
+};
+
+
 
 module.exports.deleteques = function(req,res){
     let id = req.query.id;
