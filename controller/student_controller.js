@@ -5,6 +5,7 @@ const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
 const { model } = require('mongoose');
+const bcrypt=require('bcryptjs');
 
 module.exports.home = function(req,res){
     if(req.isAuthenticated() && req.user.role=='teacher'){
@@ -58,7 +59,18 @@ module.exports.create = function(req,res){
             if(!user || user.role!="student"){
                 req.body.role = "student";
                 const data = new Student(req.body);
-                data.save();
+                const salt=await bcrypt.genSalt(10);
+                // const salt="Azbe";
+                // const pass=await bcrypt.hash(req.body.password,salt);
+                let pass=await bcrypt.hash(req.body.password,salt);
+               // let rol="teacher";
+                Student.create({
+                    email:req.body.email,
+                    password:pass,
+                    name:req.body.name,
+                    // role:rol
+                })
+                //data.save();
                 console.log("data");
                 console.log("I am Here");
                 return res.redirect('/student'); // change to signup page later

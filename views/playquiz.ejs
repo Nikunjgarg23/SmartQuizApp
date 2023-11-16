@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz Timer</title>
+</head>
+
+<body>
+    <div id="timer">Time Remaining: 15:00</div>
+    <button id="submitBtn" disabled>Submit Quiz</button>
+
+    <script>
+        // Set the timer duration in seconds
+        const quizDuration = 900; // 15 minutes
+        let remainingTime = quizDuration;
+        let isTimeUp = false;
+
+        const timerElement = document.getElementById("timer");
+        const submitButton = document.getElementById("submitBtn");
+
+        // Function to update the timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            timerElement.textContent = `Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        // Function to handle the timer
+        function startTimer() {
+            const timerInterval = setInterval(function () {
+                if (remainingTime > 0) {
+                    remainingTime--;
+                    updateTimerDisplay();
+                } else {
+                    isTimeUp = true;
+                    updateTimerDisplay();
+                    clearInterval(timerInterval);
+
+                    // Automatically submit the quiz
+                    submitButton.disabled = false;
+                    submitButton.textContent = "Submit Quiz";
+                }
+            }, 1000); // 1 second interval
+        }
+
+        // Start the timer when the page loads
+        startTimer();
+
+        // Event listener for the submit button
+        submitButton.addEventListener("click", function () {
+            if (isTimeUp) {
+                // Handle quiz submission here
+                alert("Quiz submitted!");
+            } else {
+                alert("Quiz cannot be submitted before time is up.");
+            }
+        });
+    </script>
+</body>
+
+</html>
