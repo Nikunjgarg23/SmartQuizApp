@@ -14,6 +14,8 @@ router.get('/changepassword',teacher_controller.changepassword);
 router.get('/pastquiz',teacher_controller.pastquiz);
 router.get('/viewquiz',teacher_controller.viewquiz);
 router.get('/deletequiz',teacher_controller.deletequiz);
+router.get('/endquiz',teacher_controller.endquiz);
+router.get('/completed',teacher_controller.completed);
 router.get('/deleteques',teacher_controller.deleteques);
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',teacher_controller.createQuiz);
@@ -23,6 +25,7 @@ router.post('/addnewquestion',teacher_controller.addnewQuestion);
 
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);
+router.post('/addbatch',teacher_controller.addbatch);
 router.get('/teacherinrt',passport.checkAuthentication,teacher_controller.nextpage);
 
 router.post('/create-session',passport.authenticate(

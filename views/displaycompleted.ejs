@@ -35,7 +35,7 @@
         }
 
         li {
-            width: 750px;
+            width: 1080px;
             margin-bottom: 2px;
         }
 
@@ -132,12 +132,12 @@
         }
 
         #span2 {
-            min-width: 350px;
+            min-width: 300px;
         }
 
         #span1 {
             /* margin-right: 193px; */
-            min-width: 210px;
+            min-width: 193;
         }
 
         #span3 {
@@ -157,6 +157,31 @@
             margin-top: 5px;
             margin-right: 0px;
         }
+        .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .checkbox-label {
+      display: block;
+    }
+    #batchform{
+        color:black;
+    }
     </style>
 </head>
 
@@ -168,29 +193,35 @@
 
 
             <!-- Brand  -->
-            <a class="navbar-brand" href="/student/">
+            <a class="navbar-brand" href="/teacher/">
                 <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" height="35" width="35"
                     alt="JIIT Logo" loading="lazy" />
             </a>
         </div>
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
-        <a href="/student/viewquizstudent" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Past Quizes</span></a>
-        <!-- <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
+                <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
+
+        <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
+        <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
             style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
         <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a> -->
-        <a href="/student/logout" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
+        <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
             style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
         <!-- Container wrapper -->
     </nav>
     <br><br><br>
-    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Completed Quiz!</h1>
     <div id="ul1">
+
+
         <% for(let i of past_quiz){ %>
             <div class="container">
                 <div class="row">
+
                     <div class="my-3">
                         <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body">
@@ -204,15 +235,25 @@
                                     <%= i.quizdescription %>
                                 </p>
                                 <div class="container"></div>
-                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">Play Quiz</a>
-                                <!-- <a href="" class="btn btn-primary">View Marks</a> -->
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Responses</a>
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Quiz</a>
+
+                                <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete Quiz</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <% } %>
+
     </div>
+    <!-- <div id="form1">
+        <form action='/add-cont' method="POST">
+            <input type="text" name="name" placeholder="Enter name" required>
+            <input type="number" name="number" placeholder="Enter number" required>
+            <button type="submit">Add Contact</button>
+        </form>
+    </div> -->
 </body>
 
 </html>

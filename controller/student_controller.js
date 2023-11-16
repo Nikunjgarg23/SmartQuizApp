@@ -38,8 +38,9 @@ module.exports.logout = function(req, res, next){
 
 
 module.exports.viewquiz = function(req,res){
+    var batch = req.user.batch;
     const getquiz = async ()=>{
-        const ress = await Quiz.find({upload:true});
+        const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
         //console.log(ress);
         return res.render('viewquizstudent',{
             title : "Past Quiz!",
@@ -76,7 +77,7 @@ module.exports.create = function(req,res){
                 return res.redirect('/student'); // change to signup page later
             }
             else{
-                return res.redirect('/teacher/signup');
+                return res.redirect('Alert');
             }
         }
         catch(err){
