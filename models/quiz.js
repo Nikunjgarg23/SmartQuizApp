@@ -20,6 +20,10 @@ var quizSchema = mongoose.Schema({
     batches: {
         type: [String], // Define an array of strings
         default: null, // Set the default value to null
+    },
+    end:{
+        type: Boolean,
+        default:false
     }
 
 });

@@ -7,24 +7,27 @@ passport.use(new LocalStrategy({
         passReqToCallback: true
     },
     function(req,email,password,done){
-        //console.log(req.body);
+        console.log(req.body);
         console.log(password);
         const find = async()=>{
-            try{
-                const user = await User.findOne({email : email});
-                var passcompare= await bcrypt.compare(password,user.password);
+            try {
+                const user = await User.findOne({ email: email });
+                if (!user || req.body.role !== user.role) {
+                    console.log("Wrong username password");
+                    return done(null, false);
+                }
+                return done(null, user);
+                const passcompare = await bcrypt.compare(password, user.password);
                 console.log(user.password);
                 console.log(passcompare);
-                return done(null,user);
-                if(!user || passcompare==false || req.body.role!=user.role){
-                    //console.log(pass);
-                    // console.log(user.password);
+    
+                if (!passcompare) {
                     console.log("Wrong username password");
-                    return done(null,false);
+                    return done(null, false);
                 }
-                return done(null,user);
-            }
-            catch(err){
+    
+                return done(null, user);
+            } catch (err) {
                 console.log(err);
             }
         }
