@@ -7,7 +7,6 @@ router.get("/", student_controller.home);
 router.get("/signup", student_controller.signup);
 router.get("/viewquizstudent", student_controller.viewquiz);
 router.post('/saveanswer',student_controller.saveanswer);
-// router.post("/displaylive",student_controller.livequiz);
 router.get("/displaylive",student_controller.livequiz);
 router.get("/logout", student_controller.logout);
 router.post('/create',student_controller.create);
