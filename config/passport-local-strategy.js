@@ -12,11 +12,10 @@ passport.use(new LocalStrategy({
         const find = async()=>{
             try {
                 const user = await User.findOne({ email: email });
-                if (!user || req.body.role !== user.role) {
+                if (!user || req.body.role !== user.role ) {
                     console.log("Wrong username password");
                     return done(null, false);
                 }
-                return done(null, user);
                 const passcompare = await bcrypt.compare(password, user.password);
                 console.log(user.password);
                 console.log(passcompare);
