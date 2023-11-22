@@ -126,43 +126,8 @@ module.exports.saveanswer= async function(req,res){
                     }
                 }
             );
-    
-            if (result.nModified > 0) {
-                console.log(`Response submitted for question ${currentQuestionId}`);
-            } else {
-                console.log(`Question ${currentQuestionId} not found or response not updated`);
-            }
         }
-
-
-        // Assuming req.body is an array of objects with questionId, answer, and _id
-        // const responses = req.body;
-
-        // // Loop through each response and update the database
-        // for (const response of responses) {
-        //     const questionId = response.questionId;
-        //     const answerr = response.answer;
-        //     const studentId = req.user.id;
-
-        //     // Update the response for the specific question and student
-        //     const result = await Question.updateOne(
-        //         { _id: questionId },
-        //         {
-        //             $push: {
-        //                 response: {
-        //                     stu_id: studentId,
-        //                     answer: answerr
-        //                 }
-        //             }
-        //         }
-        //     );
-    
-        //     if (result.nModified > 0) {
-        //         console.log(`Response submitted for question ${questionId}`);
-        //     } else {
-        //         console.log(`Question ${questionId} not found or response not updated`);
-        //     }
-        // }
+        
     } catch (error) {
         console.error('Error submitting quiz:', error);
     }
