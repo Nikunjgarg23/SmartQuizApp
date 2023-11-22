@@ -105,8 +105,68 @@ module.exports.create = function(req,res){
     }
     find();
 };
-module.exports.saveanswer=function(req,res){
-    res.render("Alert");
+module.exports.saveanswer= async function(req,res){
+    console.log(req.body);
+    console.log(req.user.id);
+    try {
+        const { questionId, answer } = req.body;
+        for (let i = 0; i < questionId.length; i++) {
+            const currentQuestionId = questionId[i];
+            const currentAnswer = answer[i];
+            const studentId = req.user.id;
+    
+            const result = await Question.updateOne(
+                { _id: currentQuestionId },
+                {
+                    $push: {
+                        response: {
+                            stu_id: studentId,
+                            answer: currentAnswer
+                        }
+                    }
+                }
+            );
+    
+            if (result.nModified > 0) {
+                console.log(`Response submitted for question ${currentQuestionId}`);
+            } else {
+                console.log(`Question ${currentQuestionId} not found or response not updated`);
+            }
+        }
+
+
+        // Assuming req.body is an array of objects with questionId, answer, and _id
+        // const responses = req.body;
+
+        // // Loop through each response and update the database
+        // for (const response of responses) {
+        //     const questionId = response.questionId;
+        //     const answerr = response.answer;
+        //     const studentId = req.user.id;
+
+        //     // Update the response for the specific question and student
+        //     const result = await Question.updateOne(
+        //         { _id: questionId },
+        //         {
+        //             $push: {
+        //                 response: {
+        //                     stu_id: studentId,
+        //                     answer: answerr
+        //                 }
+        //             }
+        //         }
+        //     );
+    
+        //     if (result.nModified > 0) {
+        //         console.log(`Response submitted for question ${questionId}`);
+        //     } else {
+        //         console.log(`Question ${questionId} not found or response not updated`);
+        //     }
+        // }
+    } catch (error) {
+        console.error('Error submitting quiz:', error);
+    }
+    return res.redirect('/student');
 }
 module.exports.createSession = function(req,res){
     return res.redirect('/student/studentinrt');
