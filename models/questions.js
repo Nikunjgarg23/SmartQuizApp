@@ -11,7 +11,16 @@ var questionSchema = mongoose.Schema({
     questionText:{
         type: String, 
         required: true
-    }
+    },
+    response: {
+        type: [
+            {
+                stu_id: String,
+                answer: String
+            }
+        ],
+        default: null,
+    },
 })
-module.exports = mongoose.model('question',questionSchema)
+module.exports = mongoose.model('question',questionSchema);
 
