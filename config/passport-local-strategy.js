@@ -16,7 +16,7 @@ passport.use(new LocalStrategy({
                     console.log("Wrong username password");
                     return done(null, false);
                 }
-                return done(null, user);
+                // return done(null, user);
                 const passcompare = await bcrypt.compare(password, user.password);
                 console.log(user.password);
                 console.log(passcompare);
