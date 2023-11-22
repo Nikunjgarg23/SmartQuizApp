@@ -10,7 +10,7 @@
 <body>
     <div id="timer" style="text-align:right;">Time Remaining: 15:00</div>
     <h3 style="text-align: center;"> <%= quizname %></h3>
-    <form>
+    <form action = "/student/saveanswer" method="post">
         <% for(let i of past_quiz){ %>
             <div class="container">
                 <div class="row">
@@ -22,7 +22,7 @@
                                 <%= i.questionText %>
                             </h7>
                             <div class="card-body">
-                                <textarea name="" id="" cols="120" rows="2" placeholder="Answer"></textarea>
+                                <textarea name="answer" id="" cols="120" rows="2" placeholder="Answer"></textarea>
                              </div>
                             </div>
                         </div>
