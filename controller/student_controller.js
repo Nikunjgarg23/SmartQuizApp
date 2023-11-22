@@ -25,6 +25,25 @@ module.exports.home = function(req,res){
 module.exports.signup = function(req,res){
     return res.render("studentlogin");
 }
+module.exports.livequiz = function(req,res){
+    //return res.render("playquiz");
+    let id = req.query.id;
+    const getquiz = async ()=>{
+        try{
+        const ress = await Question.find({quizid : id});
+        const res2 = await Quiz.findOne({_id:id});
+        return res.render('playquiz',{
+            past_quiz:ress,
+            quizname:res2.quizname
+        }
+        );
+        }catch(err){
+            console.log(err);
+            return ;
+        }
+    }
+    getquiz();
+}
 module.exports.nextpage=function(req,res){
     return res.render("studentinterface");
 }
