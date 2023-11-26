@@ -3,6 +3,18 @@ const Quiz=require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
 const bcrypt=require('bcryptjs');
+const  Configuration= require("openai");
+const OpenAIApi = require("openai");
+const OpenAI = require("openai");
+const openaii = new OpenAI();
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
+
+
 
 module.exports.createQuiz = (req, res) => {
     const find = async()=>{
@@ -330,6 +342,26 @@ module.exports.addbatch = async function(req,res){
 
 module.exports.createSession = function(req,res){
     return res.redirect('/teacher/teacherinrt');
+}
+module.exports.evaluate = function(req,res){
+    async function eval() {
+        const completion = await openaii.chat.completions.create({
+          messages: [{ role: "system", content: "You are a helpful assistant." }
+        ,{role:"assistant",content:"What can I do for you today?"},
+        {role:"user",content:"compare two answers provide me a score on a value ranges from 0 to 10"},
+        {role:"assistant",content:"Ok! give me Answer1 "},
+        {role:"user",content:"Ram is a good boy"},
+        {role:"assistant",content:" give me Answer2 "},
+        {role:"user",content:"ram is fine boy"},
+        {role:"user",content:"now compare give me a score"},
+      ],
+          model: "gpt-3.5-turbo",
+        });
+      
+        console.log(completion.choices[0]);
+      }
+      
+      eval();
 }
 module.exports.alert = function(req,res){
     return res.render('Alert');
