@@ -105,8 +105,33 @@ module.exports.create = function(req,res){
     }
     find();
 };
-module.exports.saveanswer=function(req,res){
-    res.render("Alert");
+module.exports.saveanswer= async function(req,res){
+    console.log(req.body);
+    console.log(req.user.id);
+    try {
+        const { questionId, answer } = req.body;
+        for (let i = 0; i < questionId.length; i++) {
+            const currentQuestionId = questionId[i];
+            const currentAnswer = answer[i];
+            const studentId = req.user.id;
+    
+            const result = await Question.updateOne(
+                { _id: currentQuestionId },
+                {
+                    $push: {
+                        response: {
+                            stu_id: studentId,
+                            answer: currentAnswer
+                        }
+                    }
+                }
+            );
+        }
+        
+    } catch (error) {
+        console.error('Error submitting quiz:', error);
+    }
+    return res.redirect('/student');
 }
 module.exports.createSession = function(req,res){
     return res.redirect('/student/studentinrt');

@@ -24,10 +24,8 @@
 <body>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
     <div id="timer" style="text-align:right;">Time Remaining: 15:00</div>
-    <h3 style="text-align: center;">
-        <%= quizname %>
-    </h3>
-    <form action="/student/saveanswer" method="post">
+    <h3 style="text-align: center;"> <%= quizname %></h3>
+    <form action = "/student/saveanswer" method="post">
         <% for(let i of past_quiz){ %>
             <div class="container">
                 <div class="row" style="width: 100%;">
@@ -38,17 +36,18 @@
                                 <%= i.questionId%> :
                                     <%= i.questionText %>
                             </h7>
-                            <div class="card-body" style="width: 100%;">
-                                <textarea name="answer" id="" cols=160% rows=2% placeholder="Answer" style="border-radius: 15px;"></textarea>
+                            <div class="card-body">
+                                <input type="hidden" name="questionId" value="<%= i._id %>">
+                                <textarea name="answer" id="" cols="120" rows="2" placeholder="Answer"></textarea>
+                             </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <% } %>
+                <% } %>      
                 <div class="container" style="display: flex ; text-align: center;">
                     <button id="submitBtn" style="text-align: center;">Submit Quiz</button>
-                </div>
+                </div> 
     </form>
 
     <script>
