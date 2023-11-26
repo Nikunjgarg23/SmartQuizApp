@@ -182,6 +182,9 @@
     #batchform{
         color:black;
     }
+    ::placeholder {
+    color: white; /* Change placeholder color to gray */
+}
     </style>
 </head>
 
@@ -240,11 +243,10 @@
                                     Question</a>
                                 <% if(i.upload){ %>
                                     <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Un Upload</a>
+
                                     <% } else { %>
                                         <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Upload</a>
                                         <% } %>
-
-
                                         <div class="dropdown">
                                             <button class="dropbtn btn btn-primary">Add Batches</button>
                                             <div class="dropdown-content">
@@ -255,14 +257,15 @@
                                                 <label class="checkbox-label"><input type="checkbox" name="batch3" value="F3"> F3</label>
                                                 <!-- Add more batch options as needed -->
                                                 <input type="submit" value="submit">
-                                              </form>
-                                            </div>
+                                            </form>
                                         </div>
-
-
-                                            <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete
-                                                Quiz</a>
-                                            <a href="/teacher/endquiz/?id=<%=i._id%>" class="btn btn-primary">End Quiz</a>
+                                    </div>
+                                    
+                                    
+                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete
+                                        Quiz</a>
+                                        <a href="/teacher/endquiz/?id=<%=i._id%>" class="btn btn-primary">End Quiz</a>
+                                        <input name="timer" type="number" placeholder="SetTimer" style="max-width: 130px;" class="btn btn-primary">
                             </div>
                         </div>
                     </div>
