@@ -13,6 +13,8 @@ router.get('/logout',teacher_controller.logout);
 router.get('/changepassword',teacher_controller.changepassword);
 router.get('/pastquiz',teacher_controller.pastquiz);
 router.get('/viewquiz',teacher_controller.viewquiz);
+router.get('/viewres',teacher_controller.viewres);
+router.get('/viewstures',teacher_controller.viewstures);
 router.get('/deletequiz',teacher_controller.deletequiz);
 router.get('/endquiz',teacher_controller.endquiz);
 router.get('/completed',teacher_controller.completed);

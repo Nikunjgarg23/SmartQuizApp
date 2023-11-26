@@ -64,6 +64,53 @@ module.exports.viewquiz = function(req,res){
     }
     getquiz();
 }
+
+module.exports.viewres = function(req,res){
+    let id = req.query.id;
+    const getstu = async ()=>{
+        const ress1 = await Teacher.find({role : 'student',batch:'F1'});
+        const ress2 = await Teacher.find({role : 'student',batch:'F2'});
+        const ress3 = await Teacher.find({role : 'student',batch:'F3'});
+        //console.log(ress);
+        return res.render('viewresponse',{
+            title : "Quiz!",
+            student1: ress1,
+            student2:ress2,
+            student3:ress3,
+            quizid:id
+        });
+    }
+    getstu();
+}
+
+module.exports.viewstures = async function(req,res){
+    let id = req.query.id;
+    let quizId = req.query.otherParam;
+    try {
+        const result = await Question.findOne(
+            { quizid: quizId, 'response.stu_id': id },
+            { questionText: 1, response: 1 }
+        );
+        console.log(result);
+
+        if (result) {
+            const { questionText, responses } = result;
+
+            const studentResponse = responses.find((response) => response.stu_id === stuId);
+
+            res.render('viewstures', {
+                title: 'Question and Answer',
+                questionText,
+                studentResponse: studentResponse ? studentResponse.answer : 'Student did not answer'
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching question and answer:', error);
+    }
+    return res.redirect('back');
+}
+
+
 module.exports.deletequiz = function(req,res){
     let id = req.query.id;
     // let contind = contactList.findIndex(contact => contact.number==phone);

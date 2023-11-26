@@ -214,38 +214,63 @@
         <!-- Container wrapper -->
     </nav>
     <br><br><br>
-    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Completed Quiz!</h1>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F1!</h1>
     <div id="ul1">
 
 
-        <% for(let i of past_quiz){ %>
+        <% for(let i of student1){ %>
             <div class="container">
                 <div class="row">
-
                     <div class="my-3">
                         <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body">
-                                <%= i.quizname %>
+                                <%= i.name %> <%= i.batch %> <a href="/teacher/viewstures/?id=<%= i._id %>&otherParam=<%= quizid %>" class="btn btn-primary">View</a>
                             </h5>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= i.owneremail %>
-                                </h5>
-                                <p class="card-text">
-                                    <%= i.quizdescription %>
-                                </p>
-                                <div class="container"></div>
-                                <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-primary">View Responses</a>
-                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Quiz</a>
-
-                                <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete Quiz</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <% } %>
+    </div>
 
+    <br>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F2!</h1>
+    <div id="ul1">
+
+
+        <% for(let i of student2){ %>
+            <div class="container">
+                <div class="row">
+                    <div class="my-3">
+                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                            <h5 class="card-body">
+                                <%= i.name %> <%= i.batch %> <a href="/teacher/viewstures/?id=<%= i._id %>&otherParam=<%= quizid %>" class="btn btn-primary">View</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+    <br>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F3!</h1>
+    <div id="ul1">
+
+
+        <% for(let i of student3){ %>
+            <div class="container">
+                <div class="row">
+                    <div class="my-3">
+                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                            <h5 class="card-body">
+                                <%= i.name %> <%= i.batch %> <a href="/teacher/viewstures/?id=<%= i._id %>&otherParam=<%= quizid %>" class="btn btn-primary">View</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
     </div>
 </body>
 
