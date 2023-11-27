@@ -73,13 +73,9 @@ module.exports.viewquiz = function (req, res) {
     getquiz();
 }
 
-module.exports.viewres = function (req, res) {
+module.exports.viewres = async function (req, res) {
     let id = req.query.id; // quizid
     const getstu = async () => {
-        const ress1 = await Teacher.find({ role: 'student', batch: 'F1' });
-        const ress2 = await Teacher.find({ role: 'student', batch: 'F2' });
-        const ress3 = await Teacher.find({ role: 'student', batch: 'F3' });
-        console.log(ress1);
         const ques = await Question.find({ quizid: id });
         for (const que of ques) {
             console.log(que.questionText);
@@ -131,9 +127,46 @@ module.exports.viewres = function (req, res) {
             }
             await eval();
         }
-        for (const stu of ress1) {
-            console.log(stu._id);
-        }
+
+        const studentsData = await Teacher.find({
+            role: 'student',
+            batch: 'F1',
+            'score.quiz_id': id
+        }, 'name batch score.$');
+    
+        // Extract relevant data and create an array of objects
+        const ress1 = studentsData.map(student => ({
+            name: student.name,
+            batch: student.batch,
+            score: student.score.find(item => item.quiz_id === id).fscore
+        }));
+        console.log(ress1);
+
+        const studentsData2 = await Teacher.find({
+            role: 'student',
+            batch: 'F2',
+            'score.quiz_id': id
+        }, 'name batch score.$');
+    
+        // Extract relevant data and create an array of objects
+        const ress2 = studentsData2.map(student => ({
+            name: student.name,
+            batch: student.batch,
+            score: student.score.find(item => item.quiz_id === id).fscore
+        }));
+
+        const studentsData3 = await Teacher.find({
+            role: 'student',
+            batch: 'F3',
+            'score.quiz_id': id
+        }, 'name batch score.$');
+    
+        // Extract relevant data and create an array of objects
+        const ress3 = studentsData3.map(student => ({
+            name: student.name,
+            batch: student.batch,
+            score: student.score.find(item => item.quiz_id === id).fscore
+        }));
         return res.render('viewresponse', {
             title: "Quiz!",
             student1: ress1,
