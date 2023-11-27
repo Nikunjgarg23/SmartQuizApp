@@ -28,6 +28,8 @@ module.exports.signup = function(req,res){
 module.exports.livequiz = function(req,res){
     //return res.render("playquiz");
     let id = req.query.id;
+    console.log(id);
+    console.log(req.user.id);
     const getquiz = async ()=>{
         try{
         const ress = await Question.find({quizid : id});
@@ -110,11 +112,30 @@ module.exports.saveanswer= async function(req,res){
     console.log(req.user.id);
     try {
         const { questionId, answer } = req.body;
+        var f=0;
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
+            if(currentQuestionId>=0&&currentQuestionId<10){f=1;break;}
+            console.log(currentQuestionId)
             const currentAnswer = answer[i];
             const studentId = req.user.id;
-    
+            const result = await Question.updateOne(
+                { _id: currentQuestionId },
+                {
+                    $push: {
+                        response: {
+                            stu_id: studentId,
+                            answer: currentAnswer
+                        }
+                    }
+                }
+            );
+        }
+        if(f==1){
+            const currentQuestionId = questionId;
+            console.log(currentQuestionId)
+            const currentAnswer = answer;
+            const studentId = req.user.id;
             const result = await Question.updateOne(
                 { _id: currentQuestionId },
                 {

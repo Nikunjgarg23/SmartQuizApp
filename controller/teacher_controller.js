@@ -96,6 +96,7 @@ module.exports.viewres = function (req, res) {
                     model: "gpt-3.5-turbo",
                 });
                 //var result = JSON.parse(JSON.stringify(completion));
+
                 ans1 = completion.choices[0];
                 ans11 = (ans1.message.content);
                 console.log(ans11);
@@ -115,8 +116,10 @@ module.exports.viewres = function (req, res) {
                             model: "gpt-3.5-turbo",
                         });
                         console.log(completion1.choices[0]);
+                        let resultstring=completion1.choices[0];
+                        let resultint=resultstring.message.content;
                         const stuid = re.stu_id;
-                        const number = 10;
+                        const number = resultint;
                         const updatedUser = await Teacher.findOneAndUpdate(
                             { _id: stuid, 'score.quiz_id': id },
                             { $inc: { 'score.$.fscore': number } },
