@@ -12,10 +12,6 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-
-
-
-
 module.exports.createQuiz = (req, res) => {
     const find = async()=>{
         try{
@@ -77,19 +73,65 @@ module.exports.viewquiz = function(req,res){
     getquiz();
 }
 
-module.exports.viewres = function(req,res){
-    let id = req.query.id;
-    const getstu = async ()=>{
-        const ress1 = await Teacher.find({role : 'student',batch:'F1'});
-        const ress2 = await Teacher.find({role : 'student',batch:'F2'});
-        const ress3 = await Teacher.find({role : 'student',batch:'F3'});
-        //console.log(ress);
-        return res.render('viewresponse',{
-            title : "Quiz!",
+module.exports.viewres = function (req, res) {
+    let id = req.query.id; // quizid
+    const getstu = async () => {
+        const ress1 = await Teacher.find({ role: 'student', batch: 'F1' });
+        const ress2 = await Teacher.find({ role: 'student', batch: 'F2' });
+        const ress3 = await Teacher.find({ role: 'student', batch: 'F3' });
+        console.log(ress1);
+        const ques = await Question.find({ quizid: id });
+        for (const que of ques) {
+            console.log(que.questionText);
+            async function eval() {
+                let ans11 = "";
+                var ans1 = "";
+                const completion = await openaii.chat.completions.create({
+                    messages: [{ role: "system", content: "You are a helpful assistant." }
+                        , { role: "assistant", content: "What can I do for you today?" },
+                    { role: "user", content: "Generate the answer for this question" },
+                    { role: "assistant", content: "Ok! give me Question" },
+                    { role: "user", content: que.questionText},
+                    ],
+                    model: "gpt-3.5-turbo",
+                });
+                //var result = JSON.parse(JSON.stringify(completion));
+                ans1 = completion.choices[0];
+                ans11 = (ans1.message.content);
+                console.log(ans11);
+                for (const re of que.response) {
+                    console.log("kkkkk");
+                    async function evalans() {
+                        const completion1 = await openaii.chat.completions.create({
+                            messages: [{ role: "system", content: "You are a helpful assistant." }
+                                , { role: "assistant", content: "What can I do for you today?" },
+                            { role: "user", content: "compare two answers provide me a score on a value ranges from 0 to 10" },
+                            { role: "assistant", content: "Ok! give me Answer1 " },
+                            { role: "user", content: ans11 },
+                            { role: "assistant", content: " give me Answer2 " },
+                            { role: "user", content: re.answer},
+                            { role: "user", content: "Based on your comparison provide me one integer on the scale of (0-10) no other text is required" },
+                            ],
+                            model: "gpt-3.5-turbo",
+                        });
+                        console.log(completion1.choices[0]);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 18000));
+                    await evalans();
+
+                }
+            }
+           await eval();
+        }
+        for (const stu of ress1) {
+            console.log(stu._id);
+        }
+        return res.render('viewresponse', {
+            title: "Quiz!",
             student1: ress1,
-            student2:ress2,
-            student3:ress3,
-            quizid:id
+            student2: ress2,
+            student3: ress3,
+            quizid: id
         });
     }
     getstu();
@@ -344,24 +386,33 @@ module.exports.createSession = function(req,res){
     return res.redirect('/teacher/teacherinrt');
 }
 module.exports.evaluate = function(req,res){
+    // student id , quesion text , bacche ans
+    //  loop bacche
+    // bache score == 0&(()) 
     async function eval() {
+        let ans11="";
+        var ans1="";
         const completion = await openaii.chat.completions.create({
           messages: [{ role: "system", content: "You are a helpful assistant." }
         ,{role:"assistant",content:"What can I do for you today?"},
-        {role:"user",content:"compare two answers provide me a score on a value ranges from 0 to 10"},
-        {role:"assistant",content:"Ok! give me Answer1 "},
-        {role:"user",content:"Ram is a good boy"},
-        {role:"assistant",content:" give me Answer2 "},
-        {role:"user",content:"ram is fine boy"},
-        {role:"user",content:"now compare give me a score"},
+        {role:"user",content:"Generate the answer for this question"},
+        {role:"assistant",content:"Ok! give me Question"},
+        {role:"user",content:"what is the Formula of (a+b)^2"},
       ],
           model: "gpt-3.5-turbo",
         });
-      
-        console.log(completion.choices[0]);
-      }
-      
-      eval();
+        //var result = JSON.parse(JSON.stringify(completion));
+       ans1=completion.choices[0];     
+       ans11= (ans1.message.content);
+       
+
+    }
+    eval();
+    // console.log("here");
+    // console.log(ans11);
+    
+
+
 }
 module.exports.alert = function(req,res){
     return res.render('Alert');
