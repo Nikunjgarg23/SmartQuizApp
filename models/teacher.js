@@ -15,8 +15,13 @@ const teacherSchema = new mongoose.Schema({
         required : true
     },
     score:{
-        type:Number,
-        default:0,
+        type: [
+            {
+                quiz_id : String,
+                fscore : Number
+            }
+        ],
+        default: null,
     },
     role:{
         type:String,
