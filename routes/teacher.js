@@ -24,7 +24,7 @@ router.post('/createquiz',teacher_controller.createQuiz);
 router.get('/addquestion',teacher_controller.addQuestion);
 router.get('/upload',teacher_controller.upload);
 router.post('/addnewquestion',teacher_controller.addnewQuestion);
-
+router.get('/viewres',teacher_controller.viewres)
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);
 router.post('/addbatch',teacher_controller.addbatch);
