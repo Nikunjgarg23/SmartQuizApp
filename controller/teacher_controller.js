@@ -114,18 +114,18 @@ module.exports.viewres = function (req, res) {
                             ],
                             model: "gpt-3.5-turbo",
                         });
-                        let resultstring = completion1.choices[0];
-                        let resultint = (resultstring.message.content);
-                        resultint = parseInt(resultint);
                         console.log(completion1.choices[0]);
-                        console.log(resultint);
+                        const stuid = re.stu_id;
+                        const number = 10;
+                        const updatedUser = await Teacher.findOneAndUpdate(
+                            { _id: stuid, 'score.quiz_id': id },
+                            { $inc: { 'score.$.fscore': number } },
+                            { new: true });
                     }
                     await new Promise(resolve => setTimeout(resolve, 18000));
                     await evalans();
-
                 }
             }
-            // await new Promise(resolve => setTimeout(resolve, 18000));
             await eval();
         }
         for (const stu of ress1) {
@@ -421,7 +421,7 @@ module.exports.evaluate = function (req, res) {
 
 }
 module.exports.alert = function (req, res) {
-    return res.render('alert');
+    return res.render('Alert');
 }
 module.exports.alert2 = function (req, res) {
     return res.redirect('back');
