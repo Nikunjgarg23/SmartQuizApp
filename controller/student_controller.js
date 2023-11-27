@@ -92,6 +92,7 @@ module.exports.create = function(req,res){
 
             if(!user || user.role!="student"){
                 req.body.role = "student";
+                console.log(req.body);
                 const data = new Student(req.body);
                 const salt=await bcrypt.genSalt(10);
                 // const salt="Azbe";
@@ -102,7 +103,7 @@ module.exports.create = function(req,res){
                     email:req.body.email,
                     password:pass,
                     name:req.body.name,
-                    // role:rol
+                    batch : req.body.batch
                 })
                 //data.save();
                 console.log("data");
