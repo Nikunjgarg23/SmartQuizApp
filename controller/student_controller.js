@@ -6,6 +6,7 @@ const Question = require('../models/questions')
 const db = require('../config/mongoose');
 const { model } = require('mongoose');
 const bcrypt=require('bcryptjs');
+const Teacher = require('../models/teacher');
 
 module.exports.home = function(req,res){
     if(req.isAuthenticated() && req.user.role=='teacher'){
@@ -28,10 +29,22 @@ module.exports.signup = function(req,res){
 module.exports.livequiz = function(req,res){
     //return res.render("playquiz");
     let id = req.query.id;
+    console.log(req.user.id);
     const getquiz = async ()=>{
         try{
         const ress = await Question.find({quizid : id});
         const res2 = await Quiz.findOne({_id:id});
+        const result = await Teacher.updateOne(
+            { _id: req.user.id },
+            {
+                $push: {
+                    score: {
+                        quiz_id: id,
+                        fscore : 0
+                    }
+                }
+            }
+        );
         return res.render('playquiz',{
             past_quiz:ress,
             quizname:res2.quizname
@@ -110,6 +123,7 @@ module.exports.saveanswer= async function(req,res){
     console.log(req.user.id);
     try {
         const { questionId, answer } = req.body;
+        console.log(questionId.length);
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
             const currentAnswer = answer[i];
