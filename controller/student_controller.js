@@ -48,7 +48,8 @@ module.exports.livequiz = function(req,res){
         );
         return res.render('playquiz',{
             past_quiz:ress,
-            quizname:res2.quizname
+            quizname:res2.quizname,
+            timer:res2.time
         }
         );
         }catch(err){
@@ -72,9 +73,11 @@ module.exports.logout = function(req, res, next){
 
 module.exports.viewquiz = function(req,res){
     var batch = req.user.batch;
+
+    console.log(batch);
     const getquiz = async ()=>{
         const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
-        //console.log(ress);
+        console.log(ress);
         return res.render('viewquizstudent',{
             title : "Past Quiz!",
             past_quiz: ress

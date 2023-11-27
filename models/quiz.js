@@ -21,6 +21,9 @@ var quizSchema = mongoose.Schema({
         type: [String], // Define an array of strings
         default: null, // Set the default value to null
     },
+    time:{
+        type: Number
+    },
     end:{
         type: Boolean,
         default:false

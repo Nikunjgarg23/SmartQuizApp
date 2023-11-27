@@ -372,6 +372,9 @@ module.exports.create = function (req, res) {
 module.exports.addbatch = async function (req, res) {
     let id = req.query.id;
     const arr = [];
+    let quiztime=0;
+    if(req.body.timer!==undefined)
+    quiztime=req.body.timer;
     if (req.body.batch1 != undefined) {
         arr.push("F1");
     }
@@ -385,7 +388,15 @@ module.exports.addbatch = async function (req, res) {
     await Quiz.updateOne(
         { _id: id },
         {
-            $set: { batches: arr }
+            $set: { batches: arr },
+           // $set:{time:quiztime}
+        }
+    );
+    await Quiz.updateOne(
+        { _id: id },
+        {
+            // $set: { batches: arr },
+           $set:{time:quiztime}
         }
     );
     return res.redirect('back');

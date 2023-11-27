@@ -23,7 +23,7 @@
 
 <body>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
-    <div id="timer" style="text-align:right;">Time Remaining: 15:00</div>
+    <div id="timer" style="text-align:right;">Time Remaining: <%= timer %></div>
     <h3 style="text-align: center;"> <%= quizname %></h3>
     <form action = "/student/saveanswer" method="post">
         <% for(let i of past_quiz){ %>
@@ -49,10 +49,9 @@
                     <button id="submitBtn" style="text-align: center;">Submit Quiz</button>
                 </div> 
     </form>
-
     <script>
         // Set the timer duration in seconds
-        const quizDuration = 9; // 15 minutes
+        const quizDuration = 7; // 15 minutes
         let remainingTime = quizDuration;
         let isTimeUp = false;
 
