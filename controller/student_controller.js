@@ -95,8 +95,6 @@ module.exports.create = function(req,res){
                 console.log(req.body);
                 const data = new Student(req.body);
                 const salt=await bcrypt.genSalt(10);
-                // const salt="Azbe";
-                // const pass=await bcrypt.hash(req.body.password,salt);
                 let pass=await bcrypt.hash(req.body.password,salt);
                // let rol="teacher";
                 Student.create({
@@ -108,7 +106,7 @@ module.exports.create = function(req,res){
                 //data.save();
                 console.log("data");
                 console.log("I am Here");
-                return res.redirect('/student'); // change to signup page later
+                return res.redirect('/student');
             }
             else{
                 return res.redirect('Alert');
