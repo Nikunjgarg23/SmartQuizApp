@@ -18,7 +18,8 @@ const teacherSchema = new mongoose.Schema({
         type: [
             {
                 quiz_id : String,
-                fscore : Number
+                fscore : Number,
+                evaluated:Number
             }
         ],
         default: null,
