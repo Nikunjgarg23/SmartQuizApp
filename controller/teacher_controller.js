@@ -133,7 +133,9 @@ module.exports.evaluate = async function (req, res) {
             }
             await eval();
         }
-
+        await Quiz.updateOne({_id:id},{
+            $set:{iseval:true}
+        });
         return res.redirect('back');
         // const studentsData = await Teacher.find({
         //     role: 'student',

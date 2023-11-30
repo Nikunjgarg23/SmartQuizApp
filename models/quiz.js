@@ -24,8 +24,15 @@ var quizSchema = mongoose.Schema({
     end:{
         type: Boolean,
         default:false
+    },
+    attempted:{
+        type:[String],
+        default:null
+    },
+    iseval:{
+        type:Boolean,
+        default:false
     }
-
 });
 const Quiz = mongoose.model('Quiz',quizSchema);
 module.exports = Quiz;

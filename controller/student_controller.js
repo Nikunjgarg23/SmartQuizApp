@@ -46,6 +46,14 @@ module.exports.livequiz = function(req,res){
                 }
             }
         );
+        await Quiz.updateOne(
+            {_id:id},
+            {
+                $push:{
+                    attempted:req.user.id
+                }
+            }
+        )
         return res.render('playquiz',{
             past_quiz:ress,
             quizname:res2.quizname
@@ -73,7 +81,15 @@ module.exports.logout = function(req, res, next){
 module.exports.viewquiz = function(req,res){
     var batch = req.user.batch;
     const getquiz = async ()=>{
-        const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
+        const ress = await Quiz.find({
+            $and: [
+                { upload: true },
+                { batches: {$in:[batch]} },
+                { 'attempted': { $nin: [req.user.id] } }
+            ]
+        });
+        
+        //const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
         //console.log(ress);
         return res.render('viewquizstudent',{
             title : "Past Quiz!",
@@ -82,6 +98,8 @@ module.exports.viewquiz = function(req,res){
     }
     getquiz();
 }
+
+
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_pass){
         return res.redirect('back');
