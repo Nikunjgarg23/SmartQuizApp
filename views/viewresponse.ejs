@@ -157,31 +157,37 @@
             margin-top: 5px;
             margin-right: 0px;
         }
+
         .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+            position: relative;
+            display: inline-block;
+        }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 200px;
-      border: 1px solid #ccc;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-    .checkbox-label {
-      display: block;
-    }
-    #batchform{
-        color:black;
-    }
+        .checkbox-label {
+            display: block;
+        }
+
+        #batchform {
+            color: black;
+        }
+
+        .container:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -200,7 +206,7 @@
         </div>
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
-                <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
+        <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
             style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
 
         <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
@@ -216,15 +222,45 @@
     <br><br><br>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F1!</h1>
     <div id="ul1">
-
-
+        <div style="width: 95%; margin-left: 31px;">
+            <div class="row">
+                <div class="my-3">
+                    <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                        <!-- <h5 class="card-body"> -->
+                        <div style="display: flex;flex-direction: row;">
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Name</h5>
+                            </span>
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Batch</h5>
+                            </span>
+                            <span style="display: inline-block;width: 30%;">
+                                <h5>Score</h>
+                            </span>
+                        </div>
+                        <!-- </h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
         <% for(let i of student1){ %>
+
             <div class="container">
                 <div class="row">
-                    <div class="my-3">
-                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                    <div class="my-1">
+                        <div class="card text-bg-secondary mb-0" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body">
-                                <%= i.name %> <%= i.batch %> <%=i.score%>
+                                <div style="display: flex;flex-direction: row;">
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.name %>
+                                    </span>
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.batch %>
+                                    </span>
+                                    <span style="display: inline-block;width: 30%;">
+                                        <%=i.score%>
+                                    </span>
+                                </div>
                             </h5>
                         </div>
                     </div>
@@ -236,15 +272,45 @@
     <br>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F2!</h1>
     <div id="ul1">
-
+        <div style="width: 95%; margin-left: 31px;">
+            <div class="row">
+                <div class="my-3">
+                    <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                        <!-- <h5 class="card-body"> -->
+                        <div style="display: flex;flex-direction: row;">
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Name</h5>
+                            </span>
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Batch</h5>
+                            </span>
+                            <span style="display: inline-block;width: 30%;">
+                                <h5>Score</h>
+                            </span>
+                        </div>
+                        <!-- </h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <% for(let i of student2){ %>
             <div class="container">
                 <div class="row">
-                    <div class="my-3">
-                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                    <div class="my-1">
+                        <div class="card text-bg-secondary mb-0" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body">
-                                <%= i.name %> <%= i.batch %> <%=i.score%>
+                                <div style="display: flex;flex-direction: row;">
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.name %>
+                                    </span>
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.batch %>
+                                    </span>
+                                    <span style="display: inline-block;width: 30%;">
+                                        <%=i.score%>
+                                    </span>
+                                </div>
                             </h5>
                         </div>
                     </div>
@@ -256,15 +322,46 @@
     <br>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Batch F3!</h1>
     <div id="ul1">
+        <div style="width: 95%; margin-left: 31px;">
+            <div class="row">
+                <div class="my-3">
+                    <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                        <!-- <h5 class="card-body"> -->
+                        <div style="display: flex;flex-direction: row;">
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Name</h5>
+                            </span>
+                            <span style="display: inline-block;width: 35%;">
+                                <h5>Batch</h5>
+                            </span>
+                            <span style="display: inline-block;width: 30%;">
+                                <h5>Score</h>
+                            </span>
+                        </div>
+                        <!-- </h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <% for(let i of student3){ %>
             <div class="container">
                 <div class="row">
-                    <div class="my-3">
-                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
+                    <div class="my-1">
+                        <div class="card text-bg-secondary mb-0" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body">
-                                <%= i.name %> <%= i.batch %> <%=i.score%>
+                                <div style="display: flex;flex-direction: row;">
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.name %>
+                                    </span>
+                                    <span style="display: inline-block;width: 35%;">
+                                        <%= i.batch %>
+                                    </span>
+                                    <span style="display: inline-block;width: 30%;">
+                                        <%=i.score%>
+                                    </span>
+                                </div>
                             </h5>
                         </div>
                     </div>

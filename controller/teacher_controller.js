@@ -116,7 +116,7 @@ module.exports.evaluate = async function (req, res) {
                         let resultstring=completion1.choices[0];
                         let resultint=resultstring.message.content;
                         console.log(resultint.length);
-                        let num;
+                        let num='4';
                         if(resultint.length>2){
                             let ind = resultint.indexOf("out");
                             while(ind>=0){
@@ -133,10 +133,12 @@ module.exports.evaluate = async function (req, res) {
                                 }
                                 ind=ind-1;
                             }
-                            var match = resultint.match(/\d+/);
+                            //var match = resultint.match(/\d+/);
                             resultint = parseInt(num);
                             console.log(resultint);
                         }
+                        else
+                        resultint = parseInt(resultint);
                         const stuid = re.stu_id;
                         const number = resultint;
                         const updatedUser = await Teacher.findOneAndUpdate(
