@@ -103,12 +103,12 @@ module.exports.evaluate = async function (req, res) {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
                                 , { role: "assistant", content: "What can I do for you today?" },
-                            { role: "user", content: "compare two answers provide me a score on a value ranges from 0 to 10" },
-                            { role: "assistant", content: "Ok! give me Answer1 " },
+                            { role: "user", content: "compare answer2 with main asnwer1 and rate the answer2 only on a scale ranges from 0 to 10 based on your understanding of comparions" },
+                            { role: "assistant", content: "Ok! give me the main Answer1 " },
                             { role: "user", content: ans11 },
                             { role: "assistant", content: " give me Answer2 " },
                             { role: "user", content: re.answer },
-                            { role: "user", content: "Based on your strict comparison provide me one integer on the scale of (0-10) no other text is required" },
+                            { role: "user", content: "Important Note You have to do strict comparison and provide me a statement in this form : 'I would like to give (your_comparison_based_marks) out of 10' " },
                             ],
                             model: "gpt-3.5-turbo",
                         });
@@ -116,9 +116,26 @@ module.exports.evaluate = async function (req, res) {
                         let resultstring=completion1.choices[0];
                         let resultint=resultstring.message.content;
                         console.log(resultint.length);
+                        let num;
                         if(resultint.length>2){
+                            let ind = resultint.indexOf("out");
+                            while(ind>=0){
+                                if(resultint[ind]>='0'&&resultint[ind]<='9')
+                                {
+                                    if(ind>=1&&resultint[ind]==='0'){
+                                        if(resultint[ind-1]=='1')
+                                        num='1';
+                                        num+='0';
+                                    }
+                                    else
+                                    num=resultint[ind];
+                                    break;
+                                }
+                                ind=ind-1;
+                            }
                             var match = resultint.match(/\d+/);
-                            resultint = parseInt(match[0]);
+                            resultint = parseInt(num);
+                            console.log(resultint);
                         }
                         const stuid = re.stu_id;
                         const number = resultint;
@@ -450,7 +467,9 @@ module.exports.addnewQuestion = (req, res) => {
             const data = new Question(req.body);
             data.save();
 
-            return res.redirect('/teacher/pastquiz'); // change to signup page later
+            return res.render('Question', {
+                idd: id
+            }); // change to signup page later
         }
         catch (err) {
             console.log(err);

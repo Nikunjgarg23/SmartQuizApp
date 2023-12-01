@@ -189,3 +189,9 @@ module.exports.saveanswer= async function(req,res){
 module.exports.createSession = function(req,res){
     return res.redirect('/student/studentinrt');
 }
+module.exports.changepassword = function (req, res) {
+    if (!req.isAuthenticated()) {
+        return res.redirect('Alert');
+    }
+    return res.render("Studentchangepassword");
+}

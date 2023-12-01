@@ -238,12 +238,12 @@
                                     <%= i.quizdescription %>
                                 </p>
                                 <div class="container"></div>
-                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Quiz</a>
+                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Questions</a>
                                 <a href="/teacher/addquestion/?id=<%=i._id%>" class="btn btn-primary">Add
                                     Question</a>
                                 <% if(i.upload){ %>
                                     <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Un Upload</a>
-
+    
                                     <% } else { %>
                                         <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-primary">Upload</a>
                                         <% } %>

@@ -23,7 +23,7 @@
 
 <body>
     <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
-    <div id="timer" style="text-align:right;">Time Remaining: <%= timer %></div>
+    <div id="timer" style="text-align:center;">Time Remaining: <%= timer %></div>
     <h3 style="text-align: center;"> <%= quizname %></h3>
     <form action = "/student/saveanswer" method="post">
         <% for(let i of past_quiz){ %>
@@ -45,7 +45,6 @@
                     </div>
                 </div>
                 <% } %>      
-                <%console.log(timer)%>
                 <div class="container" style="display: flex ; text-align: center;">
                     
                     <button id="submitBtn" style="text-align: center;">Submit Quiz</button>
