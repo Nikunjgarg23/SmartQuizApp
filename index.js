@@ -9,9 +9,12 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const customware = require('./config/middleware');
+const path = require('path');
+// app.use(express.static());
 //backend setup
 app.set('view engine', 'ejs');
 app.set('views', './views');
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.urlencoded());
 app.use(cookieParser());

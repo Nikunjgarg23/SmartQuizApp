@@ -371,13 +371,22 @@ module.exports.changepassword = function (req, res) {
 
 module.exports.changepass = async function (req, res) {
     console.log(req.user);
-    if ((req.body.oldpass != req.user.password) || (req.body.newpass != req.body.newpassc)) {
+    // const salt="Azbe";
+    // const pass=await bcrypt.hash(req.body.password,salt);
+    const passcompare = await bcrypt.compare(req.body.oldpass, req.user.password);
+    // console.log(passcompare);
+    // console.log(req.user.password);
+    // console.log(req.body.oldpass);
+    // console.log(passcompare);
+    if ((!passcompare) || (req.body.newpass != req.body.newpassc)) {
         return res.render('Alert');
     }
+    const salt = await bcrypt.genSalt(10);
+    let pass = await bcrypt.hash(req.body.newpass, salt);
     await Teacher.updateOne(
         { email: req.user.email },
         {
-            $set: { password: req.body.newpass },
+            $set: { password: pass },
         }
     );
     return res.redirect('/teacher/logout');
