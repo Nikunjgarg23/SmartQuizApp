@@ -77,72 +77,65 @@ module.exports.evaluate = async function (req, res) {
     let id = req.query.id; // quizid
     const getstu = async () => {
         const ques = await Question.find({ quizid: id });
-        // const stus = await Teacher.find({role:student,score:(evaluated:0)});
-        const students = await Teacher.aggregate([
-            { $match: { role: 'student' } },
-            { $match: { 'score.evaluated': ques.length} },
-        ]);
-        console.log(students);
-        if (students.length == 0) {
-            for (const que of ques) {
-                console.log(que.questionText);
-                async function eval() {
-                    let ans11 = "";
-                    var ans1 = "";
-                    const completion = await openaii.chat.completions.create({
-                        messages: [{ role: "system", content: "You are a helpful assistant." }
-                            , { role: "assistant", content: "What can I do for you today?" },
-                        { role: "user", content: "Generate the answer for this question in maximum 2 lines" },
-                        { role: "assistant", content: "Ok! give me Question" },
-                        { role: "user", content: que.questionText },
-                        ],
-                        model: "gpt-3.5-turbo",
-                    });
-                    //var result = JSON.parse(JSON.stringify(completion));
-                    ans1 = completion.choices[0];
-                    ans11 = (ans1.message.content);
-                    console.log(ans11);
-                    let i = 0;
-                    for (const re of que.response) {
-                        console.log(re.answer);
-                        i+=1;
-                        console.log("kkkkk");
-                        async function evalans() {
-                            const completion1 = await openaii.chat.completions.create({
-                                messages: [{ role: "system", content: "You are a helpful assistant." }
-                                    , { role: "assistant", content: "What can I do for you today?" },
-                                { role: "user", content: "I will provide the two answers and you have to compare the answer2 based on full meaning answer1(main answer) and rate answer2 on the scale of 0 - 10 " },
-                                { role: "assistant", content: "Ok! give me Answer1 " },
-                                { role: "user", content: ans11 },
-                                { role: "assistant", content: " give me Answer2 " },
-                                { role: "user", content: re.answer },
-                                { role: "user", content: "Based on your strict comparison provide me one integer on the scale of (0-10) no other text is required" },
-                                ],
-                                model: "gpt-3.5-turbo",
-                            });
-                            console.log(completion1.choices[0]);
-                            let resultstring = completion1.choices[0];
-                            let resultint = resultstring.message.content;
-                            if(resultint.length>2){
-                                var match =resultint.match(/\d+/);
-                                resultint=parseInt(match[0]);
-                            }
-                            const stuid = re.stu_id;
-                            const number = resultint;
-                            const updatedUser = await Teacher.findOneAndUpdate(
-                                { _id: stuid, 'score.quiz_id': id },
-                                { $inc: {'score.$.fscore': number } },
-                                { new: true });
+        for (const que of ques) {
+            console.log(que.questionText);
+            async function eval() {
+                let ans11 = "";
+                var ans1 = "";
+                const completion = await openaii.chat.completions.create({
+                    messages: [{ role: "system", content: "You are a helpful assistant." }
+                        , { role: "assistant", content: "What can I do for you today?" },
+                    { role: "user", content: "Generate the answer for this question" },
+                    { role: "assistant", content: "Ok! give me Question" },
+                    { role: "user", content: que.questionText },
+                    ],
+                    model: "gpt-3.5-turbo",
+                });
+                //var result = JSON.parse(JSON.stringify(completion));
+
+                ans1 = completion.choices[0];
+                ans11 = (ans1.message.content);
+                console.log(ans11);
+                for (const re of que.response) {
+                    console.log("kkkkk");
+                    console.log(re.answer);
+                    async function evalans() {
+                        const completion1 = await openaii.chat.completions.create({
+                            messages: [{ role: "system", content: "You are a helpful assistant." }
+                                , { role: "assistant", content: "What can I do for you today?" },
+                            { role: "user", content: "compare two answers provide me a score on a value ranges from 0 to 10" },
+                            { role: "assistant", content: "Ok! give me Answer1 " },
+                            { role: "user", content: ans11 },
+                            { role: "assistant", content: " give me Answer2 " },
+                            { role: "user", content: re.answer },
+                            { role: "user", content: "Based on your strict comparison provide me one integer on the scale of (0-10) no other text is required" },
+                            ],
+                            model: "gpt-3.5-turbo",
+                        });
+                        console.log(completion1.choices[0]);
+                        let resultstring=completion1.choices[0];
+                        let resultint=resultstring.message.content;
+                        console.log(resultint.length);
+                        if(resultint.length>2){
+                            var match = resultint.match(/\d+/);
+                            resultint = parseInt(match[0]);
                         }
-                        await new Promise(resolve => setTimeout(resolve, 18000));
-                        await evalans();
+                        const stuid = re.stu_id;
+                        const number = resultint;
+                        const updatedUser = await Teacher.findOneAndUpdate(
+                            { _id: stuid, 'score.quiz_id': id },
+                            { $inc: { 'score.$.fscore': number } },
+                            { new: true });
                     }
+                    await new Promise(resolve => setTimeout(resolve, 18000));
+                    await evalans();
                 }
-                await eval();
-
             }
+            await eval();
         }
-
+        await Quiz.updateOne({_id:id},{
+            $set:{iseval:true}
+        });
         return res.redirect('back');
         // const studentsData = await Teacher.find({
         //     role: 'student',
