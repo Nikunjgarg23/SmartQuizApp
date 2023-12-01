@@ -95,22 +95,21 @@ module.exports.create = function(req,res){
 
             if(!user || user.role!="student"){
                 req.body.role = "student";
+                console.log(req.body);
                 const data = new Student(req.body);
                 const salt=await bcrypt.genSalt(10);
-                // const salt="Azbe";
-                // const pass=await bcrypt.hash(req.body.password,salt);
                 let pass=await bcrypt.hash(req.body.password,salt);
                // let rol="teacher";
                 Student.create({
                     email:req.body.email,
                     password:pass,
                     name:req.body.name,
-                    // role:rol
+                    batch : req.body.batch
                 })
                 //data.save();
                 console.log("data");
                 console.log("I am Here");
-                return res.redirect('/student'); // change to signup page later
+                return res.redirect('/student');
             }
             else{
                 return res.redirect('Alert');

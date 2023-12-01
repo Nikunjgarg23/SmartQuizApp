@@ -73,7 +73,7 @@ module.exports.viewquiz = function (req, res) {
     getquiz();
 }
 
-module.exports.viewres = async function (req, res) {
+module.exports.evaluate = async function (req, res) {
     let id = req.query.id; // quizid
     const getstu = async () => {
         const ques = await Question.find({ quizid: id });
@@ -92,7 +92,7 @@ module.exports.viewres = async function (req, res) {
                     const completion = await openaii.chat.completions.create({
                         messages: [{ role: "system", content: "You are a helpful assistant." }
                             , { role: "assistant", content: "What can I do for you today?" },
-                        { role: "user", content: "Generate the answer for this question" },
+                        { role: "user", content: "Generate the answer for this question in maximum 2 lines" },
                         { role: "assistant", content: "Ok! give me Question" },
                         { role: "user", content: que.questionText },
                         ],
@@ -104,24 +104,29 @@ module.exports.viewres = async function (req, res) {
                     console.log(ans11);
                     let i = 0;
                     for (const re of que.response) {
+                        console.log(re.answer);
                         i+=1;
                         console.log("kkkkk");
                         async function evalans() {
                             const completion1 = await openaii.chat.completions.create({
                                 messages: [{ role: "system", content: "You are a helpful assistant." }
                                     , { role: "assistant", content: "What can I do for you today?" },
-                                { role: "user", content: "compare two answers provide me a score on a value ranges from 0 to 10" },
+                                { role: "user", content: "I will provide the two answers and you have to compare the answer2 based on full meaning answer1(main answer) and rate answer2 on the scale of 0 - 10 " },
                                 { role: "assistant", content: "Ok! give me Answer1 " },
                                 { role: "user", content: ans11 },
                                 { role: "assistant", content: " give me Answer2 " },
                                 { role: "user", content: re.answer },
-                                { role: "user", content: "Based on your comparison provide me one integer on the scale of (0-10) no other text is required" },
+                                { role: "user", content: "Based on your strict comparison provide me one integer on the scale of (0-10) no other text is required" },
                                 ],
                                 model: "gpt-3.5-turbo",
                             });
                             console.log(completion1.choices[0]);
                             let resultstring = completion1.choices[0];
                             let resultint = resultstring.message.content;
+                            if(resultint.length>2){
+                                var match =resultint.match(/\d+/);
+                                resultint=parseInt(match[0]);
+                            }
                             const stuid = re.stu_id;
                             const number = resultint;
                             const updatedUser = await Teacher.findOneAndUpdate(
@@ -137,56 +142,133 @@ module.exports.viewres = async function (req, res) {
 
             }
         }
-        const studentsData = await Teacher.find({
-            role: 'student',
-            batch: 'F1',
-            'score.quiz_id': id
-        }, 'name batch score.$');
 
-        // Extract relevant data and create an array of objects
-        const ress1 = studentsData.map(student => ({
-            name: student.name,
-            batch: student.batch,
-            score: student.score.find(item => item.quiz_id === id).fscore,
-        }));
-        console.log(ress1);
+        return res.redirect('back');
+        // const studentsData = await Teacher.find({
+        //     role: 'student',
+        //     batch: 'F1',
+        //     'score.quiz_id': id
+        // }, 'name batch score.$');
+    
+        // // Extract relevant data and create an array of objects
+        // const ress1 = studentsData.map(student => ({
+        //     name: student.name,
+        //     batch: student.batch,
+        //     score: student.score.find(item => item.quiz_id === id).fscore
+        // }));
+        // console.log(ress1);
 
-        const studentsData2 = await Teacher.find({
-            role: 'student',
-            batch: 'F2',
-            'score.quiz_id': id
-        }, 'name batch score.$');
+        // const studentsData2 = await Teacher.find({
+        //     role: 'student',
+        //     batch: 'F2',
+        //     'score.quiz_id': id
+        // }, 'name batch score.$');
+    
+        // // Extract relevant data and create an array of objects
+        // const ress2 = studentsData2.map(student => ({
+        //     name: student.name,
+        //     batch: student.batch,
+        //     score: student.score.find(item => item.quiz_id === id).fscore
+        // }));
 
-        // Extract relevant data and create an array of objects
-        const ress2 = studentsData2.map(student => ({
-            name: student.name,
-            batch: student.batch,
-            score: student.score.find(item => item.quiz_id === id).fscore
-        }));
-
-        const studentsData3 = await Teacher.find({
-            role: 'student',
-            batch: 'F3',
-            'score.quiz_id': id
-        }, 'name batch score.$');
-
-        // Extract relevant data and create an array of objects
-        const ress3 = studentsData3.map(student => ({
-            name: student.name,
-            batch: student.batch,
-            score: student.score.find(item => item.quiz_id === id).fscore
-        }));
-        return res.render('viewresponse', {
-            title: "Quiz!",
-            student1: ress1,
-            student2: ress2,
-            student3: ress3,
-            quizid: id
-        });
+        // const studentsData3 = await Teacher.find({
+        //     role: 'student',
+        //     batch: 'F3',
+        //     'score.quiz_id': id
+        // }, 'name batch score.$');
+    
+        // // Extract relevant data and create an array of objects
+        // const ress3 = studentsData3.map(student => ({
+        //     name: student.name,
+        //     batch: student.batch,
+        //     score: student.score.find(item => item.quiz_id === id).fscore
+        // }));
+        // return res.render('viewresponse', {
+        //     title: "Quiz!",
+        //     student1: ress1,
+        //     student2: ress2,
+        //     student3: ress3,
+        //     quizid: id
+        // });
     }
-
     getstu();
 }
+
+module.exports.viewres = async function (req, res) {
+    // // student id , quesion text , bacche ans
+    // //  loop bacche
+    // // bache score == 0&(()) 
+    // async function eval() {
+    //     let ans11 = "";
+    //     var ans1 = "";
+    //     const completion = await openaii.chat.completions.create({
+    //         messages: [{ role: "system", content: "You are a helpful assistant." }
+    //             , { role: "assistant", content: "What can I do for you today?" },
+    //         { role: "user", content: "Generate the answer for this question" },
+    //         { role: "assistant", content: "Ok! give me Question" },
+    //         { role: "user", content: "what is the Formula of (a+b)^2" },
+    //         ],
+    //         model: "gpt-3.5-turbo",
+    //     });
+    //     //var result = JSON.parse(JSON.stringify(completion));
+    //     ans1 = completion.choices[0];
+    //     ans11 = (ans1.message.content);
+
+
+    // }
+    // eval();
+    // // console.log("here");
+    // // console.log(ans11);
+    let id = req.query.id;
+    const studentsData = await Teacher.find({
+        role: 'student',
+        batch: 'F1',
+        'score.quiz_id': id
+    }, 'name batch score.$');
+
+    // Extract relevant data and create an array of objects
+    const ress1 = studentsData.map(student => ({
+        name: student.name,
+        batch: student.batch,
+        score: student.score.find(item => item.quiz_id === id).fscore
+    }));
+    console.log(ress1);
+
+    const studentsData2 = await Teacher.find({
+        role: 'student',
+        batch: 'F2',
+        'score.quiz_id': id
+    }, 'name batch score.$');
+
+    // Extract relevant data and create an array of objects
+    const ress2 = studentsData2.map(student => ({
+        name: student.name,
+        batch: student.batch,
+        score: student.score.find(item => item.quiz_id === id).fscore
+    }));
+
+    const studentsData3 = await Teacher.find({
+        role: 'student',
+        batch: 'F3',
+        'score.quiz_id': id
+    }, 'name batch score.$');
+
+    // Extract relevant data and create an array of objects
+    const ress3 = studentsData3.map(student => ({
+        name: student.name,
+        batch: student.batch,
+        score: student.score.find(item => item.quiz_id === id).fscore
+    }));
+    return res.render('viewresponse', {
+        title: "Quiz!",
+        student1: ress1,
+        student2: ress2,
+        student3: ress3,
+        quizid: id
+    });
+
+}
+
 
 module.exports.viewstures = async function (req, res) {
     let id = req.query.id;
@@ -448,35 +530,8 @@ module.exports.addbatch = async function (req, res) {
 module.exports.createSession = function (req, res) {
     return res.redirect('/teacher/teacherinrt');
 }
-module.exports.evaluate = function (req, res) {
-    // student id , quesion text , bacche ans
-    //  loop bacche
-    // bache score == 0&(()) 
-    async function eval() {
-        let ans11 = "";
-        var ans1 = "";
-        const completion = await openaii.chat.completions.create({
-            messages: [{ role: "system", content: "You are a helpful assistant." }
-                , { role: "assistant", content: "What can I do for you today?" },
-            { role: "user", content: "Generate the answer for this question" },
-            { role: "assistant", content: "Ok! give me Question" },
-            { role: "user", content: "what is the Formula of (a+b)^2" },
-            ],
-            model: "gpt-3.5-turbo",
-        });
-        //var result = JSON.parse(JSON.stringify(completion));
-        ans1 = completion.choices[0];
-        ans11 = (ans1.message.content);
 
 
-    }
-    eval();
-    // console.log("here");
-    // console.log(ans11);
-
-
-
-}
 module.exports.alert = function (req, res) {
     return res.render('Alert');
 }
