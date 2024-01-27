@@ -103,12 +103,12 @@ module.exports.evaluate = async function (req, res) {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
                                 , { role: "assistant", content: "What can I do for you today?" },
-                            { role: "user", content: "compare answer2 with main asnwer1 and rate the answer2 only on a scale ranges from 0 to 10 based on your understanding of comparions" },
+                            { role: "user", content: "strictly compare answer2 with main asnwer1 and rate the answer2 only on a scale ranges from 0 to 10 based on your understanding of comparions" },
                             { role: "assistant", content: "Ok! give me the main Answer1 " },
                             { role: "user", content: ans11 },
                             { role: "assistant", content: " give me Answer2 " },
                             { role: "user", content: re.answer },
-                            { role: "user", content: "Important Note You have to do strict comparison and provide me a statement in this form : 'I would like to give (your_comparison_based_marks) out of 10' " },
+                            { role: "user", content: "Important Note You have to do very strict comparison and provide me a statement in this form : 'I would like to give (your_comparison_based_marks) out of 10' " },
                             ],
                             model: "gpt-3.5-turbo",
                         });
