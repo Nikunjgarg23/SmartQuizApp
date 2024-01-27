@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./config/mongoose');
+const connectTomongo = require('./config/mongoose');
 const cookieParser = require('cookie-parser');
 //session cookie
 const session = require('express-session');
@@ -20,7 +21,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static('public'));
 // Authentication
-
+connectTomongo();
 app.use(session({
     name: 'quizzer',
     secret: 'None',
@@ -28,16 +29,16 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (60 * 1000 * 100)
-    },
-    store: new MongoStore(
-        {
-            mongooseConnection: db,
-            autoRemove: 'disabled'
-        },
-        function (err) {
-            console.log(err || "connect-db ok");
-        }
-    )
+    }
+    // store: new MongoStore(
+    //     {
+    //         mongooseConnection: db,
+    //         autoRemove: 'disabled'
+    //     },
+    //     function (err) {
+    //         console.log(err || "connect-db ok");
+    //     }
+    // )
 }));
 // AiApi
 require("dotenv").config();
@@ -93,7 +94,7 @@ app.use(flash());
 app.use(customware.setFlash);
 
 app.use('/', require('./routes'));
-
-app.listen("3000", () => {
+const PORT=process.env.PORT;
+app.listen(PORT, () => {
     console.log(`server is running on port 3000`);
 });
