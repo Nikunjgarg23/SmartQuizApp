@@ -140,10 +140,19 @@
                                     <span style="display: inline-block; width: 35%;">
                                         <h5>Name</h5>
                                     </span>
-                                    <!-- <span style="display: inline-block; width: 35%;">
-                                        <h5>Batch</h5>
-                                    </span> -->
-                                    <span style="display: inline-block; width: 30%;">
+                                    <span style="display: inline-block; width: 35%;">
+                                        <!-- <h5>Batch</h5> -->
+                                    </span>
+                                    <span style="display: inline-block; width: 35%;">
+                                        <!-- <h5>Batch</h5> -->
+                                    </span>
+                                    <span style="display: inline-block; width: 35%;">
+                                        <!-- <h5>Batch</h5> -->
+                                    </span>
+                                    <span style="display: inline-block; width: 35%;">
+                                        <!-- <h5>Batch</h5> -->
+                                    </span>
+                                    <span class="text-black" style="display: inline-block; width: 30%;">
                                         <h5>Score</h5>
                                     </span>
                                 </div>
@@ -153,40 +162,34 @@
                 </div>
             </div>
         </div>
-        <table class="table" style="box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding: 1px;background: linear-gradient(to left, #fff, #000);">
+        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student1){ %>
                     <tr style="background-color: aquamarine;">
                         <td style="padding-right: 10px;"><%= i.name %></td>
-                        <!-- <td style="padding-right: 10px;"><%= i.batch %></td> -->
+                        <td style="padding-right: 10px;"></td>
                         <td><%= i.score %></td>
                     </tr>
                 <% } %>
             </tbody>
         </table>
-        
-        <br>
-        
-        <table class="table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
+        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student2){ %>
-                    <tr>
-                        <td><%= i.name %></td>
-                        <!-- <td><%= i.batch %></td> -->
+                    <tr style="background-color: aquamarine;">
+                        <td style="padding-right: 10px;"><%= i.name %></td>
+                        <td style="padding-right: 10px;"></td>
                         <td><%= i.score %></td>
                     </tr>
                 <% } %>
             </tbody>
         </table>
-        
-        <br>
-        
-        <table class="table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
+        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student3){ %>
-                    <tr>
-                        <td><%= i.name %></td>
-                        <td><%= i.batch %></td>
+                    <tr style="background-color: aquamarine;">
+                        <td style="padding-right: 10px;"><%= i.name %></td>
+                        <td style="padding-right: 10px;"></td>
                         <td><%= i.score %></td>
                     </tr>
                 <% } %>
