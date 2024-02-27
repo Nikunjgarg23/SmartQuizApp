@@ -18,12 +18,12 @@ module.exports.createQuiz = (req, res) => {
             const user = await Quiz.findOne({ quizname: req.body.quizname });
 
             if (!user) {
+                // console.log(req.user);
                 req.body.owneremail = req.user.email;
-                console.log(req.user.email);
+                req.body.owner = req.user.name;
+                // console.log(req.user.email);
                 const data = new Quiz(req.body);
                 data.save();
-                const user2 = await Quiz.findOne({ quizname: req.body.quizname });
-                console.log(user2);
                 return res.redirect('/teacher/pastquiz');
             }
             else {
@@ -38,7 +38,8 @@ module.exports.createQuiz = (req, res) => {
 }
 module.exports.pastquiz = function (req, res) {
     const getquiz = async () => {
-        const ress = await Quiz.find({ end: 0 });
+        //const ress = await Quiz.find({ end: 0 });
+        const ress = await Quiz.find({ end: 0, owneremail: req.user.email });
         //console.log(ress);
         return res.render('displaypastquiz', {
             title: "Available Quiz!",
@@ -50,7 +51,7 @@ module.exports.pastquiz = function (req, res) {
 
 module.exports.completed = function (req, res) {
     const getquiz = async () => {
-        const ress = await Quiz.find({ end: 1 });
+        const ress = await Quiz.find({ end: 1, owneremail: req.user.email });
         return res.render('displaycompleted', {
             title: "Completed Quiz!",
             past_quiz: ress
@@ -66,6 +67,18 @@ module.exports.viewquiz = function (req, res) {
         const ress = await Question.find({ quizid: id });
         //console.log(ress);
         return res.render('viewquiz', {
+            title: "Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
+module.exports.viewquizcompleted = function (req, res) {
+    let id = req.query.id;
+    const getquiz = async () => {
+        const ress = await Question.find({ quizid: id });
+        //console.log(ress);
+        return res.render('viewquizcompleted', {
             title: "Quiz!",
             past_quiz: ress
         });
@@ -465,6 +478,7 @@ module.exports.addnewQuestion = (req, res) => {
     let id = req.query.id;
     const find = async () => {
         try {
+            console.log(req.body);
             req.body.quizid = id;
             const data = new Question(req.body);
             data.save();

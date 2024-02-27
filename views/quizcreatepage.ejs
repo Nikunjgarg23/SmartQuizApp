@@ -34,6 +34,7 @@
         .registration-form form {
             background-color: #7D7C7C;
             max-width: 460px;
+            height: 450px;
             margin: auto;
             padding-top: 30px;
             padding-left: 70px;
@@ -151,28 +152,20 @@
         <form action="/teacher/createquiz" method="post" class="br">
 
             <div class="form-icon">
-                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="90" width="100">
+                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="100" width="100">
                 <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f7ce033a-831a-42af-8ac0-6ae8ae66cc6d/d5mwe2v-a84d7b67-1a16-44a9-b3ba-cad774f0db8a.png/v1/fill/w_799,h_1001,q_70,strp/jiit_logo_by_wooooweee_d5mwe2v-pre.jpg" alt="">  -->
                 <span><i class="icon icon-user"></i></span>
             </div>
-            <div>
-                <h3>Enter The Quiz Details</h3>
+            <div style="padding: 7px;">
+                <h3>&nbsp;&nbsp;Enter The Quiz Details</h3>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" id="username" name="owner" placeholder="Teacher Name"
-                    required>
-            </div>
-            <div class="form-group">
+            <div class="form-group mt-3" style="padding: 7px;">
                 <input type="text" class="form-control item" id="username" name="quizname" placeholder="QuizName"
                     required>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" id="username" name="quizdescription"
-                    placeholder="QuizDescription" required>
-            </div>
-            <div class="form-group">
+            <div class="form-group" style="padding: 7px;">
                 <!-- <input type="text" class="form-control item" id="email" name="owneremail" placeholder="Email" required> -->
-                <span>&nbsp; Email : <%= email%></span>
+                <h5>&nbsp; Email : <%= email%></h5>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-block create-account" value="Create">
