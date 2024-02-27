@@ -271,7 +271,7 @@ module.exports.viewres = async function (req, res) {
         batch: student.batch,
         score: student.score.find(item => item.quiz_id === id).fscore
     }));
-    return res.render('viewresponse', {
+    return res.render('Viewrponse', {
         title: "Quiz!",
         student1: ress1,
         student2: ress2,
@@ -503,7 +503,7 @@ module.exports.create = function (req, res) {
                     name: req.body.name,
                     role: rol
                 })
-                console.log("Areeee");
+                // console.log("Areeee");
                 return res.redirect('/teacher'); // change to signup page later
             }
             else {
