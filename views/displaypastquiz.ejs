@@ -28,7 +28,8 @@
         }
 
         .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to top left, #000, #fff);
+            box-shadow: 0 8px 16px 0 rgba(0, 0.3, 0.3, 0.4);
         }
 
         .card-body h5 {
@@ -175,8 +176,8 @@
                                                     Quiz</a>
                                                 <form id="batchForm" action="/teacher/addbatch/?id=<%=i._id%>"
                                                     method="post" style="display: flex; align-items: center;">
-                                                    <input class="btn btn-dark custom-input" type="number"
-                                                        name="timer" value="setime" placeholder="SetTimer" style="width: 8vw;">
+                                                    <input class="btn btn-dark custom-input" type="number" name="timer"
+                                                        value="setime" placeholder="SetTimer" style="width: 8vw;">
                                                     <button class="btn btn-dark" type="submit">Set</button>
                                                 </form>
                                 </div>
