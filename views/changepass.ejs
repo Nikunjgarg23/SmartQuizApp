@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quizzy</title>
+    <title>Change Password</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f44dd27b35.js" crossorigin="anonymous"></script>
@@ -14,40 +13,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
-            background-color: white;
+            background-color: rgb(225, 219, 219);
         }
 
         .registration-form {
-            padding: 60px 0;
-            /* margin-top: 400px; */
+            padding: 38px 0;
         }
 
         .registration-form form {
-            background-color: #7D7C7C;
-            max-width: 450px;
+            background: linear-gradient(to bottom right, #000, #fff);
+            max-width: 460px;
             margin: auto;
-            padding-top: 25px;
+            padding-top: 30px;
             padding-left: 70px;
             padding-right: 70px;
             padding-bottom: 15px;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            border-radius: 40px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-            margin-top: 35px;
+            border-radius: 9px;
+            box-shadow: 1px 6px 8px rgba(0.2, 0.5, 0.5, 0.6);
+            margin-top: 30px;
         }
 
         .registration-form .form-icon {
@@ -64,13 +49,13 @@
         }
 
         .registration-form .item {
-            border-radius: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
             padding: 10px 20px;
         }
 
         .registration-form .create-account {
-            border-radius: 30px;
+            border-radius: 20px;
             padding: 10px 20px;
             font-size: 18px;
             font-weight: bold;
@@ -78,6 +63,15 @@
             border: none;
             color: white;
             margin-top: 20px;
+        }
+
+        .br {
+            border: black solid;
+            border-radius: 10px;
+        }
+
+        .create-account:hover {
+            color: #CCC8AA;
         }
 
         @media (max-width: 576px) {
@@ -92,19 +86,11 @@
                 line-height: 70px;
             }
         }
-
-        .br {
-            border: black solid;
-            border-radius: 20px;
-        }
-
-        .create-account:hover {
-            color: #CCC8AA;
-        }
     </style>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/teacher">Teacher Portal</a>
@@ -114,7 +100,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel" style="overflow-x: hidden;">
+                aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Teacher Portal</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
@@ -124,57 +110,54 @@
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
+                                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizzes</span></a>
                         </li>
                         <li class="nav-item">
                             <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
+                                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizzes</span></a>
                         </li>
                         <li class="nav-item">
                             <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
+                                style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
                         </li>
                         <li>
                             <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
+                                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
                         </li>
                         <li>
                             <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
-            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
+                                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="registration-form" style="margin-top: 3%; margin-left: 3%; margin-right: 3%;">
-        <form action="/teacher/changepass" method="post">
+
+    <div class="registration-form">
+        <form action="/teacher/changepass" method="post" class="br">
             <div class="form-icon">
-                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="90" width="100">
-                <!-- <span><i class="icon icon-user"></i></span> -->
+                <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" alt="" height="120" width="100">
+            </div>
+            <div>
+                <h3>Change Password</h3>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" id="username" name="oldpass" placeholder="Old Password"
-                    required>
+                <input type="password" class="form-control item" id="username" name="oldpass" placeholder="Old Password" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" id="password" name="newpass" placeholder="New Password"
-                    required>
+                <input type="password" class="form-control item" id="password" name="newpass" placeholder="New Password" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" id="email" name="newpassc"
-                    placeholder="Confirm New Password" required>
+                <input type="password" class="form-control item" id="email" name="newpassc" placeholder="Confirm New Password" required>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-block create-account" value="Change Password">
             </div>
         </form>
-        <div class="social-media">
-        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
