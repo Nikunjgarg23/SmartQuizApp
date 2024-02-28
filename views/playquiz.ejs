@@ -18,35 +18,54 @@
         #heading {
             text-align: center;
         }
+
+        /* Custom card styles */
+        .custom-card {
+            border-color: black;
+            border-width: 2px;
+            box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.4); /* Add shadow */
+            background: linear-gradient(to bottom right, #000, #fff); /* Gradient background */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: fit-content;
+        }
     </style>
 </head>
 
 <body>
-    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quiz!</h1>
-    <div id="timer" style="text-align:center;">Time Remaining: <%= timer %></div>
-    <h3 style="text-align: center;"> <%= quizname %></h3>
+    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Ongoing Quiz!</h1>
+    <div style="display: flex; justify-content: center;">
+
+        <div id="timer" class="btn btn-secondary">Time Remaining: <%= timer %></div>
+    </div>
+    <h3 style="text-align: center; margin-top: 1vh;"> <%= quizname %></h3>
     <form action = "/student/saveanswer" method="post">
         <% for(let i of past_quiz){ %>
             <div class="container">
                 <div class="row" style="width: 100%;">
                     <div class="my-2" style="width: 100%;">
-                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 2px;">
+                        <div class="card text-bg-secondary mb-3 custom-card"> <!-- Apply custom-card class -->
                             <h7 class="card-body">
                                 Qn :
                                     <%= i.questionText %>
                             </h7>
                             <div class="card-body">
                                 <input type="hidden" name="questionId" value="<%= i._id %>">
-                                <textarea name="answer" id="" cols="120" rows="2" placeholder="Answer"></textarea>
+                                <textarea name="answer" id="" cols="120" rows="4" placeholder="Answer" style="border-radius: 10px; width: 80vw;"></textarea>
                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <% } %>      
-                <div class="container" style="display: flex ; text-align: center;">
+                <div class="cer" style="display: flex ; text-align: center; justify-content: center;">
                     
-                    <button id="submitBtn" style="text-align: center;">Submit Quiz</button>
+                    <button id="submitBtn" class="btn btn-dark" style="text-align: center;">Submit Quiz</button>
                 </div> 
     </form>
     <script>
