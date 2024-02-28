@@ -168,9 +168,9 @@
                                 </p>
                                 <div class="c"></div>
                                 <div class="btn-container"> <!-- Add a container for buttons -->
-                                    <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-dark my-2">View Responses</a>
-                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark my-2">Delete Quiz</a>
+                                    <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-dark my-2">View Responses(<%= i.attempted.length %>)</a>
                                     <a href="/teacher/viewquizcompleted/?id=<%=i._id%>" class="btn btn-dark my-2">View Quiz</a>
+                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark my-2">Delete Quiz</a>
                                 </div>
                                 <!--
                                 <% if(i.iseval){ %>

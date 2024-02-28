@@ -28,6 +28,7 @@ module.exports.signup = function(req,res){
 }
 module.exports.livequiz = function(req,res){
     //return res.render("playquiz");
+    console.log("livee");
     let id = req.query.id;
     console.log(req.user.id);
 
@@ -35,6 +36,49 @@ module.exports.livequiz = function(req,res){
         try{
         const ress = await Question.find({quizid : id});
         const res2 = await Quiz.findOne({_id:id});
+        // const result = await Teacher.updateOne(
+        //     { _id: req.user.id },
+        //     {
+        //         $push: {
+        //             score: {
+        //                 quiz_id: id,
+        //                 fscore : 0
+        //             }
+        //         }
+        //     }
+        // );
+        // await Quiz.updateOne(
+        //     {_id:id},
+        //     {
+        //         $push:{
+        //             attempted:req.user.id
+        //         }
+        //     }
+        // )
+        return res.render('playquiz',{
+            past_quiz:ress,
+            quizname:res2.quizname,
+            timer:res2.time
+        }
+        );
+        }catch(err){
+            console.log(err);
+            return ;
+        }
+    }
+    getquiz();
+}
+
+module.exports.livequiz2 = function(req,res){
+    //return res.render("playquiz");
+    console.log("livee2");
+    let id = req.query.id;
+    console.log(req.user.id);
+
+    const getquiz = async ()=>{
+        try{
+        // const ress = await Question.find({quizid : id});
+        // const res2 = await Quiz.findOne({_id:id});
         const result = await Teacher.updateOne(
             { _id: req.user.id },
             {
@@ -54,12 +98,13 @@ module.exports.livequiz = function(req,res){
                 }
             }
         )
-        return res.render('playquiz',{
-            past_quiz:ress,
-            quizname:res2.quizname,
-            timer:res2.time
-        }
-        );
+        return res.redirect(`/student/displaylive/?id=${id}`);
+        // return res.render('playquiz',{
+        //     past_quiz:ress,
+        //     quizname:res2.quizname,
+        //     timer:res2.time
+        // }
+        //);
         }catch(err){
             console.log(err);
             return ;
@@ -67,6 +112,7 @@ module.exports.livequiz = function(req,res){
     }
     getquiz();
 }
+
 module.exports.nextpage=function(req,res){
     return res.render("studentinterface");
 }
@@ -140,11 +186,15 @@ module.exports.create = function(req,res){
     find();
 };
 module.exports.saveanswer= async function(req,res){
+    console.log("savee");
     console.log(req.body);
     console.log(req.user.id);
     try {
         const { questionId, answer } = req.body;
         var f=0;
+        if(!questionId){
+            return res.redirect('/student');
+        }
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
             if(currentQuestionId>=0&&currentQuestionId<10){f=1;break;}

@@ -41,6 +41,7 @@ module.exports.pastquiz = function (req, res) {
         //const ress = await Quiz.find({ end: 0 });
         const ress = await Quiz.find({ end: 0, owneremail: req.user.email });
         //console.log(ress);
+        //console.log(ress[1].attempted.length);
         return res.render('displaypastquiz', {
             title: "Available Quiz!",
             past_quiz: ress

@@ -8,6 +8,7 @@ router.get('/changepassword',passport.checkAuthentication,student_controller.cha
 router.get("/viewquizstudent",passport.checkAuthentication, student_controller.viewquiz);
 router.post('/saveanswer',student_controller.saveanswer);
 router.get("/displaylive",passport.checkAuthentication,student_controller.livequiz);
+router.get("/displaylive2",passport.checkAuthentication,student_controller.livequiz2);
 router.get("/logout", student_controller.logout);
 router.post('/create',student_controller.create);
 router.get('/studentinrt',passport.checkAuthentication,student_controller.nextpage);
