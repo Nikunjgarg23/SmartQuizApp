@@ -72,6 +72,18 @@ module.exports.viewquiz = function (req, res) {
     }
     getquiz();
 }
+module.exports.viewcompletedquiz = function (req, res) {
+    let id = req.query.id;
+    const getquiz = async () => {
+        const ress = await Question.find({ quizid: id });
+        //console.log(ress);
+        return res.render('viewcompletedquiz', {
+            title: "Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
 
 module.exports.evaluate = async function (req, res) {
     let id = req.query.id; // quizid

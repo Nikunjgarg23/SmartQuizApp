@@ -16,174 +16,90 @@
     </title>
     <script src="https://kit.fontawesome.com/f44dd27b35.js" crossorigin="anonymous"></script>
     <style>
+        .container {
+            width: calc(33.33% - 20px);
+            float: left;
+            clear: none;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            width: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0.3, 0.3, 0.3);
+            transition: 0.3s;
+            background: linear-gradient(to bottom right, #000, #fff);
+
+        }
+
+        .card:hover {
+            background: linear-gradient(to top left, #000, #fff);
+            box-shadow: 0 8px 16px 0 rgba(0, 0.3, 0.3, 0.4);
+        }
+
+        .card-body h5 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .card-body h5::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 40%;
+            height: 2px;
+            background-color: #333;
+            transform: translateX(-50%);
+        }
+
+        .card-body {
+            padding-top: 20px;
+        }
+
         #heading {
             text-align: center;
-        }
-
-        span {
-            display: inline-block;
-            margin-bottom: 2px;
-            padding: 0;
-        }
-
-        p {
-            display: inline-block;
-        }
-
-        ul {
-            list-style: none;
-            display: inline-block;
-            text-align: left;
-        }
-
-        li {
-            /* width: 1080px; */
-            margin-bottom: 2px;
-        }
-
-        #ul1 {
-            text-align: center;
-        }
-
-        #list-item {
-            background-color: rgb(118, 143, 149);
-            border: 2px solid black;
-            height: 50px;
-            margin-right: 0px;
-        }
-
-        #list-item:hover {
-            background-color: lightskyblue;
-        }
-
-        #heading {
             color: grey;
             margin-bottom: 10px;
             margin-top: 10px;
         }
 
-        #form1 {
-            text-align: center;
-        }
-
-        /* #list-item div {
-            
-        }
-        #list-item span {
-            
-        } */
-
-        #delete-btn {
-            color: white;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #delete-btn1 {
-            background-color: white;
-            width: 100px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        #view-btn {
-            /* background-color: white;
-            border-radius: 30%; */
-            color: white;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #view-btn1 {
-            background-color: white;
-            width: 100px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        #div1 {
-            width: 100px;
-            padding-left: 3px;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #div2 {
-            width: 300px;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #div22 {
-            max-width: 100px;
-            margin-left: 50px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        span {
-            padding-left: 5px;
-        }
-
-        #span2 {
-            min-width: 300px;
-        }
-
-        #span1 {
-            /* margin-right: 193px; */
-            min-width: 193;
-        }
-
-        #span3 {
-            min-width: 150px;
-        }
-
-        #span4 {
-            min-width: 150px;
-        }
-
-        #span5 {
-            min-width: 80px;
-            margin-right: 20px;
-        }
-
-        #div3 {
-            margin-top: 5px;
-            margin-right: 0px;
-        }
         .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+            display: none;
+        }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 200px;
-      border: 1px solid #ccc;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+        .checkbox-label {
+            display: block;
+        }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+        ::placeholder {
+            color: white;
+        }
 
-    .checkbox-label {
-      display: block;
-    }
-    #batchform{
-        color:black;
-    }
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            /* Align buttons to start of card */
+            margin-top: 20px;
+        }
+
+        .btn-container .btn {
+            margin-right: 10px;
+            /* Add margin between buttons */
+            margin-bottom: 10px;
+        }
+
+        /* Remove underline from email and subject description */
+        .card-subtitle.text-muted {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -236,34 +152,38 @@
 
 
         <% for(let i of past_quiz){ %>
-            <div class="container">
+            <div class="container" style="text-align: center;">
                 <div class="row">
-
                     <div class="my-3">
                         <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
-                            <h5 class="card-body">
+                            <h5 class="card-body" style="font-size: 1.5rem;">
                                 <%= i.quizname %>
                             </h5>
                             <div class="card-body">
-                                <h5 class="card-title">
+                                <h5 class="card-title text-white" style="font-size: 1.2rem;">
                                     <%= i.owneremail %>
                                 </h5>
                                 <p class="card-text">
                                     <%= i.quizdescription %>
                                 </p>
-                                <div class="container"></div>
-                                <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-primary">View Responses</a>
-                                <a href="/teacher/viewquiz/?id=<%=i._id%>" class="btn btn-primary">View Quiz</a>
-                                <!-- <% if(i.iseval){ %>
+                                <div class="c"></div>
+                                <div class="btn-container"> <!-- Add a container for buttons -->
+                                    <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-dark my-2">View Responses</a>
+                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark my-2">Delete Quiz</a>
+                                    <a href="/teacher/viewcompletedquiz/?id=<%=i._id%>" class="btn btn-dark my-2">View Quiz</a>
+                                </div>
+                                <!--
+                                <% if(i.iseval){ %>
                                     <% } else { %>
                                         <a href="/teacher/eval/?id=<%=i._id%>" class="btn btn-primary">Evaluate</a>
-                                        <% } %> -->
-                                <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-primary">Delete Quiz</a>
+                                        <% } %>
+                                -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <% } %>
 
     </div>

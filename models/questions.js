@@ -12,6 +12,10 @@ var questionSchema = mongoose.Schema({
         type: String, 
         required: true
     },
+    answerText:{
+        type: String, 
+        required: true
+    },
     response: {
         type: [
             {
