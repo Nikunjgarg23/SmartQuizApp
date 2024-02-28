@@ -18,7 +18,8 @@ var quizSchema = mongoose.Schema({
         default: null, // Set the default value to null
     },
     time:{
-        type: Number
+        type: Number,
+        default:15
     },
     end:{
         type: Boolean,
