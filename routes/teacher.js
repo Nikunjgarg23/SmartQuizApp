@@ -25,6 +25,7 @@ router.post('/createquiz',passport.checkAuthentication,teacher_controller.create
 router.get('/addquestion',passport.checkAuthentication,teacher_controller.addQuestion);
 router.get('/upload',teacher_controller.upload);
 router.post('/addnewquestion',passport.checkAuthentication,teacher_controller.addnewQuestion);
+router.get('/test',teacher_controller.test);
 router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)
 router.get('/sign-up',teacher_controller.signup);
 router.post('/create',teacher_controller.create);

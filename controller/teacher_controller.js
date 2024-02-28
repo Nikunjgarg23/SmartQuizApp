@@ -49,7 +49,9 @@ module.exports.pastquiz = function (req, res) {
     }
     getquiz();
 }
-
+module.exports.test = function (req, res) {
+    return res.render('Question2');
+}
 module.exports.completed = function (req, res) {
     const getquiz = async () => {
         const ress = await Quiz.find({ end: 1, owneremail: req.user.email });
@@ -444,9 +446,22 @@ module.exports.quizmaker = function (req, res) {
 }
 module.exports.addQuestion = (req, res) => {
     let id = req.query.id;
-    return res.render('Question', {
-        idd: id
-    });
+    const getquiz = async () => {
+        const ress = await Question.find({ quizid: id });
+        //console.log(ress);
+        // return res.render('viewquiz', {
+        //     title: "Quiz!",
+        //     past_quiz: ress
+        // });
+        return res.render('Question2', {
+            idd: id,
+            past_quiz:ress
+        });
+    }
+    getquiz();
+    // return res.render('Question', {
+    //     idd: id
+    // });
 }
 module.exports.upload = (req, res) => {
     let id = req.query.id;
@@ -484,9 +499,7 @@ module.exports.addnewQuestion = (req, res) => {
             const data = new Question(req.body);
             data.save();
 
-            return res.render('Question', {
-                idd: id
-            }); // change to signup page later
+            return res.redirect(`/teacher/addquestion/?id=${id}`);
         }
         catch (err) {
             console.log(err);
