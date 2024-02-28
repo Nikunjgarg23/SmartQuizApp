@@ -157,7 +157,7 @@
                     <div class="my-3">
                         <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body" style="font-size: 1.5rem;">
-                                <%= i.quizname %>
+                               Quiz Name: <%= i.quizname %>
                             </h5>
                             <div class="card-body">
                                 <h5 class="card-title text-white" style="font-size: 1.2rem;">
@@ -170,7 +170,7 @@
                                 <div class="btn-container"> <!-- Add a container for buttons -->
                                     <a href="/teacher/viewres/?id=<%=i._id%>" class="btn btn-dark my-2">View Responses</a>
                                     <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark my-2">Delete Quiz</a>
-                                    <a href="/teacher/viewcompletedquiz/?id=<%=i._id%>" class="btn btn-dark my-2">View Quiz</a>
+                                    <a href="/teacher/viewquizcompleted/?id=<%=i._id%>" class="btn btn-dark my-2">View Quiz</a>
                                 </div>
                                 <!--
                                 <% if(i.iseval){ %>

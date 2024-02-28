@@ -87,7 +87,7 @@ module.exports.viewquiz = function(req,res){
         const ress = await Quiz.find({
             $and: [
                 { upload: true },
-                { batches: {$in:[batch]} },
+                // { batches: {$in:[batch]} },
                 { 'attempted': { $nin: [req.user.id] } }
             ]
         });
@@ -95,7 +95,7 @@ module.exports.viewquiz = function(req,res){
         //const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
         //console.log(ress);
         return res.render('viewquizstudent',{
-            title : "Past Quiz!",
+            title : "Ongoing Quiz!",
             past_quiz: ress
         });
     }

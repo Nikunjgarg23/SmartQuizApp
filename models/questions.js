@@ -4,17 +4,17 @@ var questionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    questionId: {
-        type: String,
-        required: true
-    },
+    // questionId: {
+    //     type: String,
+    //     required: true
+    // },
     questionText:{
         type: String, 
         required: true
     },
-    answerText:{
-        type: String, 
-        required: true
+    questionAnswer:{
+        type:String,
+        default:""
     },
     response: {
         type: [

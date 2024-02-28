@@ -4,10 +4,6 @@ var quizSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    quizdescription: {
-        type: String,
-        required: true
-    },
     upload:{
         type: Boolean, default: false
     },
