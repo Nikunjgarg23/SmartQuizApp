@@ -113,10 +113,10 @@
 
         // Event listener for beforeunload event (page refresh/close)
         window.addEventListener("beforeunload", function (e) {
-            if (!isTimeUp) {
-                // If time is not up, submit the quiz before leaving the page
-                submitQuiz();
-            }
+            // if (!isTimeUp) {
+            //     // If time is not up, submit the quiz before leaving the page
+            // }
+            // submitQuiz();
             remainingTime = 0; // Set remaining time to 0 on page refresh
             window.location.href = "/"; // Redirect to home page
         });
