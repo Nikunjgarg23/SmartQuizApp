@@ -124,6 +124,19 @@ module.exports.logout = function(req, res, next){
     });
 }
 
+module.exports.displaycompleted = function (req, res) {
+    console.log(req.user);
+    const stuid = req.user._id;
+    const getquiz = async () => {
+        // { end: true, attempted: stuid }
+        const ress = await Quiz.find({attempted:stuid});
+        return res.render('studentcompleted', {
+            title: "Attempted Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
 
 module.exports.viewquiz = function(req,res){
     var batch = req.user.batch;
