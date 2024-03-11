@@ -7,9 +7,20 @@ const Configuration = require("openai");
 const OpenAIApi = require("openai");
 const OpenAI = require("openai");
 const openaii = new OpenAI();
+const nodemailer = require('nodemailer');
 const configuration = new Configuration({
+
+
     apiKey: process.env.OPENAI_API_KEY,
 });
+
+let gemail = null;
+let gname = null;
+let gpassword = null;
+let grol;
+
+
+
 
 const openai = new OpenAIApi(configuration);
 module.exports.createQuiz = (req, res) => {
@@ -36,6 +47,92 @@ module.exports.createQuiz = (req, res) => {
     }
     find();
 }
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'keshavmantry01@gmail.com', // Your Gmail address
+        pass: 'bwxy yddi doib neri' // Your Gmail password
+    }
+});
+
+
+// Add a new function in teacher_controller.js to handle OTP verification
+module.exports.verifyOTP = function (req, res) {
+    try {
+        const otp = req.body.otp;
+        if (otp === req.session.otp) {
+            // If OTP is correct, clear the OTP session variable and redirect to login page
+            req.session.otp = null;
+
+
+
+            const find = async () => {
+                // console.log(gpassword);
+                try {
+                    const user = await Teacher.findOne({ email: gemail });
+                    if (!user || user.role != "teacher") {
+                        // console.log("p1pp");
+                        const salt = await bcrypt.genSalt(10);
+
+                        // console.log("ppp");
+                        let pass = await bcrypt.hash(gpassword, salt);
+                        // console.log("pp2p");
+                        let rol = "teacher";
+                        Teacher.create({
+                            email: gemail,
+                            password: pass,
+                            name: gname,
+                            role: grol
+                        })
+                        // console.log("pp3p");
+
+                        return res.redirect('/teacher'); // change to signup page later
+                    }
+                    else {
+                        return res.redirect('Alert');
+                    }
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            }
+            find();
+
+            // return res.redirect('/teacher'); // Redirect to login page
+
+        } else {
+            return res.render('Alert', { message: 'Invalid OTP' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.render('Alert', { message: 'Error verifying OTP' });
+
+    }
+
+
+
+};
+module.exports.verifypassword = function (req, res) {
+    try {
+        const otp = req.body.otp;
+        if (otp === req.session.otp) {
+            // If OTP is correct, clear the OTP session variable and redirect to login page
+            req.session.otp = null;
+            return res.render('changeforgot');
+
+        } else {
+            return res.render('Alert', { message: 'Invalid OTP' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.render('Alert', { message: 'Error verifying OTP' });
+
+    }
+
+
+
+};
+
 module.exports.pastquiz = function (req, res) {
     const getquiz = async () => {
         //const ress = await Quiz.find({ end: 0 });
@@ -90,6 +187,7 @@ module.exports.viewquizcompleted = function (req, res) {
 }
 
 module.exports.evaluate = async function (req, res) {
+    console.log("kkp");
     let id = req.query.id; // quizid
     const getstu = async () => {
         const ques = await Question.find({ quizid: id });
@@ -98,20 +196,20 @@ module.exports.evaluate = async function (req, res) {
             async function eval() {
                 let ans11 = "";
                 var ans1 = "";
-                const completion = await openaii.chat.completions.create({
-                    messages: [{ role: "system", content: "You are a helpful assistant." }
-                        , { role: "assistant", content: "What can I do for you today?" },
-                    { role: "user", content: "Generate the answer for this question" },
-                    { role: "assistant", content: "Ok! give me Question" },
-                    { role: "user", content: que.questionText },
-                    ],
-                    model: "gpt-3.5-turbo",
-                });
+                // const completion = await openaii.chat.completions.create({
+                //     messages: [{ role: "system", content: "You are a helpful assistant." }
+                //         , { role: "assistant", content: "What can I do for you today?" },
+                //     { role: "user", content: "Generate the answer for this question" },
+                //     { role: "assistant", content: "Ok! give me Question" },
+                //     { role: "user", content: que.questionText },
+                //     ],
+                //     model: "gpt-3.5-turbo",
+                // });
                 //var result = JSON.parse(JSON.stringify(completion));
 
-                ans1 = completion.choices[0];
-                ans11 = (ans1.message.content);
-                console.log(ans11);
+                ans1 = que.questionAnswer;
+                // ans11 = (ans1.message.content);
+                console.log(ans1);
                 for (const re of que.response) {
                     console.log("kkkkk");
                     console.log(re.answer);
@@ -119,42 +217,42 @@ module.exports.evaluate = async function (req, res) {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
                                 , { role: "assistant", content: "What can I do for you today?" },
-                            { role: "user", content: "strictly compare answer2 with main asnwer1 and rate the answer2 only on a scale ranges from 0 to 10 based on your understanding of comparions" },
+                            { role: "user", content: "strictly compare answer2 with main asnwer1 and rate the answer2 only on a scale ranges from 0 to 5 based on your understanding of comparions" },
                             { role: "assistant", content: "Ok! give me the main Answer1 " },
-                            { role: "user", content: ans11 },
+                            { role: "user", content: ans1 },
                             { role: "assistant", content: " give me Answer2 " },
                             { role: "user", content: re.answer },
-                            { role: "user", content: "Important Note You have to do very strict comparison and provide me a statement in this form : 'I would like to give (your_comparison_based_marks) out of 10' " },
+                            { role: "user", content: "Important Note You have to do very strict comparison and provide me a statement in this form : 'I would like to give (your_comparison_based_marks) out of 5' " },
                             ],
                             model: "gpt-3.5-turbo",
                         });
                         console.log(completion1.choices[0]);
-                        let resultstring=completion1.choices[0];
-                        let resultint=resultstring.message.content;
-                        console.log(resultint.length);
-                        let num='4';
-                        if(resultint.length>2){
+                        let resultstring = completion1.choices[0];
+                        let resultint = resultstring.message.content;
+                        // console.log(resultint.length);
+                        let num = '4';
+                        if (resultint.length > 2) {
                             let ind = resultint.indexOf("out");
-                            while(ind>=0){
-                                if(resultint[ind]>='0'&&resultint[ind]<='9')
-                                {
-                                    if(ind>=1&&resultint[ind]==='0'){
-                                        if(resultint[ind-1]=='1')
-                                        num='1';
-                                        num+='0';
+                            while (ind >= 0) {
+                                if (resultint[ind] >= '0' && resultint[ind] <= '9') {
+                                    if (ind >= 1 && resultint[ind] === '0') {
+                                        if (resultint[ind - 1] == '1')
+                                            num = '1';
+                                        num += '0';
                                     }
                                     else
-                                    num=resultint[ind];
+                                        num = resultint[ind];
                                     break;
                                 }
-                                ind=ind-1;
+                                ind = ind - 1;
                             }
                             //var match = resultint.match(/\d+/);
                             resultint = parseInt(num);
+                            console.log("result : ");
                             console.log(resultint);
                         }
                         else
-                        resultint = parseInt(resultint);
+                            resultint = parseInt(resultint);
                         const stuid = re.stu_id;
                         const number = resultint;
                         const updatedUser = await Teacher.findOneAndUpdate(
@@ -168,8 +266,8 @@ module.exports.evaluate = async function (req, res) {
             }
             await eval();
         }
-        await Quiz.updateOne({_id:id},{
-            $set:{iseval:true}
+        await Quiz.updateOne({ _id: id }, {
+            $set: { iseval: true }
         });
         return res.redirect('back');
         // const studentsData = await Teacher.find({
@@ -177,7 +275,7 @@ module.exports.evaluate = async function (req, res) {
         //     batch: 'F1',
         //     'score.quiz_id': id
         // }, 'name batch score.$');
-    
+
         // // Extract relevant data and create an array of objects
         // const ress1 = studentsData.map(student => ({
         //     name: student.name,
@@ -191,7 +289,7 @@ module.exports.evaluate = async function (req, res) {
         //     batch: 'F2',
         //     'score.quiz_id': id
         // }, 'name batch score.$');
-    
+
         // // Extract relevant data and create an array of objects
         // const ress2 = studentsData2.map(student => ({
         //     name: student.name,
@@ -204,7 +302,7 @@ module.exports.evaluate = async function (req, res) {
         //     batch: 'F3',
         //     'score.quiz_id': id
         // }, 'name batch score.$');
-    
+
         // // Extract relevant data and create an array of objects
         // const ress3 = studentsData3.map(student => ({
         //     name: student.name,
@@ -455,7 +553,7 @@ module.exports.addQuestion = (req, res) => {
         // });
         return res.render('Question2', {
             idd: id,
-            past_quiz:ress
+            past_quiz: ress
         });
     }
     getquiz();
@@ -507,39 +605,59 @@ module.exports.addnewQuestion = (req, res) => {
     }
     find();
 }
-module.exports.create = function (req, res) {
+
+// Function to generate OTP
+function generateOTP() {
+    let otp = '';
+    for (let i = 0; i < 6; i++) {
+        otp += Math.floor(Math.random() * 10);
+    }
+    return otp;
+}
+
+// Modify the create function to include OTP sending
+module.exports.create = async function (req, res) {
     if (req.body.password != req.body.confirm_pass) {
         return res.render('Alert');
     }
     const find = async () => {
         try {
             const user = await Teacher.findOne({ email: req.body.email });
-            console.log(user);
-            if (!user || user.role != "teacher") {
-                // req.body.role="teacher";
-                // const data = new Teacher(req.body);
-                // data.save();
-                // console.log(data);
+            if (!user || user.role !== "teacher") {
                 const salt = await bcrypt.genSalt(10);
-                // const salt="Azbe";
-                // const pass=await bcrypt.hash(req.body.password,salt);
-                let pass = await bcrypt.hash(req.body.password, salt);
+                // let pass = await bcrypt.hash(req.body.password, salt);
                 let rol = "teacher";
-                Teacher.create({
-                    email: req.body.email,
-                    password: pass,
-                    name: req.body.name,
-                    role: rol
-                })
-                // console.log("Areeee");
-                return res.redirect('/teacher'); // change to signup page later
+                grol = rol;
+                gemail = req.body.email;
+                gname = req.body.name;
+                gpassword = req.body.password;
+                console.log(req.body.password);
+                // Generate OTP
+                let otp = generateOTP();
+                // Send OTP via email
+                let mailOptions = {
+                    from: 'keshavmantry01@gmail.com',
+                    to: req.body.email,
+                    subject: 'Your OTP for Sign Up',
+                    text: `Your OTP is: ${otp}`
+                };
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                        return res.render('Alert');
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        // Save the OTP in session for verification later
+                        req.session.otp = otp;
+                        return res.redirect('otp'); // Redirect to OTP verification page
+                    }
+                });
+            } else {
+                return res.redirect('/teacher/alert');
             }
-            else {
-                return res.redirect('Alert');
-            }
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
+            return res.render('Alert');
         }
     }
     find();
@@ -589,3 +707,72 @@ module.exports.alert = function (req, res) {
 module.exports.alert2 = function (req, res) {
     return res.redirect('back');
 }
+// Import your Teacher model
+
+module.exports.forgot = async function (req, res) {
+    try {
+        const email = req.body.email;
+        const user = await Teacher.findOne({ email: email });
+        
+        if (!user) {
+            console.log("User not found");
+            return res.render('Alert', { message: 'User not found' });
+        } else {
+            gemail=email;
+            console.log("User found. Proceed with password reset.");
+            let otp = generateOTP();
+            let mailOptions = {
+                from: 'keshavmantry01@gmail.com',
+                to: req.body.email,
+                subject: 'Your OTP for Sign Up',
+                text: `Your OTP is: ${otp}`
+            };
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    return res.render('Alert');
+                } else {
+                    console.log('Email sent: ' + info.response);
+                    // Save the OTP in session for verification later
+                    req.session.otp = otp;
+                    return res.render('ResetPasswordForm'); // Redirect to OTP verification page
+                }
+            });
+        }
+
+
+    } catch (error) {
+        console.error("Error occurred:", error);
+        return res.status(500).send("Internal Server Error");
+    }
+};
+
+
+module.exports.resetpass = async function(req, res) {
+    try {
+       
+        const newPassword = req.body.new_password;
+
+        // Find the user by email
+        const user = await Teacher.findOne({ email: gemail });
+
+        // If user not found, return an error
+      
+
+        // Update the user's password
+        const salt = await bcrypt.genSalt(10);
+
+        // console.log("ppp");
+        let pass = await bcrypt.hash(newPassword, salt);
+        user.password = pass;
+        
+        // Save the updated user object back to the database
+        await user.save();
+
+        console.log("Password updated successfully");
+        return res.render('teacher-signup')
+    } catch (error) {
+        console.error("Error occurred:", error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};

@@ -21,79 +21,86 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <style>
-            body {
-                background-color: rgb(225, 219, 219);
-            }
-    
-            .registration-form {
-                padding: 38px 0;
-            }
-    
+    <style>
+        body {
+            background-color: rgb(225, 219, 219);
+        }
+
+        .registration-form {
+            padding: 38px 0;
+        }
+
+        .registration-form form {
+            background: linear-gradient(to bottom right, #000, #fff);
+            width: 50vw;
+            margin: auto;
+            padding-top: 30px;
+            padding-left: 70px;
+            padding-right: 70px;
+            padding-bottom: 15px;
+            border-radius: 9px;
+            box-shadow: 1px 6px 8px rgba(0.2, 0.5, 0.5, 0.6);
+            margin-top: 30px;
+        }
+
+        .registration-form .form-icon {
+            text-align: center;
+            background-color: #7D7C7C;
+            border-radius: 50%;
+            font-size: 40px;
+            color: #000;
+            width: 100px;
+            height: 70px;
+            margin: auto;
+            margin-bottom: 50px;
+            line-height: 100px;
+        }
+
+        .custom-card {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+            /* Add shadow */
+            background: linear-gradient(to bottom right, #000, #fff);
+            /* Gradient background */
+        }
+
+        .registration-form .item {
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+        }
+
+        .registration-form .create-account {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #000;
+            border: none;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .br {
+            border: black solid;
+            border-radius: 10px;
+        }
+
+        .create-account:hover {
+            color: #CCC8AA;
+        }
+
+        @media (max-width: 576px) {
             .registration-form form {
-                background: linear-gradient(to bottom right, #000, #fff);
-                width: 50vw;
-                margin: auto;
-                padding-top: 30px;
-                padding-left: 70px;
-                padding-right: 70px;
-                padding-bottom: 15px;
-                border-radius: 9px;
-                box-shadow: 1px 6px 8px rgba(0.2, 0.5, 0.5, 0.6);
-                margin-top: 30px;
+                padding: 50px 20px;
             }
-    
+
             .registration-form .form-icon {
-                text-align: center;
-                background-color: #7D7C7C;
-                border-radius: 50%;
-                font-size: 40px;
-                color: #000;
-                width: 100px;
+                width: 70px;
                 height: 70px;
-                margin: auto;
-                margin-bottom: 50px;
-                line-height: 100px;
+                font-size: 30px;
+                line-height: 70px;
             }
-    
-            .registration-form .item {
-                border-radius: 10px;
-                margin-bottom: 20px;
-                padding: 10px 20px;
-            }
-    
-            .registration-form .create-account {
-                border-radius: 20px;
-                padding: 10px 20px;
-                font-size: 18px;
-                font-weight: bold;
-                background-color: #000;
-                border: none;
-                color: white;
-                margin-top: 20px;
-            }
-    
-            .br {
-                border: black solid;
-                border-radius: 10px;
-            }
-    
-            .create-account:hover {
-                color: #CCC8AA;
-            }
-    
-            @media (max-width: 576px) {
-                .registration-form form {
-                    padding: 50px 20px;
-                }
-    
-                .registration-form .form-icon {
-                    width: 70px;
-                    height: 70px;
-                    font-size: 30px;
-                    line-height: 70px;
-                }
-            }
+        }
     </style>
 </head>
 
@@ -112,17 +119,17 @@
         </div>
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
-                <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
-    
-            <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
-            <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
-            <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
-            <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
-                style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
+        <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Completed Quizes</span></a>
+
+        <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Available Quizes</span></a>
+        <a href="/teacher/quizmaker" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-building fa-fw me-3"></i><span>Make New Quiz </span></a>
+        <a href="/teacher/changepassword" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span> Change Password</span></a>
+        <a href="/teacher/logout" class="list-group-item list-group-item-action py-2 ripple"
+            style="color: aliceblue;"><i class="fas fa-lock fa-fw me-3"></i><span>Logout</span></a>
         <!-- Container wrapper -->
     </nav>
     <br><br><br>
@@ -134,7 +141,7 @@
         <button>Add Question</button> 
     </form> -->
     <div class="registration-form text-white">
-        <form action="/teacher/addnewquestion/?id=<%=idd%>"  method="post">
+        <form action="/teacher/addnewquestion/?id=<%=idd%>" method="post">
             <div>
                 <h3>Enter The Question and Answer</h3>
             </div>
@@ -145,12 +152,14 @@
             <div class="form-group mt-3">
                 <!-- <input type="text" class="form-control item" id="username" name="questionText"
                     placeholder="Enter Question" required> -->
-                    <textarea  class="form-control item" id="username" name="questionText" id="" rows="1" placeholder="Enter Question" required ></textarea>
+                <textarea class="form-control item" id="username" name="questionText" id="" rows="1"
+                    placeholder="Enter Question" required></textarea>
             </div>
             <div class="form-group">
                 <!-- <input type="text" class="form-control item" id="username" name="questionText"
                     placeholder="Enter Question" required> -->
-                    <textarea  class="form-control item" id="username" name="questionAnswer" id="" rows="1" placeholder="Enter Answer" required ></textarea>
+                <textarea class="form-control item" id="username" name="questionAnswer" id="" rows="1"
+                    placeholder="Enter Answer" required></textarea>
             </div>
             <div class="suyash mx-4" style="display: flex; justify-content: space-between;">
                 <div class="btn btn-block create-account">
@@ -160,8 +169,8 @@
                     <button class="btn btn-block create-account">Create Question</button>
                 </div>
             </div>
-            
-            
+
+
         </form>
     </div>
     <h1 style="text-align: center;">Already Added Questions</h1>
@@ -173,20 +182,20 @@
                 <div class="container" style="width: 100%;">
                     <div class="row" style="width: 100%;">
                         <div class="my-2" style="width: 100%;">
-                            <div class="card text-bg-secondary mb-3"
+                            <div class="card text-bg-secondary mb-3 custom-card"
                                 style="border-color: black; border-width: 2px; width: 100%;">
-                                <h7 class="card-body" style="width: 4000px;  margin-bottom: 0px; padding-bottom: 0px;">
+                                <h7 class="card-body" style="width: 4000px; margin-bottom: 0px; padding-bottom: 0px;">
                                     <div id="div2" style="width: 4000px; margin-bottom: 0px;">
                                         Q.&nbsp;<%= i.questionText %>
                                     </div>
                                 </h7>
-                                <h7 class="card-body" style="width: 4000px;  margin-bottom: 0px; padding-bottom: 0px;">
+                                <h7 class="card-body" style="width: 4000px; margin-bottom: 0px; padding-bottom: 0px;">
                                     <div id="div2" style="width: 4000px; margin-bottom: 0px;">
                                         Ans.&nbsp;<%= i.questionAnswer %>
                                     </div>
                                 </h7>
-                                <div style="display: flex;flex-direction: row-reverse;">
-                                    <a class="btn btn-primary" style="width: 10%;margin-bottom: 1%;margin-right: 1%;"
+                                <div style="display: flex; flex-direction: row-reverse;">
+                                    <a class="btn btn-dark" style="width: 10%; margin-bottom: 1%; margin-right: 1%;"
                                         href="/teacher/deleteques/?id=<%=i._id%>">Delete</a>
                                 </div>
                             </div>
@@ -195,18 +204,20 @@
                 </div>
                 <!-- </li> -->
                 <!-- <div style="min-height: fit-content;">
-                        <div id="div1" >
-                            
-                        </div>
-                        <div style="height: 10px;"></div>
-                        <div id="div2" style="min-height: fit-content; min-height: auto;">
-                          
-                        </div>
-                         <a href="/teacher/viewquiz/?id=" id="view-btn"><i class="fa-regular fa-eye"></i> </a> -->
+                    <div id="div1" >
+                        
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div id="div2" style="min-height: fit-content; min-height: auto;">
+                        
+                    </div>
+                     <a href="/teacher/viewquiz/?id=" id="view-btn"><i class="fa-regular fa-eye"></i> </a> -->
                 <!-- </div>  -->
                 <!-- </div> -->
                 <% } %>
         </ul>
     </div>
+
 </body>
+
 </html>
