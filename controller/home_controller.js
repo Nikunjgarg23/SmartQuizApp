@@ -124,7 +124,11 @@ module.exports.resetpass = async function(req, res) {
         await user.save();
 
         console.log("Password updated successfully");
-        return res.render('teacher-signup')
+        if (user.role === 'teacher')
+            return res.render('teacher-signup');
+        else {
+            return res.render('studentlogin');
+        }
     } catch (error) {
         console.error("Error occurred:", error);
         return res.status(500).json({ message: 'Internal Server Error' });

@@ -29,18 +29,13 @@ router.get('/test',teacher_controller.test);
 router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)
 router.post('/verifyOTP',teacher_controller.verifyOTP);
  router.get('/sign-up',teacher_controller.signup);
- router.post('/forgotpassword',teacher_controller.forgot);
- router.get('/forgotpassword',teacher_controller.forgot);
-router.post('/verifypassword',teacher_controller.verifypassword);
-router.post('/reset_password',teacher_controller.resetpass);
+ 
 
 
 router.get('/otp', function(req, res) {
     res.render('otp'); // Remove the forward slash from '/otp'
 });
-router.get('/forgot', function(req, res) {
-    res.render('Forgotpassword'); // Remove the forward slash from '/otp'
-});
+
 
 router.post('/create',teacher_controller.create);
 router.post('/addbatch',teacher_controller.addbatch);
