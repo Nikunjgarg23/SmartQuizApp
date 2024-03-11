@@ -27,10 +27,10 @@ router.get('/upload',teacher_controller.upload);
 router.post('/addnewquestion',passport.checkAuthentication,teacher_controller.addnewQuestion);
 router.get('/test',teacher_controller.test);
 router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)
+router.post('/verifyOTP',teacher_controller.verifyOTP);
  router.get('/sign-up',teacher_controller.signup);
  router.post('/forgotpassword',teacher_controller.forgot);
  router.get('/forgotpassword',teacher_controller.forgot);
-router.post('/verifyOTP',teacher_controller.verifyOTP);
 router.post('/verifypassword',teacher_controller.verifypassword);
 router.post('/reset_password',teacher_controller.resetpass);
 
