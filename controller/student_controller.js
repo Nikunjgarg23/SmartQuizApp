@@ -1,135 +1,148 @@
 // const Student = require('../models/student');
 
 const Student = require('../models/teacher');
-const Quiz=require('../models/quiz');
+const Quiz = require('../models/quiz');
 const Question = require('../models/questions')
 const db = require('../config/mongoose');
 const { model } = require('mongoose');
-const bcrypt=require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const Teacher = require('../models/teacher');
 
-module.exports.home = function(req,res){
-    if(req.isAuthenticated() && req.user.role=='teacher'){
+module.exports.home = function (req, res) {
+    if (req.isAuthenticated() && req.user.role == 'teacher') {
         console.log('ok');
         return res.redirect('/teacher/logout');
     }
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return res.redirect('/student/studentinrt');
     }
-    else if(!req.isAuthenticated){
+    else if (!req.isAuthenticated) {
         return res.render('Alert');
     }
     else
-     return res.render("studentlogin");
+        return res.render("studentlogin");
 }
 
-module.exports.signup = function(req,res){
+module.exports.signup = function (req, res) {
     return res.render("studentlogin");
 }
-module.exports.livequiz = function(req,res){
+module.exports.livequiz = function (req, res) {
     //return res.render("playquiz");
     console.log("livee");
     let id = req.query.id;
     console.log(req.user.id);
 
-    const getquiz = async ()=>{
-        try{
-        const ress = await Question.find({quizid : id});
-        const res2 = await Quiz.findOne({_id:id});
-        // const result = await Teacher.updateOne(
-        //     { _id: req.user.id },
-        //     {
-        //         $push: {
-        //             score: {
-        //                 quiz_id: id,
-        //                 fscore : 0
-        //             }
-        //         }
-        //     }
-        // );
-        // await Quiz.updateOne(
-        //     {_id:id},
-        //     {
-        //         $push:{
-        //             attempted:req.user.id
-        //         }
-        //     }
-        // )
-        return res.render('playquiz',{
-            past_quiz:ress,
-            quizname:res2.quizname,
-            timer:res2.time
-        }
-        );
-        }catch(err){
+    const getquiz = async () => {
+        try {
+            const ress = await Question.find({ quizid: id });
+            const res2 = await Quiz.findOne({ _id: id });
+            // const result = await Teacher.updateOne(
+            //     { _id: req.user.id },
+            //     {
+            //         $push: {
+            //             score: {
+            //                 quiz_id: id,
+            //                 fscore : 0
+            //             }
+            //         }
+            //     }
+            // );
+            // await Quiz.updateOne(
+            //     {_id:id},
+            //     {
+            //         $push:{
+            //             attempted:req.user.id
+            //         }
+            //     }
+            // )
+            return res.render('playquiz', {
+                past_quiz: ress,
+                quizname: res2.quizname,
+                timer: res2.time
+            }
+            );
+        } catch (err) {
             console.log(err);
-            return ;
+            return;
         }
     }
     getquiz();
 }
 
-module.exports.livequiz2 = function(req,res){
+module.exports.livequiz2 = function (req, res) {
     //return res.render("playquiz");
     console.log("livee2");
     let id = req.query.id;
     console.log(req.user.id);
 
-    const getquiz = async ()=>{
-        try{
-        // const ress = await Question.find({quizid : id});
-        // const res2 = await Quiz.findOne({_id:id});
-        const result = await Teacher.updateOne(
-            { _id: req.user.id },
-            {
-                $push: {
-                    score: {
-                        quiz_id: id,
-                        fscore : 0
+    const getquiz = async () => {
+        try {
+            // const ress = await Question.find({quizid : id});
+            // const res2 = await Quiz.findOne({_id:id});
+            const result = await Teacher.updateOne(
+                { _id: req.user.id },
+                {
+                    $push: {
+                        score: {
+                            quiz_id: id,
+                            fscore: 0
+                        }
                     }
                 }
-            }
-        );
-        await Quiz.updateOne(
-            {_id:id},
-            {
-                $push:{
-                    attempted:req.user.id
+            );
+            await Quiz.updateOne(
+                { _id: id },
+                {
+                    $push: {
+                        attempted: req.user.id
+                    }
                 }
-            }
-        )
-        return res.redirect(`/student/displaylive/?id=${id}`);
-        // return res.render('playquiz',{
-        //     past_quiz:ress,
-        //     quizname:res2.quizname,
-        //     timer:res2.time
-        // }
-        //);
-        }catch(err){
+            )
+            return res.redirect(`/student/displaylive/?id=${id}`);
+            // return res.render('playquiz',{
+            //     past_quiz:ress,
+            //     quizname:res2.quizname,
+            //     timer:res2.time
+            // }
+            //);
+        } catch (err) {
             console.log(err);
-            return ;
+            return;
         }
     }
     getquiz();
 }
 
-module.exports.nextpage=function(req,res){
+module.exports.nextpage = function (req, res) {
     return res.render("studentinterface");
 }
 
-module.exports.logout = function(req, res, next){
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/');
+module.exports.logout = function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
     });
 }
 
+module.exports.displaycompleted = function (req, res) {
+    //console.log(req.user);
+    const stuid = req.user._id;
+    const getquiz = async () => {
+        // { end: true, attempted: stuid }
+        const ress = await Quiz.find({ attempted: stuid });
+        return res.render('studentcompleted', {
+            title: "Attempted Quiz!",
+            past_quiz: ress
+        });
+    }
+    getquiz();
+}
 
-module.exports.viewquiz = function(req,res){
+module.exports.viewquiz = function (req, res) {
     var batch = req.user.batch;
 
     console.log(batch);
-    const getquiz = async ()=>{
+    const getquiz = async () => {
         const ress = await Quiz.find({
             $and: [
                 { upload: true },
@@ -137,67 +150,102 @@ module.exports.viewquiz = function(req,res){
                 { 'attempted': { $nin: [req.user.id] } }
             ]
         });
-        
+
         //const ress = await Quiz.find({ upload: true, batches: { $in: [batch] } });
         //console.log(ress);
-        return res.render('viewquizstudent',{
-            title : "Ongoing Quiz!",
+        return res.render('viewquizstudent', {
+            title: "Ongoing Quiz!",
             past_quiz: ress
         });
     }
     getquiz();
 }
 
+module.exports.viewquizcompleted = function (req, res) {
+    let id = req.query.id;
 
-module.exports.create = function(req,res){
-    if(req.body.password != req.body.confirm_pass){
+    const getquiz = async () => {
+        try {
+            const questions = await Question.find({ quizid: id });
+            const desiredStudentId = req.user._id.toString();
+            let questionsWithAnswers = [];
+            //console.log(desiredStudentId);
+            for (const question of questions) {
+                //console.log(question);
+                const answerForStudent = await question.response.find(response => response.stu_id === desiredStudentId);
+                //console.log(answerForStudent);
+                const questionWithAnswer = {
+                    questionText: question.questionText,
+                    questionAnswer: question.questionAnswer,
+                    studentAnswer: answerForStudent ? answerForStudent.answer : 'No answer found for this student'
+                };
+
+                // Push the object to the array
+                questionsWithAnswers.push(questionWithAnswer);
+            }
+
+            return res.render('viewquizcompletedstudent', {
+                title: "Quiz!",
+                past_quiz: questionsWithAnswers
+            });
+        } catch (error) {
+            console.error(error);
+            // Handle error
+        }
+    };
+
+    getquiz();
+}
+
+module.exports.create = function (req, res) {
+    if (req.body.password != req.body.confirm_pass) {
         return res.redirect('back');
     }
-    const find = async()=>{
-        try{
-            const user = await Student.findOne({email : req.body.email});
+    const find = async () => {
+        try {
+            const user = await Student.findOne({ email: req.body.email });
 
-            if(!user || user.role!="student"){
+            if (!user || user.role != "student") {
                 req.body.role = "student";
                 console.log(req.body);
                 const data = new Student(req.body);
-                const salt=await bcrypt.genSalt(10);
-                let pass=await bcrypt.hash(req.body.password,salt);
-               // let rol="teacher";
+                const salt = await bcrypt.genSalt(10);
+                let pass = await bcrypt.hash(req.body.password, salt);
+                // let rol="teacher";
                 Student.create({
-                    email:req.body.email,
-                    password:pass,
-                    name:req.body.name,
-                    batch : req.body.batch
+                    email: req.body.email,
+                    password: pass,
+                    name: req.body.name,
+                    batch: req.body.batch
                 })
                 //data.save();
                 console.log("data");
                 console.log("I am Here");
                 return res.redirect('/student');
             }
-            else{
+            else {
                 return res.redirect('Alert');
             }
         }
-        catch(err){
+        catch (err) {
             console.log(err);
         }
     }
     find();
 };
-module.exports.saveanswer= async function(req,res){
+module.exports.saveanswer = async function (req, res) {
     console.log("savee");
     console.log(req.body);
     console.log(req.user.id);
     try {
         const { questionId, answer } = req.body;
-        var f=0;
-        if(!questionId){
+        var f = 0;
+        if (!questionId) {
             return res.redirect('/student');
         }
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
-            if(currentQuestionId>=0&&currentQuestionId<10){f=1;break;}
+            if (currentQuestionId >= 0 && currentQuestionId < 10) { f = 1; break; }
             console.log(currentQuestionId)
             const currentAnswer = answer[i];
             const studentId = req.user.id;
@@ -213,7 +261,7 @@ module.exports.saveanswer= async function(req,res){
                 }
             );
         }
-        if(f==1){
+        if (f == 1) {
             const currentQuestionId = questionId;
             console.log(currentQuestionId)
             const currentAnswer = answer;
@@ -230,13 +278,13 @@ module.exports.saveanswer= async function(req,res){
                 }
             );
         }
-        
+
     } catch (error) {
         console.error('Error submitting quiz:', error);
     }
     return res.redirect('/student');
 }
-module.exports.createSession = function(req,res){
+module.exports.createSession = function (req, res) {
     return res.redirect('/student/studentinrt');
 }
 module.exports.changepassword = function (req, res) {
