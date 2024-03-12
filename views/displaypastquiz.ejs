@@ -145,8 +145,27 @@
             </div>
         </div>
     </nav>
-    <br><br><br>
-    <h1 id="heading"><i class="fa-solid fa-pencil"></i> Available Quizzes!</h1>
+    <div class="contain" style="margin-top: 15vh; margin-bottom: 0px;">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col-md-6 offset-md-3" style="margin-bottom: 0px;">
+                <div class="card text-white bg-dark mb-1" style="margin-bottom: 0px;">
+               
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome <%= user.name%>
+                        </h5>
+                        <% for(let i of past_quiz){ %>
+                            <p class="card-text" style="text-align: center;">
+                                <%= i.owneremail %>
+                            </p>
+                            <%break;%>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h1 id="heading" style="margin-top: 0px;"><i class="fa-solid fa-pencil"></i> Available Quizzes!</h1>
     <div id="ul1">
         <% for(let i of past_quiz){ %>
             <div class="container">
@@ -180,7 +199,8 @@
                                                         value="setime" placeholder="SetTimer" style="width: 8vw;">
                                                     <button class="btn btn-dark" type="submit">Set</button>
                                                 </form>
-                                    <p class="btn btn-dark"> Responses:<%= i.attempted.length %></p>
+                                                <p class="btn btn-dark"> Responses:<%= i.attempted.length %>
+                                                </p>
                                 </div>
                             </div>
                         </div>

@@ -129,13 +129,15 @@
         </div>
     </div>
     <div>
-  
+
         <div id="ul1">
             <div style="width: 95%; margin-left: 2vw;">
                 <div class="row">
                     <div class="my-3">
-                        <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 1.5px; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); ">
-                            <div class="card-body" style="padding: 20px; background: linear-gradient(to left, #fff, #000);">
+                        <div class="card text-bg-secondary mb-3"
+                            style="border-color: black; border-width: 1.5px; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); ">
+                            <div class="card-body"
+                                style="padding: 20px; background: linear-gradient(to left, #fff, #000);">
                                 <div style="display: flex; flex-direction: row;">
                                     <span style="display: inline-block; width: 35%;">
                                         <h5>Name</h5>
@@ -162,61 +164,96 @@
                 </div>
             </div>
         </div>
-        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
+        <table class="table"
+            style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student1){ %>
                     <tr style="background-color: aquamarine;">
-                        <td style="padding-right: 10px;"><%= i.name %></td>
+                        <td style="padding-right: 10px;">
+                            <%= i.name %>
+                        </td>
                         <td style="padding-right: 10px;"></td>
-                        <td><%= i.score %></td>
+                        <td>
+                            <%= i.score %>
+                        </td>
                     </tr>
-                <% } %>
+                    <% } %>
             </tbody>
         </table>
-        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
+        <table class="table"
+            style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student2){ %>
                     <tr style="background-color: aquamarine;">
-                        <td style="padding-right: 10px;"><%= i.name %></td>
+                        <td style="padding-right: 10px;">
+                            <%= i.name %>
+                        </td>
                         <td style="padding-right: 10px;"></td>
-                        <td><%= i.score %></td>
+                        <td>
+                            <%= i.score %>
+                        </td>
                     </tr>
-                <% } %>
+                    <% } %>
             </tbody>
         </table>
-        <table class="table" style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
+        <table class="table"
+            style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
                 <% for(let i of student3){ %>
                     <tr style="background-color: aquamarine;">
-                        <td style="padding-right: 10px;"><%= i.name %></td>
+                        <td style="padding-right: 10px;">
+                            <%= i.name %>
+                        </td>
                         <td style="padding-right: 10px;"></td>
-                        <td><%= i.score %></td>
+                        <td>
+                            <%= i.score %>
+                        </td>
                     </tr>
-                <% } %>
+                    <% } %>
             </tbody>
         </table>
-        
-        
+
+
 
         <script>
             // Hardcoded student marks
-            const marks = [30, 55, 85];
+            // Get the scores from student1, student2, and student3 arrays
+            const student1Scores = student1.map(student => student.score);
+            const student2Scores = student2.map(student => student.score);
+            const student3Scores = student3.map(student => student.score);
+            // console.log(student1Scores);
+            // console.log(student2Scores);
+            // console.log("student3Scores");
+
+            // Combine all scores into a single array
+            const allScores = [...student1Scores, ...student2Scores, ...student3Scores];
 
             // Count of students falling into different categories
             let below40 = 0;
             let between40and80 = 0;
             let above80 = 0;
 
-            // Calculate the counts
-            marks.forEach(mark => {
-                if (mark < 40) {
+            // Calculate the counts based on the dynamically obtained scores
+            allScores.forEach(score => {
+                if (score < 40) {
                     below40++;
-                } else if (mark >= 40 && mark < 80) {
+                } else if (score >= 40 && score < 80) {
                     between40and80++;
                 } else {
                     above80++;
                 }
             });
+
+            // Update the pie chart data
+            pieChart.data.datasets[0].data = [below40, between40and80, above80];
+
+            // Update the bar graph data
+            barGraph.data.datasets[0].data = [below40, between40and80, above80];
+
+            // Update both charts
+            pieChart.update();
+            barGraph.update();
+
 
             // Get the canvas element for pie chart
             const pieCtx = document.getElementById('myPieChart').getContext('2d');

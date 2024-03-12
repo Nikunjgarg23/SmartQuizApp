@@ -28,7 +28,7 @@ module.exports.createQuiz = (req, res) => {
         try {
             const user = await Quiz.findOne({ quizname: req.body.quizname });
 
-            if (!user) {
+            if (1) {
                 // console.log(req.user);
                 req.body.owneremail = req.user.email;
                 req.body.owner = req.user.name;
@@ -462,7 +462,7 @@ module.exports.home = function (req, res) {
         return res.redirect('/teacher/logout');
     }
     if (req.isAuthenticated()) {
-        return res.redirect('/teacher/teacherinrt');
+        return res.redirect('/teacher/pastquiz');
     }
     else if (!req.isAuthenticated) {
         return res.render('Alert');
@@ -473,7 +473,7 @@ module.exports.home = function (req, res) {
 
 module.exports.signup = function (req, res) {
     if (req.isAuthenticated()) {
-        return res.redirect('/teacher/teacherinrt');
+        return res.redirect('/teacher/pastquiz');
     }
     return res.render("Alert");
 }
@@ -680,7 +680,7 @@ module.exports.addbatch = async function (req, res) {
 }
 
 module.exports.createSession = function (req, res) {
-    return res.redirect('/teacher/teacherinrt');
+    return res.redirect('/teacher/pastquiz');
 }
 
 
