@@ -176,37 +176,8 @@
                         <td>
                             <%= i.score %>
                         </td>
-                    </tr>
-                    <% } %>
-            </tbody>
-        </table>
-        <table class="table"
-            style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
-            <tbody>
-                <% for(let i of student2){ %>
-                    <tr style="background-color: aquamarine;">
-                        <td style="padding-right: 10px;">
-                            <%= i.name %>
-                        </td>
-                        <td style="padding-right: 10px;"></td>
                         <td>
-                            <%= i.score %>
-                        </td>
-                    </tr>
-                    <% } %>
-            </tbody>
-        </table>
-        <table class="table"
-            style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
-            <tbody>
-                <% for(let i of student3){ %>
-                    <tr style="background-color: aquamarine;">
-                        <td style="padding-right: 10px;">
-                            <%= i.name %>
-                        </td>
-                        <td style="padding-right: 10px;"></td>
-                        <td>
-                            <%= i.score %>
+                            <a href="/teacher/viewstures/?id=<%=i._id%>&quizid=<%=quizid%>" class="btn btn-dark">View</a>
                         </td>
                     </tr>
                     <% } %>

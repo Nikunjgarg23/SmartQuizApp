@@ -304,6 +304,44 @@ module.exports.evaluate = async function (req, res) {
     getstu();
 }
 
+module.exports.viewstures = function (req, res) {
+    //let id = req.query.id;
+    const id = req.query.quizid;
+    const getquiz = async () => {
+        try {
+            const questions = await Question.find({ quizid: id });
+            const desiredStudentId = req.query.id;
+            let questionsWithAnswers = [];
+            //console.log("ok");
+            //console.log(desiredStudentId);
+            for (const question of questions) {
+                //console.log(question);
+                const answerForStudent = await question.response.find(response => response.stu_id === desiredStudentId);
+                //console.log(answerForStudent);
+                const questionWithAnswer = {
+                    questionText: question.questionText,
+                    questionAnswer: question.questionAnswer,
+                    studentAnswer: answerForStudent ? answerForStudent.answer : 'No answer found for this student',
+                    score : 0
+                };
+
+                // Push the object to the array
+                questionsWithAnswers.push(questionWithAnswer);
+            }
+
+            return res.render('viewstures', {
+                title: "Quiz!",
+                past_quiz: questionsWithAnswers
+            });
+        } catch (error) {
+            console.error(error);
+            // Handle error
+        }
+    };
+    getquiz();
+}
+
+
 module.exports.viewres = async function (req, res) {
     // // student id , quesion text , bacche ans
     // //  loop bacche
@@ -332,80 +370,82 @@ module.exports.viewres = async function (req, res) {
     let id = req.query.id;
     const studentsData = await Teacher.find({
         role: 'student',
-        batch: 'F1',
         'score.quiz_id': id
     }, 'name batch score.$');
 
     // Extract relevant data and create an array of objects
     const ress1 = studentsData.map(student => ({
         name: student.name,
+        _id:student._id,
         batch: student.batch,
         score: student.score.find(item => item.quiz_id === id).fscore
     }));
     console.log(ress1);
 
-    const studentsData2 = await Teacher.find({
-        role: 'student',
-        batch: 'F2',
-        'score.quiz_id': id
-    }, 'name batch score.$');
+    // const studentsData2 = await Teacher.find({
+    //     role: 'student',
+    //     batch: 'F2',
+    //     'score.quiz_id': id
+    // }, 'name batch score.$');
 
-    // Extract relevant data and create an array of objects
-    const ress2 = studentsData2.map(student => ({
-        name: student.name,
-        batch: student.batch,
-        score: student.score.find(item => item.quiz_id === id).fscore
-    }));
+    // // Extract relevant data and create an array of objects
+    // const ress2 = studentsData2.map(student => ({
+    //     name: student.name,
+    //     batch: student.batch,
+    //     score: student.score.find(item => item.quiz_id === id).fscore
+    // }));
 
-    const studentsData3 = await Teacher.find({
-        role: 'student',
-        batch: 'F3',
-        'score.quiz_id': id
-    }, 'name batch score.$');
+    // const studentsData3 = await Teacher.find({
+    //     role: 'student',
+    //     batch: 'F3',
+    //     'score.quiz_id': id
+    // }, 'name batch score.$');
 
-    // Extract relevant data and create an array of objects
-    const ress3 = studentsData3.map(student => ({
-        name: student.name,
-        batch: student.batch,
-        score: student.score.find(item => item.quiz_id === id).fscore
-    }));
+    // // Extract relevant data and create an array of objects
+    // const ress3 = studentsData3.map(student => ({
+    //     name: student.name,
+    //     batch: student.batch,
+    //     score: student.score.find(item => item.quiz_id === id).fscore
+    // }));
     return res.render('Viewrponse', {
         title: "Quiz!",
         student1: ress1,
-        student2: ress2,
-        student3: ress3,
         quizid: id
     });
 
 }
 
 
-module.exports.viewstures = async function (req, res) {
-    let id = req.query.id;
-    let quizId = req.query.otherParam;
-    try {
-        const result = await Question.findOne(
-            { quizid: quizId, 'response.stu_id': id },
-            { questionText: 1, response: 1 }
-        );
-        console.log(result);
+// module.exports.viewstures = async function (req, res) {
+//     const id = req.query.id;
+//     const quizidd = req.query.quizid;
+//     try {
+//         const result = await Question.findOne(
+//             { quizid: quizidd, 'response.stu_id': id },
+//             { questionText: 1, response: 1 }
+//         );
+//         console.log(result);
 
-        if (result) {
-            const { questionText, responses } = result;
+//         if (result) {
+//             const { questionText, responses } = result;
 
-            const studentResponse = responses.find((response) => response.stu_id === stuId);
+//             const studentResponse = responses.find((response) => response.stu_id === stuId);
 
-            res.render('viewstures', {
-                title: 'Question and Answer',
-                questionText,
-                studentResponse: studentResponse ? studentResponse.answer : 'Student did not answer'
-            });
-        }
-    } catch (error) {
-        console.error('Error fetching question and answer:', error);
-    }
-    return res.redirect('back');
-}
+//             // res.render('viewstures', {
+//             //     title: 'Question and Answer',
+//             //     questionText,
+//             //     studentResponse: studentResponse ? studentResponse.answer : 'Student did not answer'
+//             // });
+//             return res.render('viewquizcompletedstudent', {
+//                 title: "Quiz!",
+//                 past_quiz: questionsWithAnswers
+//             });
+//         }
+//     } catch (error) {
+//         console.error('Error fetching question and answer:', error);
+//     }
+//     return res.redirect('back');
+// }
 
 
 module.exports.deletequiz = function (req, res) {

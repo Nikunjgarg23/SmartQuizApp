@@ -20,7 +20,8 @@ var questionSchema = mongoose.Schema({
         type: [
             {
                 stu_id: String,
-                answer: String
+                answer: String,
+                score:Number
             }
         ],
         default: null,

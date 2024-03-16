@@ -20,13 +20,14 @@ router.get('/deletequiz',passport.checkAuthentication,teacher_controller.deleteq
 router.get('/endquiz',passport.checkAuthentication,teacher_controller.endquiz);
 router.get('/completed',passport.checkAuthentication,teacher_controller.completed);
 router.get('/deleteques',passport.checkAuthentication,teacher_controller.deleteques);
+router.get('/viewstures',passport.checkAuthentication,teacher_controller.viewstures);
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',passport.checkAuthentication,teacher_controller.createQuiz);
 router.get('/addquestion',passport.checkAuthentication,teacher_controller.addQuestion);
 router.post('/upload',teacher_controller.upload);
 router.post('/addnewquestion',passport.checkAuthentication,teacher_controller.addnewQuestion);
 router.get('/test',teacher_controller.test);
-router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)
+//router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)
 router.post('/verifyOTP',teacher_controller.verifyOTP);
  router.get('/sign-up',teacher_controller.signup);
  
