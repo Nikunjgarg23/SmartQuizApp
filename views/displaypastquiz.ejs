@@ -118,7 +118,8 @@
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a href="/teacher/pastquiz" class="list-group-item list-group-item-action py-2 ripple"
-                                style="color: aliceblue;"><i class="fas fa-globe fa-fw me-3"></i><span>Dashboard</span></a>
+                                style="color: aliceblue;"><i
+                                    class="fas fa-globe fa-fw me-3"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
                             <a href="/teacher/completed" class="list-group-item list-group-item-action py-2 ripple"
@@ -148,7 +149,7 @@
         <div class="row" style="margin-bottom: 0px;">
             <div class="col-md-6 offset-md-3" style="margin-bottom: 0px;">
                 <div class="card text-white bg-dark mb-1" style="margin-bottom: 0px;">
-               
+
                     <div class="card-body">
                         <h5 class="card-title">Welcome <%= user.name%>
                         </h5>
@@ -183,23 +184,23 @@
                                         Questions</a>
                                     <a href="/teacher/addquestion/?id=<%=i._id%>" class="btn btn-dark">Add
                                         Question</a>
-                                    <% if(i.upload){ %>
-                                        <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-dark">Not Live</a>
-                                        <% } else { %>
-                                            <a href="/teacher/upload/?id=<%= i._id %>" class="btn btn-dark">Live</a>
-                                            <% } %>
-                                                <a href="/teacher/deletequiz/?id=<%=i._id%>"
-                                                    class="btn btn-dark">Delete</a>
-                                                <a href="/teacher/endquiz/?id=<%=i._id%>" class="btn btn-dark">End
-                                                    Quiz</a>
-                                                <form id="batchForm" action="/teacher/addbatch/?id=<%=i._id%>"
-                                                    method="post" style="display: flex; align-items: center;">
-                                                    <input class="btn btn-dark custom-input" type="number" name="timer"
-                                                        value="setime" placeholder="SetTimer" style="width: 8vw;">
-                                                    <button class="btn btn-dark" type="submit">Set</button>
-                                                </form>
-                                                <p class="btn btn-dark"> Responses:<%= i.attempted.length %>
-                                                </p>
+                                    <a href="/teacher/endquiz/?id=<%=i._id%>" class="btn btn-dark">End
+                                        Quiz</a>
+                                    <!-- <form id="batchForm" action="/teacher/addbatch/?id=<%=i._id%>" method="post" -->
+                                    <form id="batchForm" action="/teacher/upload/?id=<%= i._id %>" method="post"
+                                        style="display: flex; align-items: center;">
+                                        <input class="btn btn-dark custom-input" type="number" name="timer"
+                                            value="setime" placeholder="SetTimer" style="width: 8vw;">
+                                        <!-- <button class="btn btn-dark" type="submit">Set</button> -->
+                                        <% if(i.upload){ %>
+                                            <button type="submit" class="btn btn-dark">Not Live</button>
+                                            <% } else { %>
+                                                <button type="submit" class="btn btn-dark">Live</button>
+                                                <% } %>
+                                    </form>
+                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark">Delete Quiz</a>
+                                    <p class="btn btn-dark"> Responses : <%= i.attempted.length %>
+                                    </p>
                                 </div>
                             </div>
                         </div>

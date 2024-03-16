@@ -23,7 +23,7 @@ router.get('/deleteques',passport.checkAuthentication,teacher_controller.deleteq
 router.post('/changepass',passport.checkAuthentication,teacher_controller.changepass);
 router.post('/createquiz',passport.checkAuthentication,teacher_controller.createQuiz);
 router.get('/addquestion',passport.checkAuthentication,teacher_controller.addQuestion);
-router.get('/upload',teacher_controller.upload);
+router.post('/upload',teacher_controller.upload);
 router.post('/addnewquestion',passport.checkAuthentication,teacher_controller.addnewQuestion);
 router.get('/test',teacher_controller.test);
 router.get('/viewres',passport.checkAuthentication,teacher_controller.viewres)

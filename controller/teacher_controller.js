@@ -182,20 +182,21 @@ module.exports.evaluate = async function (req, res) {
                 // const completion = await openaii.chat.completions.create({
                 //     messages: [{ role: "system", content: "You are a helpful assistant." }
                 //         , { role: "assistant", content: "What can I do for you today?" },
-                //     { role: "user", content: "Generate the answer for this question" },
-                //     { role: "assistant", content: "Ok! give me Question" },
-                //     { role: "user", content: que.questionText },
+                //     { role: "user", content: "Translate this Hinglish Ans into English" },
+                //     { role: "assistant", content: "Ok! give me Hinglish ans" },
+                //     { role: "user", content: que.questionAnswer },
                 //     ],
                 //     model: "gpt-3.5-turbo",
                 // });
-                //var result = JSON.parse(JSON.stringify(completion));
+                // var result = JSON.parse(JSON.stringify(completion));
 
                 ans1 = que.questionAnswer;
-                // ans11 = (ans1.message.content);
+                // console.log(result);
+                // ans11 = (res.message.content);
                 console.log(ans1);
                 for (const re of que.response) {
-                    console.log("kkkkk");
-                    console.log(re.answer);
+                    // console.log("kkkkk");
+                    // console.log(re.answer);
                     async function evalans() {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
@@ -209,7 +210,7 @@ module.exports.evaluate = async function (req, res) {
                             ],
                             model: "gpt-3.5-turbo",
                         });
-                        console.log(completion1.choices[0]);
+                        // console.log(completion1.choices[0]);
                         let resultstring = completion1.choices[0];
                         let resultint = resultstring.message.content;
                         // console.log(resultint.length);
@@ -562,32 +563,60 @@ module.exports.upload = (req, res) => {
                     $set: { upload: fla },
                 }
             );
-            return res.redirect('/teacher/pastquiz');
-        } catch (err) {
-            console.log(err);
-            return;
-        }
+            let quiztime = 0;
+            if (req.body.timer !== undefined)
+                quiztime = req.body.timer;
+            await Quiz.updateOne(
+                { _id: id },
+                {
+                    // $set: { batches: arr },
+                    $set: { time: quiztime }
+                }
+           
+            );
+    return res.redirect('/teacher/pastquiz');
+} catch (err) {
+    console.log(err);
+    return;
+}
     }
-    getquiz();
+getquiz();
 
 }
 module.exports.addnewQuestion = (req, res) => {
     let id = req.query.id;
     const find = async () => {
         try {
-            console.log(req.body);
+            // console.log(req.body);
             req.body.quizid = id;
-            const data = new Question(req.body);
-            data.save();
+            // let ans1 = "";
+            // const completion = await openaii.chat.completions.create({
+            //     messages: [{ role: "system", content: "You are a helpful assistant." },
+            //         { role: "assistant", content: "What can I do for you today?" },
+            //         { role: "user", content: "Translate this Hinglish Ans into English" },
+            //         { role: "assistant", content: "Ok! give me Hinglish ans" },
+            //         { role: "user", content: req.body.questionAnswer },
+            //     ],
+            //     model: "gpt-3.5-turbo",
+            // });
+            // const result = JSON.parse(JSON.stringify(completion));
+            // ans1 = result.choices[0].message.content; // Extract the generated answer
+            // console.log(ans1);
+            
+            // Save the question along with the generated answer
+            const data = new Question({
+                ...req.body,
+                //questionAnswer: ans1 // Save the generated answer
+            });
+            await data.save(); // Wait for the data to be saved
 
             return res.redirect(`/teacher/addquestion/?id=${id}`);
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-    }
+    };
     find();
-}
+};
 
 // Function to generate OTP
 function generateOTP() {
