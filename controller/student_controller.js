@@ -225,11 +225,11 @@ module.exports.create = function (req, res) {
                     email: req.body.email,
                     password: pass,
                     name: req.body.name,
-                    batch: req.body.batch
+                    // batch: req.body.batch
                 })
                 //data.save();
-                console.log("data");
-                console.log("I am Here");
+                // console.log("data");
+                // console.log("I am Here");
                 return res.redirect('/student');
             }
             else {
@@ -263,8 +263,8 @@ module.exports.saveanswer = async function (req, res) {
             const completion = await openaii.chat.completions.create({
                 messages: [{ role: "system", content: "You are a helpful assistant." },
                     { role: "assistant", content: "What can I do for you today?" },
-                    { role: "user", content: "Translate this Hinglish Ans into English" },
-                    { role: "assistant", content: "Ok! give me Hinglish ans" },
+                    { role: "user", content: "Translate this Answer into proper English" },
+                    { role: "assistant", content: "Ok! give me Answer ans" },
                     { role: "user", content: currentAnswer},
                 ],
                 model: "gpt-3.5-turbo",

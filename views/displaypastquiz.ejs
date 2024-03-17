@@ -199,8 +199,8 @@
                                                 <% } %>
                                     </form>
                                     <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark">Delete Quiz</a>
-                                    <p class="btn btn-dark"> Responses : <%= i.attempted.length %>
-                                    </p>
+                                    <a href="/teacher/viewres/?id=<%=i._id%>"class="btn btn-dark"> Responses : <%= i.attempted.length %>
+                                    </a>
                                 </div>
                             </div>
                         </div>

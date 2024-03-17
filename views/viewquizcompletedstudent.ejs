@@ -17,137 +17,24 @@
         <%= title %>
     </title>
     <style>
-        #heading {
-            text-align: center;
+        body {
+            background: white;
+            /* Gradient background */
+            font-family: 'Jost', sans-serif;
         }
 
-        span {
-            display: inline-block;
-            margin-bottom: 2px;
-            padding: 0;
+        .custom-card {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+            /* Add shadow */
+            background: linear-gradient(to bottom right, #3b3a3a, #fff);
+            /* Gradient background */
         }
 
-        p {
-            display: inline-block;
-        }
-
-        ul {
-            list-style: none;
-            display: inline-block; 
-            text-align: left;
-        }
-
-        li {
-            /* width: 1100px; */
-            margin-bottom: 2px;
-        }
-
-        #ul1 {
-            text-align: center;
-        }
-
-        #list-item {
-            background-color: rgb(118, 143, 149);
+        .card {
+            background-color: rgba(255, 255, 255, 0.8); /* Light black to white */
+            border-radius: 10px;
             border: 2px solid black;
-            height: 50px;
-        }
-
-        #list-item:hover {
-            background-color: lightskyblue;
-        }
-
-        #heading {
-            color: grey;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        #form1 {
-            text-align: center;
-        }
-
-        #list-item div {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #delete-btn {
-            color: white;
-            margin-top: 12px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #delete-btn1 {
-            background-color: white;
-            width: 100px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        #view-btn {
-            /* background-color: white;
-            border-radius: 30%; */
-            color: white;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #view-btn1 {
-            background-color: white;
-            width: 100px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        #div1 {
-            width: 100px;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #div2 {
-            width: 300px;
-            margin-top: 7px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        #div22 {
-            max-width: 100px;
-            margin-left: 50px;
-            margin-right: 10px;
-            display: inline-block;
-        }
-
-        #span2 {
-            margin-right: 345px;
-        }
-
-        #span1 {
-            margin-right: 193px;
-        }
-
-        #span3 {
-            margin-right: 90px;
-        }
-
-        #span4 {
-            margin-right: 51px;
-        }
-
-        #div3 {
-            margin-top: 5px;
-        }
-
-        .container:hover {
-            transform: scale(1.1)
+            padding: 10px;
         }
     </style>
 </head>
@@ -205,7 +92,7 @@
                 <div class="container" style="width: 100%;">
                     <div class="row" style="width: 100%;">
                         <div class="my-2" style="width: 100%;">
-                            <div class="card text-bg-secondary mb-3"
+                            <div class="card text-bg-secondary mb-3 custom-card"
                                 style="border-color: black; border-width: 2px; width: 100%;">
                                 <h7 class="card-body" style="width: 4000px;  margin-bottom: 0px; padding-bottom: 0px;">
                                     <div id="div2" style="width: 4000px; margin-bottom: 0px;">
