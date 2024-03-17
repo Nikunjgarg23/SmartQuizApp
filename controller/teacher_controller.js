@@ -341,7 +341,8 @@ module.exports.viewres = async function (req, res) {
         score: student.score.find(item => item.quiz_id === id).fscore
     }));
     console.log(ress1);
-
+    const ques = await Question.find({quizid:id});
+    const sizee = ques.length;
     // const studentsData2 = await Teacher.find({
     //     role: 'student',
     //     batch: 'F2',
@@ -370,7 +371,8 @@ module.exports.viewres = async function (req, res) {
     return res.render('Viewrponse', {
         title: "Quiz!",
         student1: ress1,
-        quizid: id
+        quizid: id,
+        lenn : sizee
     });
 
 }

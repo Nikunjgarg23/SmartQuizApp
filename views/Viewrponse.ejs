@@ -177,7 +177,8 @@
                             <%= i.score %>
                         </td>
                         <td>
-                            <a href="/teacher/viewstures/?id=<%=i._id%>&quizid=<%=quizid%>" class="btn btn-dark">View</a>
+                            <a href="/teacher/viewstures/?id=<%=i._id%>&quizid=<%=quizid%>"
+                                class="btn btn-dark">View</a>
                         </td>
                     </tr>
                     <% } %>
@@ -189,48 +190,47 @@
         <script>
             // Hardcoded student marks
             // Get the scores from student1, student2, and student3 arrays
-            const student1Scores = student1.map(student => student.score);
-            const student2Scores = student2.map(student => student.score);
-            const student3Scores = student3.map(student => student.score);
-            // console.log(student1Scores);
-            // console.log(student2Scores);
-            // console.log("student3Scores");
-
+            const s1 = `<%= JSON.stringify(student1) %>`;
+            const ss=`<%= lenn %>`;
+            // console.log("ss");
+            // console.log(ss);
+    
+            // Decode HTML entities
+            const decodedString = s1.replace(/&#(\d+);/g, function (match, dec) {
+                return String.fromCharCode(dec);
+            });
+    
+            // Parse the JSON string into a JavaScript array of objects
+            const studentArray = JSON.parse(decodedString);
+    
+            // Iterate over the studentArray to access each student's score
+            const student1Scores = studentArray.map(student => student.score);
+    
             // Combine all scores into a single array
-            const allScores = [...student1Scores, ...student2Scores, ...student3Scores];
-
+            const allScores = [...student1Scores];
+    
             // Count of students falling into different categories
             let below40 = 0;
             let between40and80 = 0;
             let above80 = 0;
-
+            let totalmarks=ss*5;
+            let t2=totalmarks*0.4;
+            // let t4=totalmarks*0.6;
+            let t5=totalmarks*0.8;
             // Calculate the counts based on the dynamically obtained scores
             allScores.forEach(score => {
-                if (score < 40) {
+                if (score < t2) {
                     below40++;
-                } else if (score >= 40 && score < 80) {
+                } else if (score >= t2 && score < t5) {
                     between40and80++;
                 } else {
                     above80++;
                 }
             });
-
-            // Update the pie chart data
-            pieChart.data.datasets[0].data = [below40, between40and80, above80];
-
-            // Update the bar graph data
-            barGraph.data.datasets[0].data = [below40, between40and80, above80];
-
-            // Update both charts
-            pieChart.update();
-            barGraph.update();
-
-
-            // Get the canvas element for pie chart
+    
+            // Create a pie chart instance
             const pieCtx = document.getElementById('myPieChart').getContext('2d');
-
-            // Create the pie chart
-            new Chart(pieCtx, {
+            const pieChart = new Chart(pieCtx, {
                 type: 'pie',
                 data: {
                     labels: ['Below 40%', '40% - 80%', 'Above 80%'],
@@ -255,12 +255,10 @@
                     maintainAspectRatio: false, // Adjust as needed
                 }
             });
-
-            // Get the canvas element for bar graph
+    
+            // Create a bar graph instance
             const barCtx = document.getElementById('myBarGraph').getContext('2d');
-
-            // Create the bar graph
-            new Chart(barCtx, {
+            const barGraph = new Chart(barCtx, {
                 type: 'bar',
                 data: {
                     labels: ['Below 40%', '40% - 80%', 'Above 80%'],
