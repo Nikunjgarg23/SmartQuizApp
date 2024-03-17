@@ -177,26 +177,42 @@ module.exports.evaluate = async function (req, res) {
         for (const que of ques) {
             console.log(que.questionText);
             async function eval() {
-                let ans11 = "";
-                var ans1 = "";
-                // const completion = await openaii.chat.completions.create({
-                //     messages: [{ role: "system", content: "You are a helpful assistant." }
-                //         , { role: "assistant", content: "What can I do for you today?" },
-                //     { role: "user", content: "Translate this Hinglish Ans into English" },
-                //     { role: "assistant", content: "Ok! give me Hinglish ans" },
-                //     { role: "user", content: que.questionAnswer },
-                //     ],
-                //     model: "gpt-3.5-turbo",
-                // });
-                // var result = JSON.parse(JSON.stringify(completion));
-
+                // console.log(currentAnswer);
+                // let ans1 = "";
+                // console.log(currentAnswer);
+                let ans1 = "";
+                //    const completion = await openaii.chat.completions.create({
+                //        messages: [{ role: "system", content: "You are a helpful assistant." },
+                //            { role: "assistant", content: "What can I do for you today?" },
+                //            { role: "user", content: "Translate this Answer into proper English" },
+                //            { role: "assistant", content: "Ok! give me answer" },
+                //            { role: "user", content: currentAnswer},
+                //        ],
+                //        model: "gpt-3.5-turbo",
+                //    });
+                //    const result1 = JSON.parse(JSON.stringify(completion));
+                //    ans1 = result1.choices[0].message.content; // Extract the generated answer
+                //    console.log(ans1);
                 ans1 = que.questionAnswer;
                 // console.log(result);
                 // ans11 = (res.message.content);
-                console.log(ans1);
+                // console.log(ans1);
                 for (const re of que.response) {
                     // console.log("kkkkk");
                     // console.log(re.answer);
+                    // let ans11="";
+                    // const completion = await openaii.chat.completions.create({
+                    //     messages: [{ role: "system", content: "You are a helpful assistant." },
+                    //     { role: "assistant", content: "What can I do for you today?" },
+                    //     { role: "user", content: "Translate this Answer into proper English" },
+                    //     { role: "assistant", content: "Ok! give me answer" },
+                    //     { role: "user", content: currentAnswer },
+                    //     ],
+                    //     model: "gpt-3.5-turbo",
+                    // });
+                    // const result1 = JSON.parse(JSON.stringify(completion));
+                    // ans11 = result1.choices[0].message.content; // Extract the generated answer
+                    // console.log(ans11);
                     async function evalans() {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
@@ -282,7 +298,7 @@ module.exports.viewstures = function (req, res) {
                     questionText: question.questionText,
                     questionAnswer: question.questionAnswer,
                     studentAnswer: answerForStudent ? answerForStudent.answer : 'No answer found for this student',
-                    score : answerForStudent?(answerForStudent.score?answerForStudent.score:"0"):"0"
+                    score: answerForStudent ? (answerForStudent.score ? answerForStudent.score : "0") : "0"
                 };
 
                 // Push the object to the array
@@ -336,12 +352,12 @@ module.exports.viewres = async function (req, res) {
     // Extract relevant data and create an array of objects
     const ress1 = studentsData.map(student => ({
         name: student.name,
-        _id:student._id,
+        _id: student._id,
         batch: student.batch,
         score: student.score.find(item => item.quiz_id === id).fscore
     }));
     console.log(ress1);
-    const ques = await Question.find({quizid:id});
+    const ques = await Question.find({ quizid: id });
     const sizee = ques.length;
     // const studentsData2 = await Teacher.find({
     //     role: 'student',
@@ -372,7 +388,7 @@ module.exports.viewres = async function (req, res) {
         title: "Quiz!",
         student1: ress1,
         quizid: id,
-        lenn : sizee
+        lenn: sizee
     });
 
 }
@@ -574,15 +590,15 @@ module.exports.upload = (req, res) => {
                     // $set: { batches: arr },
                     $set: { time: quiztime }
                 }
-           
+
             );
-    return res.redirect('/teacher/pastquiz');
-} catch (err) {
-    console.log(err);
-    return;
-}
+            return res.redirect('/teacher/pastquiz');
+        } catch (err) {
+            console.log(err);
+            return;
+        }
     }
-getquiz();
+    getquiz();
 
 }
 module.exports.addnewQuestion = (req, res) => {
@@ -604,7 +620,7 @@ module.exports.addnewQuestion = (req, res) => {
             // const result = JSON.parse(JSON.stringify(completion));
             // ans1 = result.choices[0].message.content; // Extract the generated answer
             // console.log(ans1);
-            
+
             // Save the question along with the generated answer
             const data = new Question({
                 ...req.body,
