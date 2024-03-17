@@ -210,9 +210,10 @@ module.exports.evaluate = async function (req, res) {
                             ],
                             model: "gpt-3.5-turbo",
                         });
-                        // console.log(completion1.choices[0]);
+                        console.log(completion1.choices[0]);
                         let resultstring = completion1.choices[0];
                         let resultint = resultstring.message.content;
+                        //let resultint = '5';
                         // console.log(resultint.length);
                         let num = '4';
                         if (resultint.length > 2) {
@@ -243,6 +244,11 @@ module.exports.evaluate = async function (req, res) {
                             { _id: stuid, 'score.quiz_id': id },
                             { $inc: { 'score.$.fscore': number } },
                             { new: true });
+
+                        const query = { _id: que._id, "response.stu_id": stuid }; // Find the document by question ID and student ID
+                        const update = { $set: { "response.$.score": number } };
+                        const updatedQuestion = await Question.findOneAndUpdate(query, update, { new: true });
+                        console.log(`Score updated successfully for student with ID ${stuid} in question with ID ${que._id}.`);
                     }
                     await new Promise(resolve => setTimeout(resolve, 18000));
                     await evalans();
@@ -254,52 +260,6 @@ module.exports.evaluate = async function (req, res) {
             $set: { iseval: true }
         });
         return res.redirect('back');
-        // const studentsData = await Teacher.find({
-        //     role: 'student',
-        //     batch: 'F1',
-        //     'score.quiz_id': id
-        // }, 'name batch score.$');
-
-        // // Extract relevant data and create an array of objects
-        // const ress1 = studentsData.map(student => ({
-        //     name: student.name,
-        //     batch: student.batch,
-        //     score: student.score.find(item => item.quiz_id === id).fscore
-        // }));
-        // console.log(ress1);
-
-        // const studentsData2 = await Teacher.find({
-        //     role: 'student',
-        //     batch: 'F2',
-        //     'score.quiz_id': id
-        // }, 'name batch score.$');
-
-        // // Extract relevant data and create an array of objects
-        // const ress2 = studentsData2.map(student => ({
-        //     name: student.name,
-        //     batch: student.batch,
-        //     score: student.score.find(item => item.quiz_id === id).fscore
-        // }));
-
-        // const studentsData3 = await Teacher.find({
-        //     role: 'student',
-        //     batch: 'F3',
-        //     'score.quiz_id': id
-        // }, 'name batch score.$');
-
-        // // Extract relevant data and create an array of objects
-        // const ress3 = studentsData3.map(student => ({
-        //     name: student.name,
-        //     batch: student.batch,
-        //     score: student.score.find(item => item.quiz_id === id).fscore
-        // }));
-        // return res.render('viewresponse', {
-        //     title: "Quiz!",
-        //     student1: ress1,
-        //     student2: ress2,
-        //     student3: ress3,
-        //     quizid: id
-        // });
     }
     getstu();
 }
@@ -322,7 +282,7 @@ module.exports.viewstures = function (req, res) {
                     questionText: question.questionText,
                     questionAnswer: question.questionAnswer,
                     studentAnswer: answerForStudent ? answerForStudent.answer : 'No answer found for this student',
-                    score : 0
+                    score : answerForStudent?(answerForStudent.score?answerForStudent.score:"0"):"0"
                 };
 
                 // Push the object to the array
