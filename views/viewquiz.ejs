@@ -37,12 +37,25 @@
             border: 2px solid black;
             padding: 10px;
         }
+
+        /* Style for back button */
+        .back-button {
+            color: white;
+            font-size: 20px;
+            margin-right: 10px; /* Adjust space between Teacher Portal and Back button */
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            color: lightgray;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="goBack()" style="margin-right: 10px;">Back</a> <!-- Back button -->
             <a class="navbar-brand" href="/teacher">Teacher Portal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
@@ -109,6 +122,8 @@
                                 style="width: fit-content;  margin-bottom: 0px; padding-bottom: 0px;">
                                 <div id="div2" style="width: fit-content; margin-bottom: 0px;" class="text-black">
                                     Ans.&nbsp;<%= i.questionAnswer %>
+                               
+
                                 </div>
                             </h7>
                             <div style="display: flex;flex-direction: row-reverse;">
@@ -126,6 +141,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
 </body>
 
 </html>

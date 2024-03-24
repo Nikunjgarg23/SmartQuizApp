@@ -112,10 +112,11 @@
 
 
             <!-- Brand  -->
-            <a class="navbar-brand" href="/teacher/">
+            <!-- <a class="navbar-brand" href="/teacher/">
                 <img src="http://www.jiit.ac.in/jiit/ETTIC/assets/img/jiit_logo.png" height="35" width="35"
                     alt="JIIT Logo" loading="lazy" />
-            </a>
+            </a> -->
+            <a class="navbar-brand" href="#" onclick="goBack()" style="margin-right: 10px; color:white">Back</a> <!-- Back button -->
         </div>
         <!-- <a href="/" class="list-group-item list-group-item-action py-2 ripple"><i
                 class="fas fa-globe fa-fw me-3"></i><span>About</span></a> -->
@@ -207,6 +208,8 @@
                         </div>
                     </div>
                 </div>
+              
+                
                 <!-- </li> -->
                 <!-- <div style="min-height: fit-content;">
                     <div id="div1" >
@@ -222,7 +225,11 @@
                 <% } %>
         </ul>
     </div>
-
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>
