@@ -153,16 +153,17 @@
                     <div class="my-3">
                         <div class="card text-bg-secondary mb-3" style="border-color: black; border-width: 3px;">
                             <h5 class="card-body" style="font-size: 1.5rem;">
-                               Quiz Name: <%= i.quizname %>
+                               Quiz Name: <%= i._doc.quizname %>
                             </h5>
                             <div class="card-body">
                                 <h5 class="card-title text-white" style="font-size: 1.2rem;">
-                                    <%= i.owneremail %>
+                                    <%= i._doc.owneremail %>
                                 </h5>
                                 <div class="c"></div>
                                 <div class="btn-container" style="justify-content: center;"> <!-- Add a container for buttons -->
-                                    <a href="/student/viewquizcompleted/?id=<%=i._id%>" class="btn btn-dark my-2">View Quiz</a>
-                                    <a href="/teacher/deletequiz/?id=<%=i._id%>" class="btn btn-dark my-2">Delete Quiz</a>
+                                    <a href="/student/viewquizcompleted/?id=<%=i._doc._id%>" class="btn btn-dark my-2">View Quiz</a>
+                                    <a href="/teacher/deletequiz/?id=<%=i._doc._id%>" class="btn btn-dark my-2">Delete Quiz</a>
+                                    <div class="btn btn-dark my-2">Score: <%= i.fscore %></div>
                                 </div>
                                 <!--
                                 <% if(i.iseval){ %>
