@@ -136,12 +136,31 @@ module.exports.logout = function (req, res, next) {
 module.exports.displaycompleted = function (req, res) {
     //console.log(req.user);
     const stuid = req.user._id;
+
     const getquiz = async () => {
-        // { end: true, attempted: stuid }
-        const ress = await Quiz.find({ attempted: stuid });
+        let ress = await Quiz.find({ attempted: stuid });
+        const ressWithFscore = [];
+
+        for (let i = 0; i < ress.length; i++) {
+            const quiz_idd = ress[i]._id.toString();
+            const teacher = await Teacher.findOne({ 'score.quiz_id': quiz_idd });
+            if (teacher) {
+                const scoreObj = teacher.score.find(score => score.quiz_id === quiz_idd);
+                if (scoreObj) {
+                    const fscore = scoreObj.fscore;
+                    // Add fscore value to the new array
+                    ressWithFscore.push({
+                        ...ress[i],
+                        fscore: fscore
+                    });
+                }
+            }
+        }
+
+        //console.log(ressWithFscore);
         return res.render('studentcompleted', {
             title: "Attempted Quiz!",
-            past_quiz: ress
+            past_quiz: ressWithFscore
         });
     }
     getquiz();
@@ -252,14 +271,14 @@ module.exports.saveanswer = async function (req, res) {
         if (!questionId) {
             return res.redirect('/student');
         }
-       
+
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
             if (currentQuestionId >= 0 && currentQuestionId < 10) { f = 1; break; }
             console.log(currentQuestionId)
             const currentAnswer = answer[i];
             const studentId = req.user.id;
-          
+
             const result = await Question.updateOne(
                 { _id: currentQuestionId },
                 {
