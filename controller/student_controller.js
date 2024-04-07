@@ -277,15 +277,29 @@ module.exports.saveanswer = async function (req, res) {
             if (currentQuestionId >= 0 && currentQuestionId < 10) { f = 1; break; }
             console.log(currentQuestionId)
             const currentAnswer = answer[i];
+            let ans11="";
+                    const completion = await openaii.chat.completions.create({
+                        messages: [{ role: "system", content: "You are a helpful assistant." },
+                        { role: "assistant", content: "What can I do for you today?" },
+                        { role: "user", content: "Translate this Answer into proper English" },
+                        { role: "assistant", content: "Ok! give me answer" },
+                        { role: "user", content: currentAnswer },
+                        ],
+                        model: "gpt-3.5-turbo",
+                    });
+                    const result1 = JSON.parse(JSON.stringify(completion));
+                    ans11 = result1.choices[0].message.content; // Extract the generated answer
+                    console.log(ans11);
             const studentId = req.user.id;
-
             const result = await Question.updateOne(
                 { _id: currentQuestionId },
                 {
                     $push: {
                         response: {
                             stu_id: studentId,
-                            answer: currentAnswer
+                            answer: currentAnswer,
+                            processed_answer:ans11
+
                         }
                     }
                 }
@@ -297,18 +311,19 @@ module.exports.saveanswer = async function (req, res) {
             const currentAnswer = answer;
             // console.log(currentAnswer);
             let ans1 = "";
-            // const completion = await openaii.chat.completions.create({
-            //     messages: [{ role: "system", content: "You are a helpful assistant." },
-            //         { role: "assistant", content: "What can I do for you today?" },
-            //         { role: "user", content: "Translate this Hinglish Ans into English" },
-            //         { role: "assistant", content: "Ok! give me Hinglish ans" },
-            //         { role: "user", content: currentAnswer},
-            //     ],
-            //     model: "gpt-3.5-turbo",
-            // });
-            // const result1 = JSON.parse(JSON.stringify(completion));
-            // ans1 = result1.choices[0].message.content; // Extract the generated answer
-            // console.log(ans1);
+            let ans11="";
+            const completion = await openaii.chat.completions.create({
+                messages: [{ role: "system", content: "You are a helpful assistant." },
+                { role: "assistant", content: "What can I do for you today?" },
+                { role: "user", content: "Translate this Answer into proper English" },
+                { role: "assistant", content: "Ok! give me answer" },
+                { role: "user", content: currentAnswer },
+                ],
+                model: "gpt-3.5-turbo",
+            });
+            const result1 = JSON.parse(JSON.stringify(completion));
+            ans11 = result1.choices[0].message.content; // Extract the generated answer
+            console.log(ans11);
             const studentId = req.user.id;
             const result = await Question.updateOne(
                 { _id: currentQuestionId },
@@ -316,7 +331,8 @@ module.exports.saveanswer = async function (req, res) {
                     $push: {
                         response: {
                             stu_id: studentId,
-                            answer: currentAnswer
+                            answer: currentAnswer,
+                            processed_answer:ans11
                         }
                     }
                 }

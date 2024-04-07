@@ -176,43 +176,39 @@ module.exports.evaluate = async function (req, res) {
         const ques = await Question.find({ quizid: id });
         for (const que of ques) {
             console.log(que.questionText);
+            // const studentId = req.user.id;
+
+            // const result = await Question.updateOne(
+            //     { _id: currentQuestionId },
+            //     {
+            //         $push: {
+            //             response: {
+            //                 stu_id: studentId,
+            //                 answer: currentAnswer
+            //             }
+            //         }
+            //     }
+            // );
             async function eval() {
-                // console.log(currentAnswer);
-                // let ans1 = "";
-                // console.log(currentAnswer);
                 let ans1 = "";
-                //    const completion = await openaii.chat.completions.create({
-                //        messages: [{ role: "system", content: "You are a helpful assistant." },
-                //            { role: "assistant", content: "What can I do for you today?" },
-                //            { role: "user", content: "Translate this Answer into proper English" },
-                //            { role: "assistant", content: "Ok! give me answer" },
-                //            { role: "user", content: currentAnswer},
-                //        ],
-                //        model: "gpt-3.5-turbo",
-                //    });
-                //    const result1 = JSON.parse(JSON.stringify(completion));
-                //    ans1 = result1.choices[0].message.content; // Extract the generated answer
-                //    console.log(ans1);
                 ans1 = que.questionAnswer;
-                // console.log(result);
-                // ans11 = (res.message.content);
-                // console.log(ans1);
                 for (const re of que.response) {
                     console.log(re.answer);
+
                     console.log("dam it");
-                    let ans11="";
-                    const completion = await openaii.chat.completions.create({
-                        messages: [{ role: "system", content: "You are a helpful assistant." },
-                        { role: "assistant", content: "What can I do for you today?" },
-                        { role: "user", content: "Translate this Answer into proper English" },
-                        { role: "assistant", content: "Ok! give me answer" },
-                        { role: "user", content: re.answer },
-                        ],
-                        model: "gpt-3.5-turbo",
-                    });
-                    const result1 = JSON.parse(JSON.stringify(completion));
-                    ans11 = result1.choices[0].message.content; // Extract the generated answer
-                    console.log(ans11);
+                    // let ans11="";
+                    // const completion = await openaii.chat.completions.create({
+                    //     messages: [{ role: "system", content: "You are a helpful assistant." },
+                    //     { role: "assistant", content: "What can I do for you today?" },
+                    //     { role: "user", content: "Translate this Answer into proper English" },
+                    //     { role: "assistant", content: "Ok! give me answer" },
+                    //     { role: "user", content: re.answer },
+                    //     ],
+                    //     model: "gpt-3.5-turbo",
+                    // });
+                    // const result1 = JSON.parse(JSON.stringify(completion));
+                    // ans11 = result1.choices[0].message.content; // Extract the generated answer
+                    // console.log(ans11);
                     async function evalans() {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
@@ -293,11 +289,13 @@ module.exports.viewstures = function (req, res) {
             for (const question of questions) {
                 //console.log(question);
                 const answerForStudent = await question.response.find(response => response.stu_id === desiredStudentId);
+           //     const processed_answerForStudent = await question.response.find(response => response.stu_id === desiredStudentId);
                 //console.log(answerForStudent);
                 const questionWithAnswer = {
                     questionText: question.questionText,
                     questionAnswer: question.questionAnswer,
                     studentAnswer: answerForStudent ? answerForStudent.answer : 'No answer found for this student',
+                    processed_ans:answerForStudent.processed_answer,
                     score: answerForStudent ? (answerForStudent.score ? answerForStudent.score : "0") : "0"
                 };
 

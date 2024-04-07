@@ -21,6 +21,7 @@ var questionSchema = mongoose.Schema({
             {
                 stu_id: String,
                 answer: String,
+                processed_answer:String,
                 score:Number
             }
         ],
