@@ -198,21 +198,21 @@ module.exports.evaluate = async function (req, res) {
                 // ans11 = (res.message.content);
                 // console.log(ans1);
                 for (const re of que.response) {
-                    // console.log("kkkkk");
-                    // console.log(re.answer);
-                    // let ans11="";
-                    // const completion = await openaii.chat.completions.create({
-                    //     messages: [{ role: "system", content: "You are a helpful assistant." },
-                    //     { role: "assistant", content: "What can I do for you today?" },
-                    //     { role: "user", content: "Translate this Answer into proper English" },
-                    //     { role: "assistant", content: "Ok! give me answer" },
-                    //     { role: "user", content: currentAnswer },
-                    //     ],
-                    //     model: "gpt-3.5-turbo",
-                    // });
-                    // const result1 = JSON.parse(JSON.stringify(completion));
-                    // ans11 = result1.choices[0].message.content; // Extract the generated answer
-                    // console.log(ans11);
+                    console.log(re.answer);
+                    console.log("dam it");
+                    let ans11="";
+                    const completion = await openaii.chat.completions.create({
+                        messages: [{ role: "system", content: "You are a helpful assistant." },
+                        { role: "assistant", content: "What can I do for you today?" },
+                        { role: "user", content: "Translate this Answer into proper English" },
+                        { role: "assistant", content: "Ok! give me answer" },
+                        { role: "user", content: re.answer },
+                        ],
+                        model: "gpt-3.5-turbo",
+                    });
+                    const result1 = JSON.parse(JSON.stringify(completion));
+                    ans11 = result1.choices[0].message.content; // Extract the generated answer
+                    console.log(ans11);
                     async function evalans() {
                         const completion1 = await openaii.chat.completions.create({
                             messages: [{ role: "system", content: "You are a helpful assistant." }
