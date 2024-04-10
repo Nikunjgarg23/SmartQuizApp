@@ -94,6 +94,7 @@
     </div>
     <div id="kl" style="min-height: fit-content;">
         <ul id="pl">
+              <% let dis="Not Evaluated Yet" %>
             <% for(let i of past_quiz){ %>
                
                 <div class="container" style="width: 100%;">
@@ -118,7 +119,8 @@
                                 </h7>
                                 <h7 class="card-body" style="width: fit-content;  margin-bottom: 0px; padding-bottom: 0px;">
                                     <div id="div2" style="width: fit-content; margin-bottom: 0px;">
-                                        Score.&nbsp;<%= i.score %>
+                                        Score:&nbsp; <% if(i.score!=0)dis=i.score %>
+                                        <%= dis %>/5
                                     </div>
                                 </h7>
                                 <!-- <div style="display: flex;flex-direction: row-reverse;">

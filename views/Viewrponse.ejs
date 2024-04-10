@@ -141,12 +141,10 @@
                             <div class="card-body"
                                 style="padding: 20px; background: linear-gradient(to left, #fff, #000);">
                                 <div style="display: flex; flex-direction: row;">
-                                    <span style="display: inline-block; width: 35%;">
+                                    <span style="display: inline-block; width: 30%;">
                                         <h5>Name</h5>
                                     </span>
-                                    
-                                   
-                                    <span class="text-black" style="display: inline-block; width: 30%;">
+                                    <span class="text-black" style="display: inline-block; width: 25%;">
                                         <h5>Score</h5>
                                     </span>
                                 </div>
@@ -159,20 +157,24 @@
         <table class="table"
             style="margin-left: 2vw;width: 95%; box-shadow: 0 6px 8px rgba(0, 0.3, 0.3, 0.3); padding-left: 1vw; background: linear-gradient(to left, #fff, #000);">
             <tbody>
+                <% let dis="Not Evaluated Yet" %>
+                <!-- <% let totaldis=0 %> -->
+
                 <% for(let i of student1){ %>
                     <tr style="background-color: aquamarine;">
                         <td style="padding-right: 10px;">
                             <%= i.name %>
                         </td>
-                        <td style="padding-right: 47px;"></td>
+                        <td style="padding-right: 31px;"></td>
                         <td>
                             
+                            <% if(i.score!==0)dis=i.score %>
+                            <%= dis/2 %>/<%= lenn*5 %>
                         </td>
                         <td style="padding-right: 7px;">
 
                         </td>
                         <td style="padding-right: 7px;">
-
                         </td>
                         <td style="padding-right: 7px;">
 
@@ -221,6 +223,7 @@
             let between40and80 = 0;
             let above80 = 0;
             let totalmarks=ss*5;
+            // totaldis=totalmarks;
             let t2=totalmarks*0.4;
             // let t4=totalmarks*0.6;
             let t5=totalmarks*0.8;

@@ -275,7 +275,7 @@ module.exports.saveanswer = async function (req, res) {
         for (let i = 0; i < questionId.length; i++) {
             const currentQuestionId = questionId[i];
             if (currentQuestionId >= 0 && currentQuestionId < 10) { f = 1; break; }
-            console.log(currentQuestionId)
+            // console.log(currentQuestionId)
             const currentAnswer = answer[i];
             let ans11="";
                     const completion = await openaii.chat.completions.create({
@@ -305,9 +305,10 @@ module.exports.saveanswer = async function (req, res) {
                 }
             );
         }
-        if (f == 1) {
+        if (f === 1) {
             const currentQuestionId = questionId;
             console.log(currentQuestionId)
+            console.log("here");
             const currentAnswer = answer;
             // console.log(currentAnswer);
             let ans1 = "";
